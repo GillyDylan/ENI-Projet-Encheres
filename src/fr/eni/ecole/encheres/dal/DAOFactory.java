@@ -3,6 +3,7 @@ package fr.eni.ecole.encheres.dal;
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.bo.Enchere;
 import fr.eni.ecole.encheres.bo.Retrait;
+import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.jdbc.CategorieDAOJdbcImpl;
 import fr.eni.ecole.encheres.dal.jdbc.DAO;
 import fr.eni.ecole.encheres.dal.jdbc.EnchereDAOJdbcImpl;
@@ -19,6 +20,9 @@ public class DAOFactory {
 	        }
 	        if(t instanceof Retrait) {
 	            dao = new RetraitDAOJdbcImpl();
+	        }
+	        if(t instanceof Utilisateur) {
+	            dao = new UtilisateurDAOJdbcImpl();
 	        }
 	        return dao;
 	    }
