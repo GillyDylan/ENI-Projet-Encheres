@@ -15,7 +15,7 @@ public class Utilisateur {
 	private String nomUtilisateur;
 	private String prenomUtilisateur;
 	private String eMailUtilisateur;
-	@Column(nullable = true) private int telephoneUtilisateur;
+	@Column(nullable = true) private long telephoneUtilisateur;
 	private String rueUtilisateur;
 	private int codePostalUtilisateur;
 	private String villeUtilisateur;
@@ -53,10 +53,10 @@ public class Utilisateur {
 	public void setEMailUtilisateur(String eMailUtilisateur) {
 		this.eMailUtilisateur = eMailUtilisateur;
 	}
-	public int getTelephoneUtilisateur() {
+	public long getTelephoneUtilisateur() {
 		return telephoneUtilisateur;
 	}
-	public void setTelephoneUtilisateur(int telephoneUtilisateur) {
+	public void setTelephoneUtilisateur(long telephoneUtilisateur) {
 		this.telephoneUtilisateur = telephoneUtilisateur;
 	}
 	public String getRueUtilisateur() {
@@ -97,7 +97,7 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(int idUtilisateur, String pseudonymeUtilisateur, String nomUtilisateur, String prenomUtilisateur,
-			String eMailUtilisateur, int telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
+			String eMailUtilisateur, long telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
 			String villeUtilisateur, String motDePasseUtilisateur, int creditUtilisateur, boolean administrateur) {
 		super();
 		this.setIdUtilisateur(idUtilisateur);
@@ -115,7 +115,7 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(String pseudonymeUtilisateur, String nomUtilisateur, String prenomUtilisateur,
-			String eMailUtilisateur, int telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
+			String eMailUtilisateur, long telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
 			String villeUtilisateur, String motDePasseUtilisateur, int creditUtilisateur, boolean administrateur) {
 		super();
 		this.setPseudonymeUtilisateur(pseudonymeUtilisateur);
@@ -135,16 +135,16 @@ public class Utilisateur {
 			String eMailUtilisateur, String rueUtilisateur, int codePostalUtilisateur, String villeUtilisateur,
 			String motDePasseUtilisateur, int creditUtilisateur, boolean administrateur) {
 		super();
-		this.pseudonymeUtilisateur = pseudonymeUtilisateur;
-		this.nomUtilisateur = nomUtilisateur;
-		this.prenomUtilisateur = prenomUtilisateur;
-		this.eMailUtilisateur = eMailUtilisateur;
-		this.rueUtilisateur = rueUtilisateur;
-		this.codePostalUtilisateur = codePostalUtilisateur;
-		this.villeUtilisateur = villeUtilisateur;
-		this.motDePasseUtilisateur = motDePasseUtilisateur;
-		this.creditUtilisateur = creditUtilisateur;
-		this.administrateur = administrateur;
+		this.setPseudonymeUtilisateur(pseudonymeUtilisateur);
+		this.setNomUtilisateur(nomUtilisateur);
+		this.setPrenomUtilisateur(prenomUtilisateur);
+		this.setEMailUtilisateur(eMailUtilisateur);
+		this.setRueUtilisateur(rueUtilisateur);
+		this.setCodePostalUtilisateur(codePostalUtilisateur);
+		this.setVilleUtilisateur(villeUtilisateur);
+		this.setMotDePasseUtilisateur(motDePasseUtilisateur);
+		this.setCreditUtilisateur(creditUtilisateur);
+		this.setAdministrateur(administrateur);
 	}
 	
 	public Utilisateur() {

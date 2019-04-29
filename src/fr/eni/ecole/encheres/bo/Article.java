@@ -19,7 +19,7 @@ public class Article {
 	private Date dateFinEncheresArticle;
 	@Column(nullable = true) private int prixInitialArticle;
 	@Column(nullable = true) private int prixVenteArticle;
-	@OneToOne private Categorie categorie;
+	@Column(nullable = true) @ManyToOne private Categorie categorie;
 	@ManyToOne private Utilisateur utilisateurVendant;
 	@ManyToOne private Utilisateur utilisateurAchetant;
 
