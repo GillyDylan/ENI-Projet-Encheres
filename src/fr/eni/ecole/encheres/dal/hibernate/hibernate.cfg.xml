@@ -6,13 +6,13 @@
 	<session-factory>
 		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
 		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-		<property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=VOITURES</property>
-		<property name="hibernate.connection.username">utilisateurBDD</property>
+		<property name="hibernate.connection.url">jdbc:sqlserver://10.44.101.12;databaseName=ENCHERES_DB</property>
+		<property name="hibernate.connection.username">sa</property>
 		<property name="hibernate.connection.password">Pa$$w0rd</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.connection.autocommit">false</property>
-		<mapping class="fr.eni.javaee.hibernate.bo.Voiture" />
+		<mapping class="fr.eni.javaee.hibernate.bo.Utilisateur" />
 	</session-factory>
 </hibernate-configuration>
