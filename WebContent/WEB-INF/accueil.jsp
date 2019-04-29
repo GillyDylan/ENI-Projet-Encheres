@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="row">
 	<div class="col">
 		<h2>
@@ -22,6 +23,18 @@
 					<option value="">Sport & Loisir</option>
 				</select>
 			</div>
+			<c:if test="${ utilisateur != null }">
+				<div class="form-check form-check-inline">
+					<input type="radio" class="form-check-input" id="chkboxAchats"
+						name="chkboxAchats"> <label
+						class="form-check-label" for="chkboxAchats">Achats</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="radio" class="form-check-input" id="chkboxVentes"
+						name="chkboxVentes"> <label
+						class="form-check-label" for="chkboxVentes">Ventes</label>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<div class="col-6 d-flex justify-content-center">
