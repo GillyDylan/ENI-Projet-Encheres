@@ -6,16 +6,16 @@ import javax.persistence.Id;
 @Entity
 public class Retrait {
 	
-	@Id private int idRetrait;
+	@Id private int idArticle;
 	private String rueRetrait;
 	private int codePostalRetrait;
 	private String villeRetrait;
 	
-	public int getIdRetrait() {
-		return idRetrait;
+	public int getIdArticle() {
+		return idArticle;
 	}
-	public void setIdRetrait(int idRetrait) {
-		this.idRetrait = idRetrait;
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
 	}
 	public String getRueRetrait() {
 		return rueRetrait;
@@ -38,7 +38,7 @@ public class Retrait {
 	
 	public Retrait(int idRetrait, String rueRetrait, int codePostalRetrait, String villeRetrait) {
 		super();
-		this.setIdRetrait(idRetrait);
+		this.setIdArticle(idRetrait);
 		this.setRueRetrait(rueRetrait);
 		this.setCodePostalRetrait(codePostalRetrait);
 		this.setVilleRetrait(villeRetrait);

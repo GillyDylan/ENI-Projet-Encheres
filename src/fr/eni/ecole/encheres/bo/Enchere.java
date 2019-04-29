@@ -8,22 +8,22 @@ import javax.persistence.Id;
 @Entity
 public class Enchere {
 	
-	@Id private int idUtilisateurEnchere;
-	@Id private int idArticleEnchere;
+	@Id private int idUtilisateur;
+	@Id private int idArticleVendu;
 	private Date dateEnchere;
 	private int montantEnchere;
 	
-	public int getIdUtilisateurEnchere() {
-		return idUtilisateurEnchere;
+	public int getIdUtilisateur() {
+		return idUtilisateur;
 	}
-	public void setIdUtilisateurEnchere(int idUtilisateurEnchere) {
-		this.idUtilisateurEnchere = idUtilisateurEnchere;
+	public void setIdUtilisateur(int idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
 	}
-	public int getIdArticleEnchere() {
-		return idArticleEnchere;
+	public int getIdArticleVendu() {
+		return idArticleVendu;
 	}
-	public void setIdArticleEnchere(int idArticleEnchere) {
-		this.idArticleEnchere = idArticleEnchere;
+	public void setIdArticleVendu(int idArticleVendu) {
+		this.idArticleVendu = idArticleVendu;
 	}
 	public Date getDateEnchere() {
 		return dateEnchere;
@@ -40,8 +40,8 @@ public class Enchere {
 	
 	public Enchere(int idUtilisateurEnchere, int idArticleEnchere, Date dateEnchere, int montantEnchere) {
 		super();
-		this.setIdUtilisateurEnchere(idUtilisateurEnchere);
-		this.setIdArticleEnchere(idArticleEnchere);
+		this.setIdUtilisateur(idUtilisateurEnchere);
+		this.setIdArticleVendu(idArticleEnchere);
 		this.setDateEnchere(dateEnchere);
 		this.setMontantEnchere(montantEnchere);
 	}
