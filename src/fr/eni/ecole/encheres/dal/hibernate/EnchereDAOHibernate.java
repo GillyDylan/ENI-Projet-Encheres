@@ -21,9 +21,8 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 	}
 
 	@Override
-	public int insert(Enchere t) throws DALException {
+	public void insert(Enchere t) throws DALException {
 		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override

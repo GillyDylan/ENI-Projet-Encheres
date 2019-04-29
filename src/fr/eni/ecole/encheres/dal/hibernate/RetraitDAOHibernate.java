@@ -21,9 +21,8 @@ public class RetraitDAOHibernate implements DAO<Retrait>{
 	}
 
 	@Override
-	public int insert(Retrait t) throws DALException {
+	public void insert(Retrait t) throws DALException {
 		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override

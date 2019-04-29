@@ -21,9 +21,8 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 	}
 
 	@Override
-	public int insert(Categorie t) throws DALException {
+	public void insert(Categorie t) throws DALException {
 		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
