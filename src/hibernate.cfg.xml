@@ -13,6 +13,6 @@
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.connection.autocommit">false</property>
-		<mapping class="fr.eni.javaee.hibernate.bo.Utilisateur" />
+		<mapping class="fr.eni.ecole.encheres.bo.Utilisateur" />
 	</session-factory>
 </hibernate-configuration>
