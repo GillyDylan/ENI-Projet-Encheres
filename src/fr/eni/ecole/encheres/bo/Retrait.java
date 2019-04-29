@@ -7,16 +7,17 @@ import javax.persistence.OneToOne;
 @Entity
 public class Retrait {
 	
-	@OneToOne @Id private int idArticle;
+	@OneToOne @Id private Article article;
 	private String rueRetrait;
 	private int codePostalRetrait;
 	private String villeRetrait;
 	
-	public int getIdArticle() {
-		return idArticle;
+
+	public Article getArticle() {
+		return article;
 	}
-	public void setIdArticle(int idArticle) {
-		this.idArticle = idArticle;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 	public String getRueRetrait() {
 		return rueRetrait;
@@ -37,9 +38,9 @@ public class Retrait {
 		this.villeRetrait = villeRetrait;
 	}
 	
-	public Retrait(int idArticle, String rueRetrait, int codePostalRetrait, String villeRetrait) {
+	public Retrait(Article article, String rueRetrait, int codePostalRetrait, String villeRetrait) {
 		super();
-		this.setIdArticle(idArticle);
+		this.setArticle(article);
 		this.setRueRetrait(rueRetrait);
 		this.setCodePostalRetrait(codePostalRetrait);
 		this.setVilleRetrait(villeRetrait);

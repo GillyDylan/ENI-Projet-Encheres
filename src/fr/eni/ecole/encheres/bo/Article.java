@@ -19,9 +19,26 @@ public class Article {
 	private Date dateFinEncheresArticle;
 	@Column(nullable = true) private int prixInitialArticle;
 	@Column(nullable = true) private int prixVenteArticle;
-	@OneToOne private Categorie categorieArticle;
+	@OneToOne private Categorie categorie;
 	@ManyToOne private Utilisateur utilisateurVendant;
-	@ManyToOne private Utilisateur utilsiateurAchetant;
+	@ManyToOne private Utilisateur utilisateurAchetant;
+
+
+	public Utilisateur getUtilisateurVendant() {
+		return utilisateurVendant;
+	}
+
+	public void setUtilisateurVendant(Utilisateur utilisateurVendant) {
+		this.utilisateurVendant = utilisateurVendant;
+	}
+
+	public Utilisateur getUtilisateurAchetant() {
+		return utilisateurAchetant;
+	}
+
+	public void setUtilisateurAchetant(Utilisateur utilisateurAchetant) {
+		this.utilisateurAchetant = utilisateurAchetant;
+	}
 
 	public int getIdArticle() {
 		return idArticle;
@@ -80,17 +97,17 @@ public class Article {
 	}
 
 	public Categorie getCategorie() {
-		return categorieArticle;
+		return categorie;
 	}
 
-	public void setCategorie(Categorie categorieArticle) {
-		this.categorieArticle = categorieArticle;
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 
 	public Article(int idArticle, String nomArticle, String descriptionArticle, Date dateDebutEncheresArticle,
 			Date dateFinEncheresArticle, int prixInitialArticle, int prixVenteArticle,
-			Categorie categorieArticle) {
+			Categorie categorie) {
 		super();
 		this.setIdArticle(idArticle);
 		this.setNomArticle(nomArticle);
@@ -99,12 +116,12 @@ public class Article {
 		this.setDateFinEncheresArticle(dateFinEncheresArticle);
 		this.setPrixInitialArticle(prixInitialArticle);
 		this.setPrixVenteArticle(prixVenteArticle);
-		this.setCategorie(categorieArticle);
+		this.setCategorie(categorie);
 	}
 	
 	public Article(String nomArticle, String descriptionArticle, Date dateDebutEncheresArticle,
 			Date dateFinEncheresArticle, int prixInitialArticle, int prixVenteArticle,
-			Categorie categorieArticle) {
+			Categorie categorie) {
 		super();
 		this.setNomArticle(nomArticle);
 		this.setDescriptionArticle(descriptionArticle);
@@ -112,7 +129,7 @@ public class Article {
 		this.setDateFinEncheresArticle(dateFinEncheresArticle);
 		this.setPrixInitialArticle(prixInitialArticle);
 		this.setPrixVenteArticle(prixVenteArticle);
-		this.setCategorie(categorieArticle);
+		this.setCategorie(categorie);
 	}
 	
 	
