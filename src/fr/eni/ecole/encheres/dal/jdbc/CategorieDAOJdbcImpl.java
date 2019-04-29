@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.dal.DALException;
+import fr.eni.ecole.encheres.dal.DAO;
 
 public class CategorieDAOJdbcImpl implements DAO<Categorie>{
 

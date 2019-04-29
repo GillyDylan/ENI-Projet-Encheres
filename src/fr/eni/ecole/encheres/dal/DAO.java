@@ -1,9 +1,7 @@
-package fr.eni.ecole.encheres.dal.jdbc;
+package fr.eni.ecole.encheres.dal;
 
 
 import java.util.List;
-
-import fr.eni.ecole.encheres.dal.DALException;
 
 public interface DAO<T> {
         List<T> selectById(int id) throws DALException;

@@ -1,4 +1,4 @@
-package fr.eni.ecole.encheres.dal.jdbc;
+package fr.eni.ecole.encheres.dal.hibernate;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import fr.eni.ecole.encheres.bo.Retrait;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAO;
 
-public class RetraitDAOJdbcImpl implements DAO<Retrait>{
+public class RetraitDAOHibernate implements DAO<Retrait>{
 
 	@Override
 	public List<Retrait> selectById(int id) throws DALException {

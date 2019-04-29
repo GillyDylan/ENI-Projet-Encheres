@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
+import fr.eni.ecole.encheres.dal.DAO;
 
 public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur>{
 
