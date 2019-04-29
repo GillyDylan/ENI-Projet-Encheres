@@ -1,11 +1,11 @@
-<form action="#">
+<form action="ServletConnexion" method="post">
   <div class="form-group">
     <label for="login">Identifiant</label>
-    <input type="login" class="form-control" id="login">
+    <input type="login" class="form-control" name="login">
   </div>
   <div class="form-group">
-    <label for="pwd">Mot de passe:</label>
-    <input type="password" class="form-control" id="pwd">
+    <label for="mdp">Mot de passe:</label>
+    <input type="password" class="form-control" name="mdp">
   </div>
   <div class="form-group form-check">
     <label class="form-check-label">
