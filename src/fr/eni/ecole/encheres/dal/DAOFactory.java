@@ -1,10 +1,16 @@
 package fr.eni.ecole.encheres.dal;
 
+import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.bo.Enchere;
+import fr.eni.ecole.encheres.bo.Retrait;
+import fr.eni.ecole.encheres.bo.Utilisateur;
+import fr.eni.ecole.encheres.dal.jdbc.ArticleDAOJdbcImpl;
 import fr.eni.ecole.encheres.dal.jdbc.CategorieDAOJdbcImpl;
 import fr.eni.ecole.encheres.dal.jdbc.DAO;
 import fr.eni.ecole.encheres.dal.jdbc.EnchereDAOJdbcImpl;
+import fr.eni.ecole.encheres.dal.jdbc.RetraitDAOJdbcImpl;
+import fr.eni.ecole.encheres.dal.jdbc.UtilisateurDAOJdbcImpl;
 
 public class DAOFactory {
 	 public static <T> DAO getDAO(T t){
@@ -14,6 +20,15 @@ public class DAOFactory {
 	        }
 	        if(t instanceof Enchere) {
 	            dao = new EnchereDAOJdbcImpl();
+	        }
+	        if(t instanceof Retrait) {
+	            dao = new RetraitDAOJdbcImpl();
+	        }
+	        if(t instanceof Utilisateur) {
+	            dao = new UtilisateurDAOJdbcImpl();
+	        }
+	        if(t instanceof Article) {
+	            dao = new ArticleDAOJdbcImpl();
 	        }
 	        return dao;
 	    }
