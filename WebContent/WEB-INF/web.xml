@@ -28,4 +28,21 @@
 		<servlet-name>accueil</servlet-name>
 		<url-pattern>/accueil</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>connexion</servlet-name>
+		<jsp-file>/WEB-INF/connexion.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>connexion</servlet-name>
+		<url-pattern>/connexion</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>creercompte</servlet-name>
+		<jsp-file>/WEB-INF/creercompte.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>creercompte</servlet-name>
+		<url-pattern>/creercompte</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
