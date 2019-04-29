@@ -2,11 +2,12 @@ package fr.eni.ecole.encheres.bo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Retrait {
 	
-	@Id private int idArticle;
+	@OneToOne @Id private int idArticle;
 	private String rueRetrait;
 	private int codePostalRetrait;
 	private String villeRetrait;
@@ -36,9 +37,9 @@ public class Retrait {
 		this.villeRetrait = villeRetrait;
 	}
 	
-	public Retrait(int idRetrait, String rueRetrait, int codePostalRetrait, String villeRetrait) {
+	public Retrait(int idArticle, String rueRetrait, int codePostalRetrait, String villeRetrait) {
 		super();
-		this.setIdArticle(idRetrait);
+		this.setIdArticle(idArticle);
 		this.setRueRetrait(rueRetrait);
 		this.setCodePostalRetrait(codePostalRetrait);
 		this.setVilleRetrait(villeRetrait);

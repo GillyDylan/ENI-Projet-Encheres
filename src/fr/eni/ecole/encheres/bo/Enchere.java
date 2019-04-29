@@ -4,26 +4,28 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Enchere {
 	
-	@Id private int idUtilisateur;
-	@Id private int idArticleVendu;
+	@ManyToOne @Id private Utilisateur utilisateur;
+	@ManyToOne @Id private Article article;
 	private Date dateEnchere;
 	private int montantEnchere;
 	
-	public int getIdUtilisateur() {
-		return idUtilisateur;
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
-	public int getIdArticleVendu() {
-		return idArticleVendu;
+	public Article getArticle() {
+		return article;
 	}
-	public void setIdArticleVendu(int idArticleVendu) {
-		this.idArticleVendu = idArticleVendu;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 	public Date getDateEnchere() {
 		return dateEnchere;
@@ -38,10 +40,10 @@ public class Enchere {
 		this.montantEnchere = montantEnchere;
 	}
 	
-	public Enchere(int idUtilisateurEnchere, int idArticleEnchere, Date dateEnchere, int montantEnchere) {
+	public Enchere(Utilisateur utilisateur, Article article, Date dateEnchere, int montantEnchere) {
 		super();
-		this.setIdUtilisateur(idUtilisateurEnchere);
-		this.setIdArticleVendu(idArticleEnchere);
+		this.setUtilisateur(utilisateur);
+		this.setArticle(article);
 		this.setDateEnchere(dateEnchere);
 		this.setMontantEnchere(montantEnchere);
 	}
