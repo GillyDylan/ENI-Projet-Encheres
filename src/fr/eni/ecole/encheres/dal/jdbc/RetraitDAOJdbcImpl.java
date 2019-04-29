@@ -2,31 +2,31 @@ package fr.eni.ecole.encheres.dal.jdbc;
 
 import java.util.List;
 
-import fr.eni.ecole.encheres.bo.Enchere;
+import fr.eni.ecole.encheres.bo.Retrait;
 import fr.eni.ecole.encheres.dal.DALException;
 
-public class EnchereDAOJdbcImpl implements DAO<Enchere>{
+public class RetraitDAOJdbcImpl implements DAO<Retrait>{
 
 	@Override
-	public List<Enchere> selectById(int id) throws DALException {
+	public List<Retrait> selectById(int id) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Enchere> selectAll() throws DALException {
+	public List<Retrait> selectAll() throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insert(Enchere t) throws DALException {
+	public int insert(Retrait t) throws DALException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void update(Enchere t) throws DALException {
+	public void update(Retrait t) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}
