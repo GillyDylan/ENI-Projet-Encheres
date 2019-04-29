@@ -38,6 +38,12 @@
 			<c:when test="${param.page== 'creercompte'}">
 				<jsp:include page="/creercompte"></jsp:include>
 			</c:when>
+			<c:when test="${param.page== 'enchere'}">
+				<jsp:include page="/enchere"></jsp:include>
+			</c:when>
+			<c:when test="${param.page== 'nouvellevente'}">
+				<jsp:include page="/nouvellevente"></jsp:include>
+			</c:when>
 			<c:otherwise>
 				<jsp:include page="/accueil"></jsp:include>
 			</c:otherwise>

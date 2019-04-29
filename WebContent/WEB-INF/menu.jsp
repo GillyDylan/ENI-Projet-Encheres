@@ -6,8 +6,8 @@
 		<li class="nav-item"><a class="nav-link" href="index?page=connexion">Se connecter</a></li>
 	</c:if>
 	<c:if test="${ utilisateur != null }">
-		<li class="nav-item"><a class="nav-link" href="#">Enchere</a></li>
-		<li class="nav-item"><a class="nav-link" href="#">Vendre un produit</a></li>
+		<li class="nav-item"><a class="nav-link" href="index?page=enchere">Enchere</a></li>
+		<li class="nav-item"><a class="nav-link" href="index?page=nouvellevente">Vendre un produit</a></li>
 		<li class="nav-item"><a class="nav-link" href="#">Profil</a></li>
 		<li class="nav-item"><a class="nav-link" href="ServletDeconnexion">Deconnexion</a></li>
 	</c:if>

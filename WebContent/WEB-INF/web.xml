@@ -49,4 +49,20 @@
     <servlet-name>index</servlet-name>
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>enchere</servlet-name>
+    <jsp-file>/WEB-INF/enchere.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>enchere</servlet-name>
+    <url-pattern>/enchere</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>nouvellevente</servlet-name>
+    <jsp-file>/WEB-INF/nouvellevente.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>nouvellevente</servlet-name>
+    <url-pattern>/nouvellevente</url-pattern>
+  </servlet-mapping>
 </web-app>
