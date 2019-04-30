@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Utilisateur;
+import fr.eni.ecole.encheres.dal.DALException;
 
 /**
  * Servlet implementation class ServletConnexion
@@ -38,12 +40,17 @@ public class ServletConnexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
 		String mdp = request.getParameter("mdp");
+		Utilisateur utilisateur = null;
 		
-		if(login.equals("Metical") || mdp.equals("123456789")) {
-			Utilisateur utilisateur = new Utilisateur("Metical", "Lefeuvre", "François", "francois.lefeuvre35@gmail.com",
-					 "rue du test", 35131 , "Chartres de Bretagne", "123456789", 500, false);
-			request.getSession().setAttribute("utilisateur", utilisateur);
-			this.getServletContext().getNamedDispatcher("index").forward(request, response);
+		try {
+			utilisateur = (Utilisateur) BLLManager.getBLL(new Utilisateur()).get(login);
+			if(utilisateur.getPseudonymeUtilisateur().equals(login) && utilisateur.getMotDePasseUtilisateur().equals(mdp)) {
+				request.getSession().setAttribute("utilisateur", utilisateur);
+				this.getServletContext().getNamedDispatcher("index").forward(request, response);
+			}
+		} catch (DALException e) {
+			request.setAttribute("erreurConnexion", "Erreur de connexion.");
+			this.getServletContext().getRequestDispatcher("/index.jsp?page=connexion").forward(request, response);
 		}
 	}
 

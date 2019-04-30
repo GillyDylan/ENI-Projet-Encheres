@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.encheres.bo.Utilisateur;
+import fr.eni.ecole.encheres.dal.DALException;
+import fr.eni.ecole.encheres.dal.DAOFactory;
+
 /**
  * Servlet implementation class ServletModifier
  */
@@ -35,11 +39,26 @@ public class ServletModifierProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("modifier").equals("modifier")){
-			
+			Utilisateur modUtilisateur = new Utilisateur();
+			modUtilisateur.setIdUtilisateur(1);
+			modUtilisateur.setPseudonymeUtilisateur(request.getParameter("pseudo"));
+			modUtilisateur.setPrenomUtilisateur(request.getParameter("prenom"));
+			modUtilisateur.setNomUtilisateur(request.getParameter("nom"));
+			modUtilisateur.setEMailUtilisateur(request.getParameter("email"));
+			modUtilisateur.setTelephoneUtilisateur(Integer.valueOf(request.getParameter("telephone")));
+			modUtilisateur.setMotDePasseUtilisateur(request.getParameter("mdp"));
+			modUtilisateur.setRueUtilisateur(request.getParameter("rue"));
+			modUtilisateur.setVilleUtilisateur(request.getParameter("ville"));
+			modUtilisateur.setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal")));
+			try {
+				DAOFactory.getDAO(new Utilisateur()).update(modUtilisateur);
+				request.getSession().setAttribute("utilisateur", modUtilisateur); 
+				this.getServletContext().getNamedDispatcher("index?page=profil").forward(request, response);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-		response.getWriter().append("Served at: " + request.getParameter("modifier"));//.append(request.getContextPath());
-		//doGet(request, response);
 	}
 
 }

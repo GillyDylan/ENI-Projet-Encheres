@@ -50,12 +50,12 @@ public class ServletInscription extends HttpServlet {
 		newUtilisateur.setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal")));
 		try {
 			DAOFactory.getDAO(new Utilisateur()).insert(newUtilisateur);
+			request.getSession().setAttribute("utilisateur", newUtilisateur); 
+			this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		request.getSession().setAttribute("utilisateur", newUtilisateur); 
-		this.getServletContext().getNamedDispatcher("index").forward(request, response);		
+		}	
 	}
 
 }

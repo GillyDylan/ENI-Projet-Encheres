@@ -1,7 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <form action="ServletConnexion" method="post">
   <div class="form-group">
     <label for="login">Identifiant</label>
-    <input type="login" class="form-control" name="login">
+    <input type="login" class="form-control" name="login"> 
+    <c:if test="${!empty erreurConnexion}">
+    	<c:out value="${erreurConnexion}"></c:out>
+    </c:if>
   </div>
   <div class="form-group">
     <label for="mdp">Mot de passe:</label>
