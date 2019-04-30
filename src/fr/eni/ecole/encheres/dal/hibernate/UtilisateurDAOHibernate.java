@@ -25,14 +25,14 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 	
 	public List<Utilisateur> selectByPseudo(String pseudo) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("SELECT * FROM Utilisateur WHERE pseudonymeUtilisateur = '"+pseudo+"'");
+		Query q = session.createQuery("SELECT * FROM Utilisateur WHERE pseudonymeUtilisateur = :pseudo").setParameter(pseudo,  pseudo);
 		List<Utilisateur> utilisateurs = q.getResultList();
 		return utilisateurs;
 	}
 	
 	public List<Utilisateur> selectByMail(String mail) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("SELECT * FROM Utilisateur WHERE eMailUtilisateur = '"+mail+"'");
+		Query q = session.createQuery("SELECT * FROM Utilisateur WHERE eMailUtilisateur = :mail");
 		List<Utilisateur> utilisateurs = q.getResultList();
 		return utilisateurs;
 	}

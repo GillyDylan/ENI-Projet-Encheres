@@ -31,21 +31,21 @@ public class UtilisateurBLL implements BLL{
 	public void set(Object utilisateur) throws BLLException, DALException {
 		// TODO Auto-generated method stub
 		Utilisateur u = (Utilisateur) utilisateur;
-		boolean erreur = false;
 		if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByPseudo(u.getPseudonymeUtilisateur())!=null) {
 			throw new BLLException("Ce pseudonyme est déjà utilisé");
 		}
 		if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByMail(u.getPseudonymeUtilisateur())!=null) {
 			throw new BLLException("Cet E-Mail est déjà utilisé");
 		}
-		if(erreur == false)
-		{
-			if(DAOFactory.getDAO(new Utilisateur()).selectById(u.getIdUtilisateur())!=null) {
-				DAOFactory.getDAO(new Utilisateur()).insert(u);
-			}else {
-				DAOFactory.getDAO(new Utilisateur()).update(u);
-			}
-		}	
+		if(u.getCodePostalUtilisateur())
+
+		
+		if(DAOFactory.getDAO(new Utilisateur()).selectById(u.getIdUtilisateur())!=null) {
+			DAOFactory.getDAO(new Utilisateur()).insert(u);
+		}else {
+			DAOFactory.getDAO(new Utilisateur()).update(u);
+		}
+		
 	}
 
 	@Override
