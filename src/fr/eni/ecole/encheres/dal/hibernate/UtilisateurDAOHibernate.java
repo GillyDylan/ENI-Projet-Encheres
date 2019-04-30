@@ -26,7 +26,11 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Utilisateur WHERE pseudonymeUtilisateur = '"+chaine+"' OR eMailUtilisateur = '"+chaine+"'");
 		List<Utilisateur> utilisateurs = q.getResultList();
-		return utilisateurs;
+		if(utilisateurs != null) {
+			return utilisateurs;
+		}else {
+			throw new DALException("Aucun utilisateur trouvé");
+		}
 	}
 
 
