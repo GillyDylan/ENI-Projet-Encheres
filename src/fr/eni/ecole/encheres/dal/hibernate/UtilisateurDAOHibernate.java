@@ -28,13 +28,7 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 		List<Utilisateur> utilisateurs = q.getResultList();
 		return utilisateurs;
 	}
-	
-	public List<Utilisateur> selectByMail(String mail) throws DALException {
-		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Utilisateur WHERE eMailUtilisateur = '"+mail+"'");
-		List<Utilisateur> utilisateurs = q.getResultList();
-		return utilisateurs;
-	}
+
 
 	@Override
 	public List<Utilisateur> selectAll() throws DALException {
