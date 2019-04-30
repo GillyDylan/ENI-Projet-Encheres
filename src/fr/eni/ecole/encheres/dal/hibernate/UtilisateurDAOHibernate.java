@@ -17,7 +17,15 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 	public List<Utilisateur> selectById(int id) throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("SELECT * FROM Utilisateur WHERE id = ");
+		Query q = session.createQuery("SELECT * FROM Utilisateur WHERE id = "+id);
+		List<Utilisateur> utilisateurs = q.getResultList();
+		return utilisateurs;
+	}
+	
+	
+	public List<Utilisateur> selectByPseudo(String pseudo) throws DALException {
+		Session session = ConnectionProvider.session;
+		Query q = session.createQuery("SELECT * FROM Utilisateur WHERE pseudonymeUtilisateur = '"+pseudo+"'");
 		List<Utilisateur> utilisateurs = q.getResultList();
 		return utilisateurs;
 	}
