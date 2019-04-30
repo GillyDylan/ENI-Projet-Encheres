@@ -34,6 +34,10 @@ public class ServletModifierProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("modifier").equals("modifier")){
+			
+		}
+		
 		response.getWriter().append("Served at: " + request.getParameter("modifier"));//.append(request.getContextPath());
 		//doGet(request, response);
 	}

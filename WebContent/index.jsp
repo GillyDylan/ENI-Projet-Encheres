@@ -47,7 +47,7 @@
 			</c:when>
 			<c:when test="${param.page== 'profil' && utilisateur != null}">
 				<jsp:include page="/profil"></jsp:include>
-			</c:when>
+			</c:when> 
 			<c:otherwise>
 				<jsp:include page="/accueil"></jsp:include>
 			</c:otherwise>

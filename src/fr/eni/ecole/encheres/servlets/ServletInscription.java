@@ -54,7 +54,7 @@ public class ServletInscription extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getSession().setAttribute("utilisateur", newUtilisateur);
+		request.getSession().setAttribute("utilisateur", newUtilisateur); 
 		this.getServletContext().getNamedDispatcher("index").forward(request, response);		
 	}
 

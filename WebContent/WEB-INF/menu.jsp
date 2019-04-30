@@ -11,4 +11,4 @@
 		<li class="nav-item"><a class="nav-link" href="index?page=profil">Profil</a></li>
 		<li class="nav-item"><a class="nav-link" href="ServletDeconnexion">Deconnexion</a></li>
 	</c:if>
-</ul>
+</ul> 

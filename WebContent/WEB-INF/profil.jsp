@@ -16,7 +16,7 @@
 					class="form-control" name="prenom"
 					value="<c:out value="${utilisateur.getPrenomUtilisateur()} "></c:out>"
 					readonly>
-			</div>
+			</div> 
 			<div class="form-group">
 				<label for="telephone">Telephone:</label> <input type="telephone"
 					class="form-control" name="telephone"
