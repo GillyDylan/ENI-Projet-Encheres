@@ -14,6 +14,12 @@ public class UtilisateurBLL implements BLL{
 		// TODO Auto-generated method stub
 		return (Utilisateur) DAOFactory.getDAO(new Utilisateur()).selectById(id);
 	}
+	
+	@Override
+	public Utilisateur get(String pseudo) throws DALException {
+		// TODO Auto-generated method stub
+		return (Utilisateur) ((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByPseudo(pseudo);
+	}
 
 	@Override
 	public List get() throws DALException {
