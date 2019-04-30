@@ -47,10 +47,12 @@ public class ServletConnexion extends HttpServlet {
 			if(utilisateur.getPseudonymeUtilisateur().equals(login) && utilisateur.getMotDePasseUtilisateur().equals(mdp)) {
 				request.getSession().setAttribute("utilisateur", utilisateur);
 				this.getServletContext().getNamedDispatcher("index").forward(request, response);
+			}else {
+				request.setAttribute("erreurConnexion", "Erreur de connexion.");
+				this.getServletContext().getRequestDispatcher("/index?page=connexion").forward(request, response);			
 			}
 		} catch (DALException e) {
-			request.setAttribute("erreurConnexion", "Erreur de connexion.");
-			this.getServletContext().getRequestDispatcher("/index.jsp?page=connexion").forward(request, response);
+			request.setAttribute("erreurConnexion", e.getMessage());
 		}
 	}
 

@@ -6,7 +6,7 @@
 		</h2>
 	</div>
 </div>
-<form action="#">
+<form action="ServletNouvelleVente" method="post">
 	<div class="form-group row">
 		<label for="article" class="col-sm-2 col-form-label">Article:</label>
 		<input type="text" class="form-control col-sm-10" id="article"
@@ -46,22 +46,22 @@
 			l'enchère:</label> <input type="date" class="form-control col-sm-10"
 			id="finenchere" name="finenchere" required>
 	</div>
-	<fieldset class="form-group row">
+	<fieldset class="form-group">
 		<legend>Retrait</legend>
 		<div class="form-group row">
 			<label for="rue" class="col-sm-2 col-form-label">Rue:</label> <input
 				type="text" class="form-control col-sm-10" id="rue" name="rue"
-				value="<c:out value="${ utilisateur.getRueUtilisateur() }"></c:out>" required>
+				value="<c:out value="${ utilisateur.getRueUtilisateur() }"></c:out>" readonly>
 		</div>
 		<div class="form-group row">
 			<label for="ville" class="col-sm-2 col-form-label">Ville:</label> <input
 				type="text" class="form-control col-sm-10" id="ville" name="ville"
-				value="<c:out value="${ utilisateur.getVilleUtilisateur() }"></c:out>" required>
+				value="<c:out value="${ utilisateur.getVilleUtilisateur() }"></c:out>" readonly>
 		</div>
 		<div class="form-group row">
 			<label for="cp" class="col-sm-2 col-form-label">Code postal:</label>
 			<input type="text" class="form-control col-sm-10" id="cp" name="cp" 
-			value="<c:out value="${ utilisateur.getCodePostalUtilisateur() }"></c:out>" required>
+			value="<c:out value="${ utilisateur.getCodePostalUtilisateur() }"></c:out>" readonly>
 		</div>
 	</fieldset>
 	<button type="submit" class="btn btn-primary">Enregistrer</button>

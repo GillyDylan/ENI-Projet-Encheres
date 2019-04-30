@@ -33,9 +33,6 @@
 			<c:when test="${param.page== 'connexion'}">
 				<jsp:include page="/connexion"></jsp:include>
 			</c:when>
-			<c:when test="${param.page== 'accueil'}}">
-				<jsp:include page="/accueil"></jsp:include>
-			</c:when>
 			<c:when test="${param.page== 'creercompte'}">
 				<jsp:include page="/creercompte"></jsp:include>
 			</c:when>
@@ -47,9 +44,9 @@
 			</c:when>
 			<c:when test="${param.page== 'profil' && utilisateur != null}">
 				<jsp:include page="/profil"></jsp:include>
-			</c:when> 
+			</c:when>
 			<c:otherwise>
-				<jsp:include page="/accueil"></jsp:include>
+				<jsp:include page="/ServletAccueil"></jsp:include>
 			</c:otherwise>
 		</c:choose>
 	</div>	

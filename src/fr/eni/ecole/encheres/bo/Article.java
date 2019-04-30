@@ -108,7 +108,6 @@ public class Article {
 		this.categorie = categorie;
 	}
 
-
 	public Article(int idArticle, String nomArticle, String descriptionArticle, Date dateDebutEncheresArticle,
 			Date dateFinEncheresArticle, int prixInitialArticle, int prixVenteArticle,
 			Categorie categorie) {
