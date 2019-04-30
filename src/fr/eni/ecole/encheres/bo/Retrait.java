@@ -1,5 +1,6 @@
 package fr.eni.ecole.encheres.bo;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -9,7 +10,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Retrait {
 	
-	@Id private int idRetrait;
+	@EmbeddedId private int idRetrait;
 	private String adresseRetrait;
 	private int codePostalRetrait;
 	private String villeRetrait;

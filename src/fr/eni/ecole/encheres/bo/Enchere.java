@@ -2,12 +2,13 @@ package fr.eni.ecole.encheres.bo;
 
 import java.util.Date;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity @Embeddable
 public class Enchere {
 	
 	@ManyToOne @JoinColumn(name="idUtilisateur" , referencedColumnName = "idUtilisateur") @Id private Utilisateur utilisateur;

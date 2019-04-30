@@ -3,6 +3,7 @@ package fr.eni.ecole.encheres.bo;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Article {
 	
-	@Id @GeneratedValue private int idArticle;
+	@EmbeddedId @GeneratedValue private int idArticle;
 	private String nomArticle;
 	private String descriptionArticle;
 	private Date dateDebutEncheresArticle;
