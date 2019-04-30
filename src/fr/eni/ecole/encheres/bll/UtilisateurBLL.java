@@ -37,7 +37,7 @@ public class UtilisateurBLL implements BLL{
 		if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByMail(u.getPseudonymeUtilisateur())!=null) {
 			throw new BLLException("Cet E-Mail est déjà utilisé");
 		}
-		if(u.getCodePostalUtilisateur())
+	
 
 		
 		if(DAOFactory.getDAO(new Utilisateur()).selectById(u.getIdUtilisateur())!=null) {
