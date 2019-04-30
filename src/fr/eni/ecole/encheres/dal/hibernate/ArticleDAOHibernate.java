@@ -30,13 +30,21 @@ public class ArticleDAOHibernate implements DAO<Article>{
 	}
 
 	@Override
-	public void insert(Article t) throws DALException {
+	public void insert(Article article) throws DALException {
 		// TODO Auto-generated method stub
+		Session session = ConnectionProvider.session;
+		session.beginTransaction();
+		session.save(article);
+		session.getTransaction().commit();
 	}
 
 	@Override
-	public void update(Article t) throws DALException {
+	public void update(Article article) throws DALException {
 		// TODO Auto-generated method stub
+		Session session = ConnectionProvider.session;
+		session.beginTransaction();
+		session.saveOrUpdate(article);
+		session.getTransaction().commit();	
 		
 	}
 
