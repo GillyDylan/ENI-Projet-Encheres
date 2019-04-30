@@ -33,13 +33,21 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 	}
 
 	@Override
-	public void insert(Categorie t) throws DALException {
+	public void insert(Categorie categorie) throws DALException {
 		// TODO Auto-generated method stub
+		Session session = ConnectionProvider.session;
+		session.beginTransaction();
+		session.save(categorie);
+		session.getTransaction().commit();
 	}
 
 	@Override
-	public void update(Categorie t) throws DALException {
+	public void update(Categorie categorie) throws DALException {
 		// TODO Auto-generated method stub
+		Session session = ConnectionProvider.session;
+		session.beginTransaction();
+		session.saveOrUpdate(categorie);
+		session.getTransaction().commit();
 		
 	}
 
