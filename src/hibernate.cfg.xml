@@ -14,5 +14,9 @@
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.connection.autocommit">false</property>
 		<mapping class="fr.eni.ecole.encheres.bo.Utilisateur" />
+		<mapping class="fr.eni.ecole.encheres.bo.Categorie" />
+		<mapping class="fr.eni.ecole.encheres.bo.Article" />
+		<mapping class="fr.eni.ecole.encheres.bo.Enchere" />
+		<mapping class="fr.eni.ecole.encheres.bo.Retrait" />
 	</session-factory>
 </hibernate-configuration>
