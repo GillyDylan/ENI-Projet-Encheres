@@ -19,7 +19,11 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Categorie WHERE idCategorie = "+idCategorie);
 		List<Categorie> categories = q.getResultList();
-		return categories;
+		if(categories.size() != 0) {
+			return categories;
+		}else {
+			throw new DALException("Aucune catégorie trouvée");
+		}
 	}
 	
 	public List<Categorie> selectByName(String chaine) throws DALException {
@@ -27,7 +31,11 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Categorie WHERE libelleCategorie = "+chaine);
 		List<Categorie> categories = q.getResultList();
-		return categories;
+		if(categories.size() != 0) {
+			return categories;
+		}else {
+			throw new DALException("Aucune catégorie trouvée");
+		}
 	}
 
 	@Override
@@ -36,7 +44,11 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Categorie");
 		List<Categorie> categories = q.getResultList();
-		return categories;
+		if(categories.size() != 0) {
+			return categories;
+		}else {
+			throw new DALException("Aucune catégorie trouvée");
+		}
 	}
 
 	@Override

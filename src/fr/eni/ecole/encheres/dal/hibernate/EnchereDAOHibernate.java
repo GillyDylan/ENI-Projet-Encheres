@@ -18,7 +18,11 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idUtilisateur+" AND idArticle = "+idArticle);
 		List<Enchere> encheres = q.getResultList();
-		return encheres;
+		if(encheres.size() != 0) {
+			return encheres;
+		}else {
+			throw new DALException("Aucune enchère trouvée");
+		}
 	}
 
 	@Override
@@ -26,7 +30,11 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Enchere");
 		List<Enchere> encheres = q.getResultList();
-		return encheres;
+		if(encheres.size() != 0) {
+			return encheres;
+		}else {
+			throw new DALException("Aucune enchère trouvée");
+		}
 	}
 
 	@Override
