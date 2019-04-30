@@ -7,7 +7,6 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 
 import fr.eni.ecole.encheres.bo.Categorie;
-import fr.eni.ecole.encheres.bo.Enchere;
 import fr.eni.ecole.encheres.dal.ConnectionProvider;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAO;
@@ -19,6 +18,14 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Categorie WHERE idCategorie = "+idCategorie);
+		List<Categorie> categories = q.getResultList();
+		return categories;
+	}
+	
+	public List<Categorie> selectByName(String chaine) throws DALException {
+		// TODO Auto-generated method stub
+		Session session = ConnectionProvider.session;
+		Query q = session.createQuery("FROM Categorie WHERE libelleCategorie = "+chaine);
 		List<Categorie> categories = q.getResultList();
 		return categories;
 	}

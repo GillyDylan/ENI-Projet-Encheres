@@ -18,6 +18,12 @@ public class Retrait{
 	private String villeRetrait;
 	
 
+	public int getIdRetrait() {
+		return idRetrait;
+	}
+	public void setIdRetrait(int idRetrait) {
+		this.idRetrait = idRetrait;
+	}
 	public String getAdresseRetrait() {
 		return adresseRetrait;
 	}

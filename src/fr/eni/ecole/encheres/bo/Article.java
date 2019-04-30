@@ -149,6 +149,9 @@ public class Article {
 		this.setCategorie(categorie);
 	}
 	
+	public Article() {
+		super();
+	}
 	
 	
 	
