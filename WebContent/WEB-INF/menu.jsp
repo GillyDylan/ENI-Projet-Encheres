@@ -8,7 +8,7 @@
 	<c:if test="${ utilisateur != null }">
 		<li class="nav-item"><a class="nav-link" href="index?page=enchere">Enchere</a></li>
 		<li class="nav-item"><a class="nav-link" href="index?page=nouvellevente">Vendre un produit</a></li>
-		<li class="nav-item"><a class="nav-link" href="#">Profil</a></li>
+		<li class="nav-item"><a class="nav-link" href="index?page=profil">Profil</a></li>
 		<li class="nav-item"><a class="nav-link" href="ServletDeconnexion">Deconnexion</a></li>
 	</c:if>
 </ul>

@@ -46,8 +46,7 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 		Session session = ConnectionProvider.session;
 		session.beginTransaction();
 		session.saveOrUpdate(t);
-		session.getTransaction().commit();
-		
+		session.getTransaction().commit();	
 	}
 
 	@Override

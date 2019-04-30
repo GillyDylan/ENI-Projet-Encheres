@@ -65,4 +65,12 @@
     <servlet-name>nouvellevente</servlet-name>
     <url-pattern>/nouvellevente</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>profil</servlet-name>
+    <jsp-file>/WEB-INF/profil.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>profil</servlet-name>
+    <url-pattern>/profil</url-pattern>
+  </servlet-mapping>
 </web-app>

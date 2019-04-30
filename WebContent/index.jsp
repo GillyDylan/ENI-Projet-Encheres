@@ -22,6 +22,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 </head>
@@ -38,11 +39,14 @@
 			<c:when test="${param.page== 'creercompte'}">
 				<jsp:include page="/creercompte"></jsp:include>
 			</c:when>
-			<c:when test="${param.page== 'enchere'}">
+			<c:when test="${param.page== 'enchere' && utilisateur != null}">
 				<jsp:include page="/enchere"></jsp:include>
 			</c:when>
-			<c:when test="${param.page== 'nouvellevente'}">
+			<c:when test="${param.page== 'nouvellevente' && utilisateur != null}">
 				<jsp:include page="/nouvellevente"></jsp:include>
+			</c:when>
+			<c:when test="${param.page== 'profil' && utilisateur != null}">
+				<jsp:include page="/profil"></jsp:include>
 			</c:when>
 			<c:otherwise>
 				<jsp:include page="/accueil"></jsp:include>
