@@ -3,28 +3,23 @@ package fr.eni.ecole.encheres.bo;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Retrait {
 	
-	@OneToOne @JoinColumn(name="idArticle") @Id private Article article;
-	private String rueRetrait;
+	@Id private int idRetrait;
+	private String adresseRetrait;
 	private int codePostalRetrait;
 	private String villeRetrait;
 	
 
-	public Article getArticle() {
-		return article;
+	public String getAdresseRetrait() {
+		return adresseRetrait;
 	}
-	public void setArticle(Article article) {
-		this.article = article;
-	}
-	public String getRueRetrait() {
-		return rueRetrait;
-	}
-	public void setRueRetrait(String rueRetrait) {
-		this.rueRetrait = rueRetrait;
+	public void setAdresseRetrait(String rueRetrait) {
+		this.adresseRetrait = rueRetrait;
 	}
 	public int getCodePostalRetrait() {
 		return codePostalRetrait;
@@ -39,20 +34,13 @@ public class Retrait {
 		this.villeRetrait = villeRetrait;
 	}
 	
-	public Retrait(Article article, String rueRetrait, int codePostalRetrait, String villeRetrait) {
+	public Retrait( String adresseRetrait, int codePostalRetrait, String villeRetrait) {
 		super();
-		this.setArticle(article);
-		this.setRueRetrait(rueRetrait);
+		this.setAdresseRetrait(adresseRetrait);
 		this.setCodePostalRetrait(codePostalRetrait);
 		this.setVilleRetrait(villeRetrait);
 	}
-	
-	public Retrait(String rueRetrait, int codePostalRetrait, String villeRetrait) {
-		super();
-		this.setRueRetrait(rueRetrait);
-		this.setCodePostalRetrait(codePostalRetrait);
-		this.setVilleRetrait(villeRetrait);
-	}
+
 	
 	public Retrait() {
 		super();

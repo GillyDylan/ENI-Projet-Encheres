@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Enchere {
 	
-	@ManyToOne @JoinColumn(name="idUtilisateur") @Id private Utilisateur utilisateur;
-	@ManyToOne @JoinColumn(name="idArticle") @Id private Article article;
+	@ManyToOne @JoinColumn(name="idUtilisateur" , referencedColumnName = "idUtilisateur") @Id private Utilisateur utilisateur;
+	@ManyToOne @JoinColumn(name="idArticle" , referencedColumnName = "idArticle") @Id private Article article;
 	private Date dateEnchere;
 	private int montantEnchere;
 	

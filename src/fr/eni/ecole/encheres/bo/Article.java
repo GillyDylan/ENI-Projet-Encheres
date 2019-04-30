@@ -17,11 +17,14 @@ public class Article {
 	private String descriptionArticle;
 	private Date dateDebutEncheresArticle;
 	private Date dateFinEncheresArticle;
-	@Column(nullable = true) private int prixInitialArticle;
+	private int prixInitialArticle;
 	@Column(nullable = true) private int prixVenteArticle;
-	@ManyToOne @JoinColumn(name="idCategorie") private Categorie categorie;
-	@ManyToOne @JoinColumn(name="idUtilisateur") private Utilisateur utilisateurVendant;
-	@ManyToOne @JoinColumn(name="idUtilisateur") private Utilisateur utilisateurAchetant;
+
+	@ManyToOne @JoinColumn(name="idCategorie", referencedColumnName = "idCategorie") private Categorie categorie;
+	@ManyToOne @JoinColumn(name="idUtilisateur", referencedColumnName = "idUtilisateur") private Utilisateur utilisateurVendant;
+	@ManyToOne @JoinColumn(name="idUtilisateur", referencedColumnName = "idUtilisateur") private Utilisateur utilisateurAchetant;
+	
+	@ManyToOne @JoinColumn(name="idRetrait", referencedColumnName = "idRetrait") @Column(nullable = true) private Retrait retrait;
 
 
 	public Utilisateur getUtilisateurVendant() {
