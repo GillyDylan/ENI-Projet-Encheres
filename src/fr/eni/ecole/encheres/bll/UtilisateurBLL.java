@@ -12,7 +12,7 @@ public class UtilisateurBLL implements BLL{
 	@Override
 	public Utilisateur get(int id) throws DALException {
 		// TODO Auto-generated method stub
-		return (Utilisateur) DAOFactory.getDAO(new Utilisateur()).selectById(id).get(0);
+		return (Utilisateur) ((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectById(id).get(0);
 	}
 	
 	@Override
@@ -37,10 +37,10 @@ public class UtilisateurBLL implements BLL{
 		if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByMail(u.getPseudonymeUtilisateur())!=null) {
 			throw new BLLException("Cet E-Mail est déjà utilisé");
 		}
-	
+		//if(u.getTelephoneUtilisateur() < 100000000 || u.getTelephoneUtilisateur() > 9999999999)
 
 		
-		if(DAOFactory.getDAO(new Utilisateur()).selectById(u.getIdUtilisateur())!=null) {
+		if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectById(u.getIdUtilisateur())!=null) {
 			DAOFactory.getDAO(new Utilisateur()).insert(u);
 		}else {
 			DAOFactory.getDAO(new Utilisateur()).update(u);

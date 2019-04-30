@@ -2,32 +2,49 @@ package fr.eni.ecole.encheres.dal.hibernate;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
+import org.hibernate.Session;
+
 import fr.eni.ecole.encheres.bo.Enchere;
+import fr.eni.ecole.encheres.dal.ConnectionProvider;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAO;
 
 public class EnchereDAOHibernate implements DAO<Enchere>{
 
-	@Override
-	public List<Enchere> selectById(int id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+
+	public List<Enchere> selectByIds(int idUtilisateur, int idArticle) throws DALException {
+		Session session = ConnectionProvider.session;
+		Query q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idUtilisateur+" AND idArticle = "+idArticle);
+		List<Enchere> encheres = q.getResultList();
+		return encheres;
 	}
 
 	@Override
 	public List<Enchere> selectAll() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = ConnectionProvider.session;
+		Query q = session.createQuery("FROM Enchere");
+		List<Enchere> encheres = q.getResultList();
+		return encheres;
 	}
 
 	@Override
-	public void insert(Enchere t) throws DALException {
+	public void insert(Enchere enchere) throws DALException {
 		// TODO Auto-generated method stub
+		Session session = ConnectionProvider.session;
+		session.beginTransaction();
+		session.save(enchere);
+		session.getTransaction().commit();
 	}
 
 	@Override
-	public void update(Enchere t) throws DALException {
+	public void update(Enchere enchere) throws DALException {
 		// TODO Auto-generated method stub
+		Session session = ConnectionProvider.session;
+		session.beginTransaction();
+		session.saveOrUpdate(enchere);
+		session.getTransaction().commit();	
 		
 	}
 

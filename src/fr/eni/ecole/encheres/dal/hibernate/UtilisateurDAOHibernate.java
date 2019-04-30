@@ -13,9 +13,8 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 
-	@Override
+
 	public List<Utilisateur> selectById(int id) throws DALException {
-		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Utilisateur WHERE id = "+id);
 		List<Utilisateur> utilisateurs = q.getResultList();
@@ -32,7 +31,7 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 	
 	public List<Utilisateur> selectByMail(String mail) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Utilisateur WHERE eMailUtilisateur = :mail");
+		Query q = session.createQuery("FROM Utilisateur WHERE eMailUtilisateur = '"+mail+"'");
 		List<Utilisateur> utilisateurs = q.getResultList();
 		return utilisateurs;
 	}
@@ -41,26 +40,26 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 	public List<Utilisateur> selectAll() throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("SELECT * FROM Utilisateur");
+		Query q = session.createQuery("FROM Utilisateur");
 		List<Utilisateur> utilisateurs = q.getResultList();
 		return utilisateurs;
 	}
 
 	@Override
-	public void insert(Utilisateur t) throws DALException {
+	public void insert(Utilisateur utilisateur) throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
 		session.beginTransaction();
-		session.save(t);
+		session.save(utilisateur);
 		session.getTransaction().commit();
 	}
 
 	@Override
-	public void update(Utilisateur t) throws DALException {
+	public void update(Utilisateur utilisateur) throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
 		session.beginTransaction();
-		session.saveOrUpdate(t);
+		session.saveOrUpdate(utilisateur);
 		session.getTransaction().commit();	
 	}
 

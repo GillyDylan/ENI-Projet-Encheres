@@ -8,7 +8,6 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class RetraitDAOHibernate implements DAO<Retrait>{
 
-	@Override
 	public List<Retrait> selectById(int id) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
