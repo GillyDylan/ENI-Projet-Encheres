@@ -20,7 +20,6 @@ public class RetraitBLL implements BLL{
 	public List get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return ((RetraitDAOHibernate) DAOFactory.getDAO(new Categorie())).selectByString(chaine);
-
 	}
 
 	@Override
