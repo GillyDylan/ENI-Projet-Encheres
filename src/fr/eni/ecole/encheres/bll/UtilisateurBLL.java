@@ -16,9 +16,9 @@ public class UtilisateurBLL implements BLL{
 	}
 	
 	@Override
-	public Utilisateur get(String pseudo) throws DALException {
+	public Utilisateur get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
-		return (Utilisateur) ((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByPseudo(pseudo).get(0);
+		return (Utilisateur) ((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByChaine(chaine).get(0);
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class UtilisateurBLL implements BLL{
 			if(!u.getPseudonymeUtilisateur().equals("^[a-zA-Z0-9_]*$")) {
 				throw new BLLException("Le pseudonyme doit contenir uniquement des caractères alphanumériques");
 			}
-			if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByPseudo(u.getPseudonymeUtilisateur())!=null) {
+			if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByChaine(u.getPseudonymeUtilisateur())!=null) {
 				throw new BLLException("Ce pseudonyme est déjà utilisé");
 			}
 			if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByMail(u.getPseudonymeUtilisateur())!=null) {

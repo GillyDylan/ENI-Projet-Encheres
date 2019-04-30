@@ -22,9 +22,9 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 	}
 	
 	
-	public List<Utilisateur> selectByPseudo(String pseudo) throws DALException {
+	public List<Utilisateur> selectByChaine(String chaine) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Utilisateur WHERE pseudonymeUtilisateur = '"+pseudo+"'");
+		Query q = session.createQuery("FROM Utilisateur WHERE pseudonymeUtilisateur = '"+chaine+"' OR eMailUtilisateur = '"+chaine+"'");
 		List<Utilisateur> utilisateurs = q.getResultList();
 		return utilisateurs;
 	}
