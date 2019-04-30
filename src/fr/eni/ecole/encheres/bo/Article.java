@@ -6,8 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Article {
@@ -19,9 +19,9 @@ public class Article {
 	private Date dateFinEncheresArticle;
 	@Column(nullable = true) private int prixInitialArticle;
 	@Column(nullable = true) private int prixVenteArticle;
-	@Column(nullable = true) @ManyToOne private Categorie categorie;
-	@ManyToOne private Utilisateur utilisateurVendant;
-	@ManyToOne private Utilisateur utilisateurAchetant;
+	@ManyToOne @JoinColumn(name="idCategorie") private Categorie categorie;
+	@ManyToOne @JoinColumn(name="idUtilisateur") private Utilisateur utilisateurVendant;
+	@ManyToOne @JoinColumn(name="idUtilisateur") private Utilisateur utilisateurAchetant;
 
 
 	public Utilisateur getUtilisateurVendant() {

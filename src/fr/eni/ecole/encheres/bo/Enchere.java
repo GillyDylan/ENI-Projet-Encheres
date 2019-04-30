@@ -4,13 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Enchere {
 	
-	@ManyToOne @Id private Utilisateur utilisateur;
-	@ManyToOne @Id private Article article;
+	@ManyToOne @JoinColumn(name="idUtilisateur") @Id private Utilisateur utilisateur;
+	@ManyToOne @JoinColumn(name="idArticle") @Id private Article article;
 	private Date dateEnchere;
 	private int montantEnchere;
 	

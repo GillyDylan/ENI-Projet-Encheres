@@ -2,12 +2,13 @@ package fr.eni.ecole.encheres.bo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Retrait {
 	
-	@OneToOne @Id private Article article;
+	@OneToOne @JoinColumn(name="idArticle") @Id private Article article;
 	private String rueRetrait;
 	private int codePostalRetrait;
 	private String villeRetrait;
