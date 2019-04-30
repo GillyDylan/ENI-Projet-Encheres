@@ -24,13 +24,13 @@ public class UtilisateurBLL implements BLL{
 	public void set(Object utilisateur) throws BLLException, DALException {
 		// TODO Auto-generated method stub
 		boolean erreur = false;
-		if(erreur = false)
+		if(erreur == false)
 		{
-			if(DAOFactory.getDAO(new Utilisateur()).selectById(((Utilisateur) utilisateur).getIdUtilisateur())!=null) {
+			//if(DAOFactory.getDAO(new Utilisateur()).selectById(((Utilisateur) utilisateur).getIdUtilisateur())!=null) {
 				DAOFactory.getDAO(new Utilisateur()).insert(utilisateur);
-			}else {
-				DAOFactory.getDAO(new Utilisateur()).update(utilisateur);
-			}
+			//}else {
+			//	DAOFactory.getDAO(new Utilisateur()).update(utilisateur);
+			//}
 		}
 		
 		
