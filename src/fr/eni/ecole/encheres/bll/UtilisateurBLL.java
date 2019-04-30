@@ -23,7 +23,7 @@ public class UtilisateurBLL implements BLL{
 
 
 	@Override
-	public List get() throws DALException {
+	public List<Utilisateur> get() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Utilisateur()).selectAll();
 	}

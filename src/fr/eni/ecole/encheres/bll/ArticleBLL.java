@@ -1,5 +1,6 @@
 package fr.eni.ecole.encheres.bll;
 
+import java.util.Date;
 import java.util.List;
 
 import fr.eni.ecole.encheres.bo.Article;
@@ -17,13 +18,13 @@ public class ArticleBLL implements BLL{
 	}
 	
 	@Override
-	public List get(String chaine) throws DALException {
+	public List<Article> get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return ((ArticleDAOHibernate) DAOFactory.getDAO(new Article())).selectByString(chaine);
 	}
 
 	@Override
-	public List get() throws DALException {
+	public List<Article> get() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Utilisateur()).selectAll();
 	}
@@ -32,7 +33,11 @@ public class ArticleBLL implements BLL{
 	public void set(Object article) throws BLLException, DALException {
 		// TODO Auto-generated method stub
 		Article a = (Article) article;
+
 		if(((ArticleDAOHibernate) DAOFactory.getDAO(new Article())).selectById(a.getIdArticle())!=null){
+			if(a.getDateDebutEncheresArticle().before(new Date())) {
+				throw new BLLException("Début de l'enchère déjà passée");
+			}
 			DAOFactory.getDAO(new Article()).insert(a);
 		}
 		else {
