@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Article {
 	
-	@EmbeddedId @GeneratedValue private int idArticle;
+	@Id @GeneratedValue private int idArticle;
 	private String nomArticle;
 	private String descriptionArticle;
 	private Date dateDebutEncheresArticle;
@@ -22,10 +22,10 @@ public class Article {
 	@Column(nullable = true) private int prixVenteArticle;
 
 	@ManyToOne @JoinColumn(name="idCategorie", referencedColumnName = "idCategorie") private Categorie categorie;
-	@ManyToOne @JoinColumn(name="idUtilisateur", referencedColumnName = "idUtilisateur") private Utilisateur utilisateurVendant;
-	@ManyToOne @JoinColumn(name="idUtilisateur", referencedColumnName = "idUtilisateur") private Utilisateur utilisateurAchetant;
+	@ManyToOne @JoinColumn(name="idUtilisateurVendant", referencedColumnName = "idUtilisateur") private Utilisateur utilisateurVendant;
+	@ManyToOne @JoinColumn(name="idUtilisateurAchetant", referencedColumnName = "idUtilisateur") private Utilisateur utilisateurAchetant;
 	
-	@ManyToOne @JoinColumn(name="idRetrait", referencedColumnName = "idRetrait") @Column(nullable = true) private Retrait retrait;
+	@ManyToOne @JoinColumn(name="idRetrait", referencedColumnName = "idRetrait", nullable = true) private Retrait retrait;
 
 
 	public Utilisateur getUtilisateurVendant() {

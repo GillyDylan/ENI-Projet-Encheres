@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Categorie {
 	
-	@EmbeddedId @GeneratedValue private int idCategorie;
+	@Id @GeneratedValue private int idCategorie;
 	private String libelleCategorie;
 	
 	public int getIdCategorie() {

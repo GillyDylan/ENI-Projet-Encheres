@@ -6,11 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
 @Entity
 public class Utilisateur {
-	@EmbeddedId @GeneratedValue private int idUtilisateur;
+	@Id @GeneratedValue private int idUtilisateur;
 	private String pseudonymeUtilisateur;
 	private String nomUtilisateur;
 	private String prenomUtilisateur;
