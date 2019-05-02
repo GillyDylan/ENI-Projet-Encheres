@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Article;
+import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
@@ -28,15 +30,18 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//if(request.getHeader("Referer") != )
 		List<Article> articles = null;
+		List<Categorie> categories = null;
 		try {
-			articles = DAOFactory.getDAO(new Article()).selectAll();
+			articles = BLLManager.getBLL(new Article()).get();
+			categories = BLLManager.getBLL(new Categorie()).get();
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		request.setAttribute("articles", articles);
+		request.setAttribute("categories", categories);
 		this.getServletContext().getNamedDispatcher("accueil").include(request, response);
 	}
 

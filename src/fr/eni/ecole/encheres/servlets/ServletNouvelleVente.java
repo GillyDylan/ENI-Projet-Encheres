@@ -2,6 +2,7 @@ package fr.eni.ecole.encheres.servlets;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.bo.Utilisateur;
@@ -34,8 +36,14 @@ public class ServletNouvelleVente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		List<Categorie> categories = null;
+		try {
+			categories = BLLManager.getBLL(new Categorie()).get();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("categories", categories);
+		this.getServletContext().getNamedDispatcher("pagenouvellevente").include(request, response);
 	}
 
 	/**
@@ -45,7 +53,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		Article newArticle = new Article();
 		newArticle.setNomArticle(request.getParameter("article"));
 		newArticle.setDescriptionArticle(request.getParameter("description"));
-		newArticle.setCategorie(new Categorie("Test"));
+		newArticle.setCategorie(new Categorie(request.getParameter("selectCategorie")));
 		newArticle.setPrixInitialArticle(Integer.valueOf(request.getParameter("prix")));
 		newArticle.setDateDebutEncheresArticle(Date.valueOf(request.getParameter("debutenchere")));
 		newArticle.setDateFinEncheresArticle(Date.valueOf(request.getParameter("finenchere")));

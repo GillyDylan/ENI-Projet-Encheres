@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java"
-	import="java.util.*,java.lang.*, java.time.LocalDate, fr.eni.ecole.encheres.bo.Article, fr.eni.ecole.encheres.bo.Utilisateur"
+	import="java.util.*,java.lang.*, java.time.LocalDate, fr.eni.ecole.encheres.bo.Article, fr.eni.ecole.encheres.bo.Categorie, fr.eni.ecole.encheres.bo.Utilisateur"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="row">
 	<div class="col">
@@ -19,10 +19,11 @@
 		<div class="form-group">
 			<label for="selectCategorie">Catégories</label> <select
 				id="selectCategorie" class="form-control">
-				<option value="">Informatique</option>
-				<option value="">Ameublement</option>
-				<option value="">Vetement</option>
-				<option value="">Sport & Loisir</option>
+				<c:if test="${!empty categories}">
+					<c:forEach var="categorie" items="${categories}">
+						<option value="${ categorie.getIdCategorie()  }">${ categorie.getLibelleCategorie() }</option>
+					</c:forEach>
+				</c:if>
 			</select>
 		</div>
 		<c:if test="${ utilisateur != null }">

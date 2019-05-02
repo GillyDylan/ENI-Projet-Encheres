@@ -29,7 +29,7 @@
 					</tr>
 					<tr>
 						<td>Meilleur offre</td>
-						<td>${articleDetails.getUtilisateurAchetant() == null ? 'Pas d\'acheteur en cours' : articleDetails.getPrixVenteArticle() + 'points' + pararticleDetails.getUtilisateurAchetant().getNomUtilisateur()}</td>
+						<td>${articleDetails.getUtilisateurAchetant() == null ? 'Pas d\'acheteur en cours' : articleDetails.getPrixVenteArticle() + ' points ' + pararticleDetails.getUtilisateurAchetant().getNomUtilisateur()}</td>
 					</tr>
 					<tr>
 						<td>Mis à prix</td>
@@ -41,7 +41,7 @@
 					</tr>
 					<tr>
 						<td>Retrait</td>
-						<td>${articleDetails.getUtilisateurVendant().getRueUtilisateur()} 
+						<td>${articleDetails.getUtilisateurVendant().getRueUtilisateur()}
 							${articleDetails.getUtilisateurVendant().getVilleUtilisateur()}
 							${articleDetails.getUtilisateurVendant().getCodePostalUtilisateur()}
 						</td>
@@ -50,16 +50,22 @@
 						<td>Vendeur</td>
 						<td>
 							${articleDetails.getUtilisateurVendant().getPrenomUtilisateur()}
-							${articleDetails.getUtilisateurVendant().getNomUtilisateur()} 
-						</td>
+							${articleDetails.getUtilisateurVendant().getNomUtilisateur()}</td>
 					</tr>
-					<tr>
-						<td>Ma proposition</td>
-						<td><select>
-								<option>100</option>
-								<option>200</option>
-						</select></td>
-					</tr>
+					<c:if test="${!empty utilisateur }">
+						<form action="ServletEncherir" method="post">
+							<tr>
+								<td>Ma proposition</td>
+								<c:set scope="session" var="article" value="${ articleDetails }"></c:set>
+								<td><input type="number" name="enchere" /></td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<button type="submit" class="btn btn-primary">Enchérir</button>
+								</td>
+							</tr>
+						</form>
+					</c:if>
 				</tbody>
 			</table>
 		</div>

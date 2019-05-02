@@ -18,13 +18,14 @@
 			placeholder="Description du produit" name="description" required>
 	</div>
 	<div class="form-group row">
-		<label for="selectCategorie" class="col-sm-2 col-form-label">Catégories</label>
-		<select id="selectCategorie" class="form-control col-sm-10">
-			<option value="">Informatique</option>
-			<option value="">Ameublement</option>
-			<option value="">Vetement</option>
-			<option value="">Sport & Loisir</option>
-		</select>
+		<label for="selectCategorie" class="col-sm-2 col-form-label">Catégories</label> 
+			<select id="selectCategorie" class="form-control col-sm-10">
+				<c:if test="${!empty categories}">
+					<c:forEach var="categorie" items="${categories}">
+						<option value="${ categorie.getIdCategorie()  }">${ categorie.getLibelleCategorie() }</option>
+					</c:forEach>
+				</c:if>
+			</select>
 	</div>
 	<div class="form-group row">
 		<label for="photo" class="col-sm-2 col-form-label">Photo de

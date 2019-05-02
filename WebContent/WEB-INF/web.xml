@@ -59,11 +59,19 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>nouvellevente</servlet-name>
-    <jsp-file>/WEB-INF/nouvellevente.jsp</jsp-file>
+    <servlet-class>fr.eni.ecole.encheres.servlets.ServletNouvelleVente</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>nouvellevente</servlet-name>
     <url-pattern>/nouvellevente</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>pagenouvellevente</servlet-name>
+    <jsp-file>/WEB-INF/nouvellevente.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pagenouvellevente</servlet-name>
+    <url-pattern>/pagenouvellevente</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>profil</servlet-name>
@@ -81,7 +89,7 @@
     <servlet-name>ServletAccueil</servlet-name>
     <url-pattern>/ServletAccueil</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>ServletDetailsEnchere</servlet-name>
     <servlet-class>fr.eni.ecole.encheres.servlets.ServletDetailsEnchere</servlet-class>
   </servlet>
