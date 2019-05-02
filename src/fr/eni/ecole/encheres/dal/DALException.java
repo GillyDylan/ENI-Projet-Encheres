@@ -1,6 +1,11 @@
 package fr.eni.ecole.encheres.dal;
 
 public class DALException extends Exception {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5291299818273966562L;
+
 	//Constructeurs
 	public DALException() {
 		super();
