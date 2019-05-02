@@ -29,7 +29,7 @@
 	<div class="form-group row">
 		<label for="photo" class="col-sm-2 col-form-label">Photo de
 			l'article:</label> <input type="file" class="form-control col-sm-10"
-			id="photo" name="photo" required>
+			id="photo" name="photo">
 	</div>
 	<div class="form-group row">
 		<label for="prix" class="col-sm-2 col-form-label">Mise à prix:</label>

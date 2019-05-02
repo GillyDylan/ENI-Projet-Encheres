@@ -73,6 +73,7 @@
 		</div>
 	</div>
 </form>
+
 <form action="ServletSupprimerProfil" method="post">
 	<button type="submit" class="btn btn-primary" name="supprimer">Supprimer</button>
 </form>

@@ -45,7 +45,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		Article newArticle = new Article();
 		newArticle.setNomArticle(request.getParameter("article"));
 		newArticle.setDescriptionArticle(request.getParameter("description"));
-		newArticle.setCategorie(new Categorie(request.getParameter("selectCategorie")));
+		newArticle.setCategorie(new Categorie("Test"));
 		newArticle.setPrixInitialArticle(Integer.valueOf(request.getParameter("prix")));
 		newArticle.setDateDebutEncheresArticle(Date.valueOf(request.getParameter("debutenchere")));
 		newArticle.setDateFinEncheresArticle(Date.valueOf(request.getParameter("finenchere")));
@@ -53,9 +53,11 @@ public class ServletNouvelleVente extends HttpServlet {
 		newArticle.setUtilisateurVendant(vendeur);
 		
 		try {
+			System.out.println(newArticle.getCategorie().getLibelleCategorie());
+			System.out.println(newArticle.getCategorie().getIdCategorie());
 			DAOFactory.getDAO(new Categorie()).insert(newArticle.getCategorie());
 			DAOFactory.getDAO(new Article()).insert(newArticle);
-			this.getServletContext().getNamedDispatcher("index?page=accueil").forward(request, response);
+			this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -37,7 +37,6 @@ public class ServletAccueil extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("articles", articles);
-		//System.out.println(request.getHeader("Referer"));
 		this.getServletContext().getNamedDispatcher("accueil").include(request, response);
 	}
 
