@@ -22,7 +22,7 @@ public class Enchere implements Serializable{
 	
 	@ManyToOne @JoinColumn(name="idUtilisateur" , referencedColumnName = "idUtilisateur") @Id private Utilisateur utilisateur;
 	@ManyToOne @JoinColumn(name="idArticle" , referencedColumnName = "idArticle") @Id private Article article;
-	@NotNull @Column(nullable = false) private Date dateEnchere;
+	@NotNull @Column(nullable = false) @Id private Date dateEnchere;
 	@NotNull @Column(nullable = false) private int montantEnchere;
 	
 	
