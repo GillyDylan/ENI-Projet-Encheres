@@ -57,7 +57,7 @@
 							<tr>
 								<td>Ma proposition</td>
 								<c:set scope="session" var="article" value="${ articleDetails }"></c:set>
-								<td><input type="number" name="enchere" /></td>
+								<td><input type="number" name="nouvelleenchere" /></td>
 							</tr>
 							<tr>
 								<td colspan="2">

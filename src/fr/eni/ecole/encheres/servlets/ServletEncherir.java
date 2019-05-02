@@ -45,25 +45,28 @@ public class ServletEncherir extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int valeurEnchere = Integer.valueOf(request.getParameter("enchere"));
+		int valeurEnchere = Integer.valueOf(request.getParameter("nouvelleenchere"));
 		Article article = (Article) request.getSession().getAttribute("article"); 
 		Date date = new Date();
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");		
 		
 		Enchere nouvelleEnchere = new Enchere(utilisateur, article, date, valeurEnchere);
+		
 		try {
 			//test si l'article n'est pas deja en base enchere
-			List<Enchere> test = DAOFactory.getDAO(new Enchere()).selectById(utilisateur.getIdUtilisateur(), article.getIdArticle());				
+			//List<Enchere> modifierEncheres = DAOFactory.getDAO(new Enchere()).selectById(utilisateur.getIdUtilisateur(), article.getIdArticle());				
 			//BLLManager.getBLL(new Enchere()).get(utilisateur.getIdUtilisateur(), article.getIdArticle());
 			//si le test est null on insert
-			if(test.size() == 0) {
-				DAOFactory.getDAO(new Enchere()).insert(nouvelleEnchere);
-			}
+			//if(modifierEncheres.size() == 0) {
+			DAOFactory.getDAO(new Enchere()).insert(nouvelleEnchere);
+			//}
 			//sinon on met à jour
-			else {
-				DAOFactory.getDAO(new Enchere()).update(nouvelleEnchere);
-			}
-			this.getServletContext().getNamedDispatcher("pagenouvellevente").forward(request, response);
+//			else {
+//				modifierEncheres.get(0).setMontantEnchere(valeurEnchere);
+//				modifierEncheres.get(0).setDateEnchere(date);
+//				DAOFactory.getDAO(new Enchere()).update(modifierEncheres.get(0));
+//			}
+			//this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

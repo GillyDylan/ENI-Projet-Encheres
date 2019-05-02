@@ -55,8 +55,8 @@ public class ServletInscription extends HttpServlet {
 			request.getSession().setAttribute("utilisateur", newUtilisateur); 
 			this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		} catch (DALException | BLLException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
+			request.setAttribute("errorMessage", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/index?page=creercompte").forward(request, response);			
 		}	
 	}
 

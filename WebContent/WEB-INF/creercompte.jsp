@@ -1,6 +1,12 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:if test="${!empty errorMessage }">
+	<span class="alert alert-danger">${errorMessage }</span>
+</c:if>
 <form action="ServletInscription" method="post">
-		<h3><p class="text-center">Profil</p></h3>
-		<div class="d-flex">
+	<h3>
+		<p class="text-center">Profil</p>
+	</h3>
+	<div class="d-flex">
 		<div class="col-6">
 			<div class="form-group">
 				<label for="pseudo">Pseudo:</label> <input type="pseudo"
@@ -47,5 +53,5 @@
 			</div>
 			<a href="?page=accueil" class="btn btn-primary">Annuler</a>
 		</div>
-		</div>
+	</div>
 </form>
