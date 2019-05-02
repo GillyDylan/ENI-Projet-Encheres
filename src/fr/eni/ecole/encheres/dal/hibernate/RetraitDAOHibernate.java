@@ -18,11 +18,7 @@ public class RetraitDAOHibernate implements DAO<Retrait>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Retrait WHERE idRetrait = "+idRetrait[0]);
 		List<Retrait> retraits = q.getResultList();
-		if(retraits.size() != 0) {
-			return retraits;
-		}else {
-			throw new DALException("Aucun point de retrait trouvé");
-		}
+		return retraits;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -32,11 +28,7 @@ public class RetraitDAOHibernate implements DAO<Retrait>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Retrait WHERE adresseRetrait LIKE '%"+chaine+"%' OR '%"+chaine+"%'");
 		List<Retrait> retraits = q.getResultList();
-		if(retraits.size() != 0) {
-			return retraits;
-		}else {
-			throw new DALException("Aucun point de retrait trouvé");
-		}
+		return retraits;
 	}
 	
 	
@@ -47,11 +39,7 @@ public class RetraitDAOHibernate implements DAO<Retrait>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Retrait");
 		List<Retrait> retraits = q.getResultList();
-		if(retraits.size() != 0) {
-			return retraits;
-		}else {
-			throw new DALException("Aucun point de retrait trouvé");
-		}
+		return retraits;
 	}
 
 	@Override

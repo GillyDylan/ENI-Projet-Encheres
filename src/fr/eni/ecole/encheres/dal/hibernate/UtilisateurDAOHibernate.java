@@ -19,11 +19,8 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Utilisateur WHERE id = "+idUtilisateur[0]);
 		List<Utilisateur> utilisateurs = q.getResultList();
-		if(utilisateurs.size() != 0) {
-			return utilisateurs;
-		}else {
-			throw new DALException("Aucun utilisateur trouvé");
-		}
+		return utilisateurs;
+
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -32,11 +29,7 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Utilisateur WHERE pseudonymeUtilisateur = '"+chaine+"' OR eMailUtilisateur = '"+chaine+"'");
 		List<Utilisateur> utilisateurs = q.getResultList();
-		if(utilisateurs.size() != 0) {
-			return utilisateurs;
-		}else {
-			throw new DALException("Aucun utilisateur trouvé");
-		}
+		return utilisateurs;
 	}
 
 
@@ -47,11 +40,7 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Utilisateur");
 		List<Utilisateur> utilisateurs = q.getResultList();
-		if(utilisateurs.size() != 0) {
-			return utilisateurs;
-		}else {
-			throw new DALException("Aucun utilisateur trouvé");
-		}
+		return utilisateurs;
 	}
 
 	@Override

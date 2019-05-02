@@ -56,7 +56,7 @@ public class ServletInscription extends HttpServlet {
 			this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		} catch (DALException | BLLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}	
 	}
 

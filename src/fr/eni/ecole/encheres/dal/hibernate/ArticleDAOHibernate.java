@@ -19,11 +19,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Article WHERE idArticle = "+idArticle[0]);
 		List<Article> articles = q.getResultList();
-		if(articles.size() != 0) {
-			return articles;
-		}else {
-			throw new DALException("Aucun article trouvé");
-		}
+		return articles;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -32,11 +28,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Article WHERE nomArticle LIKE '%"+chaine+"%' OR descriptionArticle LIKE '%"+chaine+"%'");
 		List<Article> articles = q.getResultList();
-		if(articles.size() != 0) {
-			return articles;
-		}else {
-			throw new DALException("Aucun article trouvé");
-		}
+		return articles;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,11 +37,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Article");
 		List<Article> articles = q.getResultList();
-		if(articles.size() != 0) {
-			return articles;
-		}else {
-			throw new DALException("Aucun article trouvé");
-		}
+		return articles;
 	}
 
 	@Override

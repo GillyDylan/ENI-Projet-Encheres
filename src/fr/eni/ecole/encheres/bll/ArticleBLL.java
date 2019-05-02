@@ -30,7 +30,7 @@ public class ArticleBLL implements BLL<Article>{
 	@Override
 	public void set(Article article) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-		if(DAOFactory.getDAO(new Article()).selectById(article.getIdArticle()).size() != 0){
+		if(DAOFactory.getDAO(new Article()).selectById(article.getIdArticle()).size() == 0){
 			if(article.getDateDebutEncheresArticle().before(new Date())) {
 				throw new BLLException("Début de l'enchère déjà passée");
 			}
