@@ -38,10 +38,10 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		// TODO Auto-generated method stub
 		utilisateur.setMotDePasseUtilisateur(encrypt(utilisateur.getMotDePasseUtilisateur()));
 
-		if(utilisateur.getTelephoneUtilisateur().trim().matches("(0|\\\\+33|0033)[1-9][0-9]{8}")) {
+		if(utilisateur.getTelephoneUtilisateur().trim().matches("(0|\\+33|0033)[1-9][0-9]{8}")) {
 			throw new BLLException(5001,"Téléphone invalide");
 		}
-		if(utilisateur.geteMailUtilisateur().trim().matches("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*\r\n@[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")) {
+		if(utilisateur.geteMailUtilisateur().trim().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*\r\n@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
 			throw new BLLException(5002,"E-Mail invalide");
 		}
 		if(utilisateur.getCodePostalUtilisateur() < 1000 || utilisateur.getCodePostalUtilisateur() > 99999) {
