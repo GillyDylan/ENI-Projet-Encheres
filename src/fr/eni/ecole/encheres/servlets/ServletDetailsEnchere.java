@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
@@ -31,7 +32,7 @@ public class ServletDetailsEnchere extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Article articleDetail = new Article();
 		try {
-			articleDetail = (Article) DAOFactory.getDAO(new Article()).selectById(Integer.valueOf(request.getParameter("id")));
+			articleDetail = BLLManager.getBLL(new Article()).get(Integer.valueOf(request.getParameter("id")));
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,9 +40,8 @@ public class ServletDetailsEnchere extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setAttribute("articleDetails", articleDetail);
-		this.getServletContext().getRequestDispatcher("/index?page=enchere").include(request, response);
+		this.getServletContext().getRequestDispatcher("/index?page=enchere").forward(request, response);
 	}
 
 	/**
