@@ -1,28 +1,28 @@
 package fr.eni.ecole.encheres.bo;
 
-import java.util.List;
-
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
 
 
 @Entity
 public class Utilisateur {
 	@Id @GeneratedValue private int idUtilisateur;
-	private String pseudonymeUtilisateur;
-	private String nomUtilisateur;
-	private String prenomUtilisateur;
-	private String eMailUtilisateur;
-	@Column(nullable = true) private long telephoneUtilisateur;
-	private String rueUtilisateur;
-	private int codePostalUtilisateur;
-	private String villeUtilisateur;
-	private String motDePasseUtilisateur;
-	private int creditUtilisateur;
-	private boolean administrateur;
+	@NotNull @Column(nullable = false) private String pseudonymeUtilisateur;
+	@NotNull @Column(nullable = false) private String nomUtilisateur;
+	@NotNull @Column(nullable = false) private String prenomUtilisateur;
+	@NotNull @Column(nullable = false) private String eMailUtilisateur;
+	@Nullable @Column(nullable = true) private long telephoneUtilisateur;
+	@NotNull @Column(nullable = false) private String rueUtilisateur;
+	@NotNull @Column(nullable = false) private int codePostalUtilisateur;
+	@NotNull @Column(nullable = false) private String villeUtilisateur;
+	@NotNull @Column(nullable = false) private String motDePasseUtilisateur;
+	@NotNull @Column(nullable = false) private int creditUtilisateur;
+	@NotNull @Column(nullable = false) private boolean administrateur;
 	
 	public int getIdUtilisateur() {
 		return idUtilisateur;

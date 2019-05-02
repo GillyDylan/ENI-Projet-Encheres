@@ -3,29 +3,34 @@ package fr.eni.ecole.encheres.bo;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
+
 @Entity
 public class Article {
 	
 	@Id @GeneratedValue private int idArticle;
-	private String nomArticle;
-	private String descriptionArticle;
-	private Date dateDebutEncheresArticle;
-	private Date dateFinEncheresArticle;
-	private int prixInitialArticle;
-	@Column(nullable = true) private int prixVenteArticle;
+	@NotNull @Column(nullable = false) private String nomArticle;
+	@NotNull @Column(nullable = false) private String descriptionArticle;
+	@NotNull @Column(nullable = false) private Date dateDebutEncheresArticle;
+	@Nullable @Column(nullable = true) private Date dateFinEncheresArticle;
+	@NotNull @Column(nullable = false) private int prixInitialArticle;
+	@Nullable @Column(nullable = true) private int prixVenteArticle;
 
-	@ManyToOne @JoinColumn(name="idCategorie", referencedColumnName = "idCategorie") private Categorie categorie;
-	@ManyToOne @JoinColumn(name="idUtilisateurVendant", referencedColumnName = "idUtilisateur") private Utilisateur utilisateurVendant;
-	@ManyToOne @JoinColumn(name="idUtilisateurAchetant", referencedColumnName = "idUtilisateur") private Utilisateur utilisateurAchetant;
-	
-	@ManyToOne @JoinColumn(name="idRetrait", referencedColumnName = "idRetrait", nullable = true) private Retrait retrait;
+	@NotNull @ManyToOne @JoinColumn(name="idCategorie", referencedColumnName = "idCategorie", nullable = false) 
+	private Categorie categorie;
+	@NotNull @ManyToOne @JoinColumn(name="idUtilisateurVendant", referencedColumnName = "idUtilisateur", nullable = false) 
+	private Utilisateur utilisateurVendant;
+	@Nullable @ManyToOne @JoinColumn(name="idUtilisateurAchetant", referencedColumnName = "idUtilisateur", nullable = true) 
+	private Utilisateur utilisateurAchetant;
+	@Nullable @ManyToOne @JoinColumn(name="idRetrait", referencedColumnName = "idRetrait", nullable = true) 
+	private Retrait retrait;
 
 
 	public Utilisateur getUtilisateurVendant() {

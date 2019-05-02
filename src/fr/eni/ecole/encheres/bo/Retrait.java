@@ -1,21 +1,19 @@
 package fr.eni.ecole.encheres.bo;
 
-import java.io.Serializable;
-
-import javax.persistence.EmbeddedId;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import com.sun.istack.NotNull;
 
 @Entity
 public class Retrait{
 	
-	@Id private int idRetrait;
-	private String adresseRetrait;
-	private int codePostalRetrait;
-	private String villeRetrait;
+	@Id @GeneratedValue private int idRetrait;
+	@NotNull @Column(nullable = false) private String adresseRetrait;
+	@NotNull @Column(nullable = false) private int codePostalRetrait;
+	@NotNull @Column(nullable = false) private String villeRetrait;
 	
 
 	public int getIdRetrait() {
