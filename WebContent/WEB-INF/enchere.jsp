@@ -32,7 +32,7 @@
 						<td>${articleDetails.getUtilisateurAchetant() == null ? 'Pas d\'acheteur en cours' : articleDetails.getPrixVenteArticle() + ' points ' + pararticleDetails.getUtilisateurAchetant().getNomUtilisateur()}</td>
 					</tr>
 					<tr>
-						<td>Mis à prix</td>
+						<td>Mise à prix</td>
 						<td>${articleDetails.getPrixInitialArticle()} points</td>
 					</tr>
 					<tr>

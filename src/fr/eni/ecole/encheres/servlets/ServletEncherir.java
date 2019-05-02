@@ -2,6 +2,8 @@ package fr.eni.ecole.encheres.servlets;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +40,21 @@ public class ServletEncherir extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		try {
+			int idArticle = Integer.parseInt(request.getParameter("id"));
+			List<Enchere> encheres = DAOFactory.getDAO(new Enchere()).selectById(idArticle);
+			Collections.sort(encheres, new Comparator<Enchere>() {
+				@Override
+				public int compare(Enchere ench1, Enchere ench2) {
+					return ench1.getDateEnchere().compareTo(ench2.getDateEnchere());
+				}
+			});
+			System.out.println(encheres.get(0).getDateEnchere());
+			
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -53,20 +69,8 @@ public class ServletEncherir extends HttpServlet {
 		Enchere nouvelleEnchere = new Enchere(utilisateur, article, date, valeurEnchere);
 		
 		try {
-			//test si l'article n'est pas deja en base enchere
-			//List<Enchere> modifierEncheres = DAOFactory.getDAO(new Enchere()).selectById(utilisateur.getIdUtilisateur(), article.getIdArticle());				
-			//BLLManager.getBLL(new Enchere()).get(utilisateur.getIdUtilisateur(), article.getIdArticle());
-			//si le test est null on insert
-			//if(modifierEncheres.size() == 0) {
 			DAOFactory.getDAO(new Enchere()).insert(nouvelleEnchere);
-			//}
-			//sinon on met à jour
-//			else {
-//				modifierEncheres.get(0).setMontantEnchere(valeurEnchere);
-//				modifierEncheres.get(0).setDateEnchere(date);
-//				DAOFactory.getDAO(new Enchere()).update(modifierEncheres.get(0));
-//			}
-			//this.getServletContext().getNamedDispatcher("index").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/index?page=details&id="+article.getIdArticle()).forward(request, response);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
