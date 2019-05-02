@@ -12,7 +12,7 @@ import fr.eni.ecole.encheres.dal.hibernate.RetraitDAOHibernate;
 import fr.eni.ecole.encheres.dal.hibernate.UtilisateurDAOHibernate;
 
 public class DAOFactory {
-	 public static <T> DAO getDAO(T t){
+	 public static <T> DAO<T> getDAO(T t){
 		 	DAO dao = null;
 	        if(t instanceof Categorie) {
 	            dao = new CategorieDAOHibernate();

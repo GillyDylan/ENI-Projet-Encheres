@@ -2,44 +2,38 @@ package fr.eni.ecole.encheres.bll;
 
 import java.util.List;
 
-import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.bo.Retrait;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
-import fr.eni.ecole.encheres.dal.hibernate.RetraitDAOHibernate;
 
 public class RetraitBLL implements BLL<Retrait>{
 
 	@Override
 	public Retrait get(int...idRetrait) throws DALException {
 		// TODO Auto-generated method stub
-		return (Retrait) DAOFactory.getDAO(new Categorie()).selectById(idRetrait[0]).get(0);
+		return DAOFactory.getDAO(new Retrait()).selectById(idRetrait[0]).get(0);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Retrait> get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Categorie()).selectByString(chaine);
+		return DAOFactory.getDAO(new Retrait()).selectByString(chaine);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Retrait> get() throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Categorie()).selectAll();
+		return DAOFactory.getDAO(new Retrait()).selectAll();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void set(Retrait retrait) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-		Retrait r = (Retrait) retrait;
-		if(((RetraitDAOHibernate) DAOFactory.getDAO(new Retrait())).selectById(r.getIdRetrait())!=null){
-			DAOFactory.getDAO(new Retrait()).insert(r);
+		if(DAOFactory.getDAO(new Retrait()).selectById(retrait.getIdRetrait())!=null){
+			DAOFactory.getDAO(new Retrait()).insert(retrait);
 		}
 		else {
-			DAOFactory.getDAO(new Retrait()).update(r);
+			DAOFactory.getDAO(new Retrait()).update(retrait);
 		}	
 	}
 

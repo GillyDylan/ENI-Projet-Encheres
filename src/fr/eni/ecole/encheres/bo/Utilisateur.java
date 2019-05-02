@@ -16,7 +16,7 @@ public class Utilisateur {
 	@NotNull @Column(nullable = false) private String nomUtilisateur;
 	@NotNull @Column(nullable = false) private String prenomUtilisateur;
 	@NotNull @Column(nullable = false) private String eMailUtilisateur;
-	@Nullable @Column(nullable = true) private long telephoneUtilisateur;
+	@Nullable @Column(nullable = true) private String telephoneUtilisateur;
 	@NotNull @Column(nullable = false) private String rueUtilisateur;
 	@NotNull @Column(nullable = false) private int codePostalUtilisateur;
 	@NotNull @Column(nullable = false) private String villeUtilisateur;
@@ -54,10 +54,10 @@ public class Utilisateur {
 	public void setEMailUtilisateur(String eMailUtilisateur) {
 		this.eMailUtilisateur = eMailUtilisateur;
 	}
-	public long getTelephoneUtilisateur() {
+	public String getTelephoneUtilisateur() {
 		return telephoneUtilisateur;
 	}
-	public void setTelephoneUtilisateur(long telephoneUtilisateur) {
+	public void setTelephoneUtilisateur(String telephoneUtilisateur) {
 		this.telephoneUtilisateur = telephoneUtilisateur;
 	}
 	public String getRueUtilisateur() {
@@ -98,7 +98,7 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(int idUtilisateur, String pseudonymeUtilisateur, String nomUtilisateur, String prenomUtilisateur,
-			String eMailUtilisateur, long telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
+			String eMailUtilisateur, String telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
 			String villeUtilisateur, String motDePasseUtilisateur, int creditUtilisateur, boolean administrateur) {
 		super();
 		this.setIdUtilisateur(idUtilisateur);
@@ -116,7 +116,7 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(String pseudonymeUtilisateur, String nomUtilisateur, String prenomUtilisateur,
-			String eMailUtilisateur, long telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
+			String eMailUtilisateur, String telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
 			String villeUtilisateur, String motDePasseUtilisateur, int creditUtilisateur, boolean administrateur) {
 		super();
 		this.setPseudonymeUtilisateur(pseudonymeUtilisateur);
