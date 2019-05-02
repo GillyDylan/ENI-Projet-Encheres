@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
+import fr.eni.ecole.encheres.dal.DAOFactory;
 
 /**
  * Servlet implementation class ServletConnexion
@@ -43,7 +44,7 @@ public class ServletConnexion extends HttpServlet {
 		Utilisateur utilisateur = null;
 		
 		try {
-			//utilisateur = (Utilisateur) BLLManager.getBLL(new Utilisateur()).get(login);
+			utilisateur = (Utilisateur) BLLManager.getBLL(new Utilisateur()).get(login);
 			if(utilisateur.getPseudonymeUtilisateur().equals(login) && utilisateur.getMotDePasseUtilisateur().equals(mdp)) {
 				request.getSession().setAttribute("utilisateur", utilisateur);
 				this.getServletContext().getNamedDispatcher("index").forward(request, response);

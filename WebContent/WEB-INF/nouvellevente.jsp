@@ -19,7 +19,7 @@
 	</div>
 	<div class="form-group row">
 		<label for="selectCategorie" class="col-sm-2 col-form-label">Catégories</label> 
-			<select id="selectCategorie" class="form-control col-sm-10">
+			<select name="selectCategorie" class="form-control col-sm-10">
 				<c:if test="${!empty categories}">
 					<c:forEach var="categorie" items="${categories}">
 						<option value="${ categorie.getIdCategorie()  }">${ categorie.getLibelleCategorie() }</option>

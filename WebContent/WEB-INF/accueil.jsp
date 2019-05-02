@@ -18,7 +18,7 @@
 		</div>
 		<div class="form-group">
 			<label for="selectCategorie">Catégories</label> <select
-				id="selectCategorie" class="form-control">
+				name="selectCategorie" class="form-control">
 				<c:if test="${!empty categories}">
 					<c:forEach var="categorie" items="${categories}">
 						<option value="${ categorie.getIdCategorie()  }">${ categorie.getLibelleCategorie() }</option>

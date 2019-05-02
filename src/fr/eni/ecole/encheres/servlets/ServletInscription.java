@@ -51,10 +51,11 @@ public class ServletInscription extends HttpServlet {
 		newUtilisateur.setVilleUtilisateur(request.getParameter("ville"));
 		newUtilisateur.setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal")));
 		try {
-			BLLManager.getBLL(new Utilisateur()).set(newUtilisateur);
+			//BLLManager.getBLL(new Utilisateur()).set(newUtilisateur);
+			DAOFactory.getDAO(new Utilisateur()).insert(newUtilisateur);
 			request.getSession().setAttribute("utilisateur", newUtilisateur); 
 			this.getServletContext().getNamedDispatcher("index").forward(request, response);
-		} catch (DALException | BLLException e) {
+		} catch (DALException e) {
 			request.setAttribute("errorMessage", e.getMessage());
 			this.getServletContext().getRequestDispatcher("/index?page=creercompte").forward(request, response);			
 		}	

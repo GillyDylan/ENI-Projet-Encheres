@@ -51,9 +51,22 @@ public class ServletNouvelleVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Article newArticle = new Article();
+		
+		List<Categorie> categories = null;
+		try {
+			categories = BLLManager.getBLL(new Categorie()).get();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+		for (Categorie categorie : categories) {
+			if(categorie.getIdCategorie() == Integer.parseInt(request.getParameter("selectCategorie").trim())) {
+				newArticle.setCategorie(categorie);
+			}
+		}
+		
 		newArticle.setNomArticle(request.getParameter("article"));
 		newArticle.setDescriptionArticle(request.getParameter("description"));
-		newArticle.setCategorie(new Categorie(request.getParameter("selectCategorie")));
 		newArticle.setPrixInitialArticle(Integer.valueOf(request.getParameter("prix")));
 		newArticle.setDateDebutEncheresArticle(Date.valueOf(request.getParameter("debutenchere")));
 		newArticle.setDateFinEncheresArticle(Date.valueOf(request.getParameter("finenchere")));
@@ -61,9 +74,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		newArticle.setUtilisateurVendant(vendeur);
 		
 		try {
-			System.out.println(newArticle.getCategorie().getLibelleCategorie());
-			System.out.println(newArticle.getCategorie().getIdCategorie());
-			DAOFactory.getDAO(new Categorie()).insert(newArticle.getCategorie());
 			DAOFactory.getDAO(new Article()).insert(newArticle);
 			this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		} catch (DALException e) {
