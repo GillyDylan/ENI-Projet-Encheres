@@ -62,4 +62,10 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 		
 	}
 
+	@Override
+	public List<Enchere> selectByString(String string) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

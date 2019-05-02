@@ -25,7 +25,7 @@ public class RetraitDAOHibernate implements DAO<Retrait>{
 		}
 	}
 
-
+	@Override
 	public List<Retrait> selectByString(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;

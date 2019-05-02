@@ -26,7 +26,7 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 		}
 	}
 	
-	public List<Categorie> selectByName(String chaine) throws DALException {
+	public List<Categorie> selectByString(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Categorie WHERE libelleCategorie = "+chaine);

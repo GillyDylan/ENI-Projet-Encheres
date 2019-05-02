@@ -7,7 +7,7 @@ import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 import fr.eni.ecole.encheres.dal.hibernate.UtilisateurDAOHibernate;
 
-public class UtilisateurBLL implements BLL{
+public class UtilisateurBLL implements BLL<Utilisateur>{
 
 	@Override
 	public Utilisateur get(int id) throws DALException {
@@ -18,7 +18,7 @@ public class UtilisateurBLL implements BLL{
 	@Override
 	public Utilisateur get(String chaine)throws DALException {
 		// TODO Auto-generated method stub
-		return((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByChaine(chaine).get(0);
+		return((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByString(chaine).get(0);
 	}
 
 
@@ -29,29 +29,28 @@ public class UtilisateurBLL implements BLL{
 	}
 
 	@Override
-	public void set(Object utilisateur) throws BLLException, DALException {
+	public void set(Utilisateur utilisateur) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-		Utilisateur u = (Utilisateur) utilisateur;
 
-		if(u.getTelephoneUtilisateur() < 100000000l || u.getTelephoneUtilisateur() > 9999999999l) {
+		if(utilisateur.getTelephoneUtilisateur() < 10000000l || utilisateur.getTelephoneUtilisateur() > 9999999999l) {
 			throw new BLLException("Téléphone invalide");
 		}
-		if(u.getCodePostalUtilisateur() < 1000 || u.getCodePostalUtilisateur() > 99999) {
+		if(utilisateur.getCodePostalUtilisateur() < 1000 || utilisateur.getCodePostalUtilisateur() > 99999) {
 			throw new BLLException("Code postal invalide");
 		}
-		if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectById(u.getIdUtilisateur())!=null) {
-			if(!u.getPseudonymeUtilisateur().equals("^[a-zA-Z0-9_]*$")) {
+		if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectById(utilisateur.getIdUtilisateur())!=null) {
+			if(!utilisateur.getPseudonymeUtilisateur().equals("^[a-zA-Z0-9_]*$")) {
 				throw new BLLException("Le pseudonyme doit contenir uniquement des caractères alphanumériques");
 			}
-			if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByChaine(u.getPseudonymeUtilisateur())!=null) {
+			if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByString(utilisateur.getPseudonymeUtilisateur())!=null) {
 				throw new BLLException("Ce pseudonyme est déjà utilisé");
 			}
-			if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByChaine(u.getPseudonymeUtilisateur())!=null) {
+			if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByString(utilisateur.getPseudonymeUtilisateur())!=null) {
 				throw new BLLException("Cet E-Mail est déjà utilisé");
 			}
-			DAOFactory.getDAO(new Utilisateur()).insert(u);
+			DAOFactory.getDAO(new Utilisateur()).insert(utilisateur);
 		}else {
-			DAOFactory.getDAO(new Utilisateur()).update(u);
+			DAOFactory.getDAO(new Utilisateur()).update(utilisateur);
 		}
 		
 	}

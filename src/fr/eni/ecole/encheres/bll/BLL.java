@@ -6,7 +6,7 @@ import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
 
 public interface BLL<T> {
-	 Object get(int id) throws DALException;
+	 T get(int id) throws DALException;
 	 Object get(String s) throws DALException;
      List<T> get() throws DALException;
      void set(T t) throws BLLException, DALException;
