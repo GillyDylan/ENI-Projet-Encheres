@@ -3,19 +3,22 @@ package fr.eni.ecole.encheres.bo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.sun.istack.NotNull;
+
 @Entity @Embeddable
 public class Enchere  implements Serializable{
 	
 	@ManyToOne @JoinColumn(name="idUtilisateur" , referencedColumnName = "idUtilisateur") @Id private Utilisateur utilisateur;
 	@ManyToOne @JoinColumn(name="idArticle" , referencedColumnName = "idArticle") @Id private Article article;
-	private Date dateEnchere;
-	private int montantEnchere;
+	@NotNull @Column(nullable = false) private Date dateEnchere;
+	@NotNull @Column(nullable = false) private int montantEnchere;
 	
 	
 	public Utilisateur getUtilisateur() {

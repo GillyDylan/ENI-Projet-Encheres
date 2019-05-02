@@ -1,15 +1,17 @@
 package fr.eni.ecole.encheres.bo;
 
-import javax.persistence.EmbeddedId;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import com.sun.istack.NotNull;
 
 @Entity
 public class Categorie {
 	
 	@Id @GeneratedValue private int idCategorie;
-	private String libelleCategorie;
+	@NotNull @Column(nullable = false) private String libelleCategorie;
 	
 	public int getIdCategorie() {
 		return idCategorie;
