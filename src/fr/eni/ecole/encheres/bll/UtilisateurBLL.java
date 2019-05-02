@@ -39,23 +39,23 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		utilisateur.setMotDePasseUtilisateur(encrypt(utilisateur.getMotDePasseUtilisateur()));
 
 		if(utilisateur.getTelephoneUtilisateur().trim().matches("(0|\\\\+33|0033)[1-9][0-9]{8}")) {
-			throw new BLLException("Téléphone invalide");
+			throw new BLLException(5001,"Téléphone invalide");
 		}
 		if(utilisateur.geteMailUtilisateur().trim().matches("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*\r\n@[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")) {
-			throw new BLLException("E-Mail invalide");
+			throw new BLLException(5002,"E-Mail invalide");
 		}
 		if(utilisateur.getCodePostalUtilisateur() < 1000 || utilisateur.getCodePostalUtilisateur() > 99999) {
-			throw new BLLException("Code postal invalide");
+			throw new BLLException(5003,"Code postal invalide");
 		}
 		if(DAOFactory.getDAO(new Utilisateur()).selectById(utilisateur.getIdUtilisateur()).size() == 0 ) {
 			if(!utilisateur.getPseudonymeUtilisateur().trim().matches("^[a-zA-Z0-9_]*$")) {
-				throw new BLLException("Le pseudonyme doit contenir uniquement des caractères alphanumériques");
+				throw new BLLException(5004,"Le pseudonyme doit contenir uniquement des caractères alphanumériques");
 			}
 			if(DAOFactory.getDAO(new Utilisateur()).selectByString(utilisateur.getPseudonymeUtilisateur()).size() != 0) {
-				throw new BLLException("Ce pseudonyme est déjà utilisé");
+				throw new BLLException(5005,"Ce pseudonyme est déjà utilisé");
 			}
 			if(DAOFactory.getDAO(new Utilisateur()).selectByString(utilisateur.geteMailUtilisateur()).size() != 0) {
-				throw new BLLException("Cet E-Mail est déjà utilisé");
+				throw new BLLException(5006,"Cet E-Mail est déjà utilisé");
 			}
 			DAOFactory.getDAO(new Utilisateur()).insert(utilisateur);
 		}else {

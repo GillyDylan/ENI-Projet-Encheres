@@ -6,13 +6,23 @@ public class BLLException extends Exception {
 	 * 
 	 */
 	private static final long serialVersionUID = 8977775951105351704L;
+	private int numException;
+	
 
+	
 	public BLLException() {
 		super();
 	}
 	
 	public BLLException(String message) {
 		super(message);
+	}
+	
+
+
+	public BLLException(int numException, String message) {
+		super(message);
+		this.numException = numException;
 	}
 	
 	public BLLException(String message, Throwable exception) {
@@ -22,7 +32,11 @@ public class BLLException extends Exception {
 	@Override
 	public String getMessage() {
 		
-		return "BLL - " + super.getMessage();
+		return super.getMessage();
+	}
+	
+	public int getNumException() {
+		return numException;
 	}
 	
 	

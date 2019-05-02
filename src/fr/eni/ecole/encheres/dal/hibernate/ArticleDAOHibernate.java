@@ -26,7 +26,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 	@Override
 	public List<Article> selectByString(String chaine) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Article WHERE nomArticle LIKE '%"+chaine+"%' OR descriptionArticle LIKE '%"+chaine+"%'");
+		Query q = session.createQuery("FROM Article WHERE LOWER(nomArticle) LIKE LOWER('%"+chaine+"%') OR LOWER(descriptionArticle) LIKE LOWER('%"+chaine+"%')");
 		List<Article> articles = q.getResultList();
 		return articles;
 	}
