@@ -6,17 +6,17 @@
 	<div class="d-flex">
 		<div class="col-6">
 			<div class="form-group">
-				<label for="pseudo">Pseudo:</label> 
-					<span class="form-control" readonly>
-						<c:out value="${utilisateur.getPseudonymeUtilisateur()} "></c:out>
-					</span>
+				<label for="pseudo">Pseudo:</label> <span class="form-control"
+					readonly> <c:out
+						value="${utilisateur.getPseudonymeUtilisateur()} "></c:out>
+				</span>
 			</div>
 			<div class="form-group">
 				<label for="prenom">Prénom:</label> <input type="prenom"
 					class="form-control" name="prenom"
 					value="<c:out value="${utilisateur.getPrenomUtilisateur()} "></c:out>"
 					readonly>
-			</div> 
+			</div>
 			<div class="form-group">
 				<label for="telephone">Telephone:</label> <input type="telephone"
 					class="form-control" name="telephone"
@@ -36,8 +36,7 @@
 					readonly>
 			</div>
 			<input type="button" class="btn btn-primary" value="Modifier"
-				onclick="debloquerProfil()" id="buttonModifier"/>
-			<!-- 			<button type="submit" class="btn btn-primary">Modifier</button> -->
+				onclick="debloquerProfil()" id="buttonModifier" />
 		</div>
 		<div class="col-6">
 			<div class="form-group">
@@ -47,10 +46,10 @@
 					readonly>
 			</div>
 			<div class="form-group">
-				<label for="email">Email:</label> 
-					<span class="form-control" readonly>
-						<c:out value="${utilisateur.geteMailUtilisateur()} "></c:out>
-					</span>
+				<label for="email">Email:</label> <span class="form-control"
+					readonly> <c:out
+						value="${utilisateur.geteMailUtilisateur()} "></c:out>
+				</span>
 			</div>
 			<div class="form-group">
 				<label for="rue">Rue:</label> <input type="rue" class="form-control"
@@ -66,34 +65,30 @@
 			</div>
 			<div class="form-group d-none">
 				<label for="mdp2">Confirmation:</label> <input type="password"
-					class="form-control" name="mdp2" 
+					class="form-control" name="mdp2"
 					value="<c:out value="${utilisateur.getMotDePasseUtilisateur()} "></c:out>"
 					readonly>
 			</div>
 			<a href="?page=accueil" class="btn btn-primary" id="a_annuler">Annuler</a>
 		</div>
 	</div>
-
-	<script>
-		function debloquerProfil(){
-			$("input").removeAttr("readonly");
-			$("div").removeClass("d-none");
-			
-			var buttonSubmit = document.createElement("button");
-			buttonSubmit.type = "submit";
-			buttonSubmit.value = "modifier";
-			buttonSubmit.name = "modifier";
-			buttonSubmit.className = "btn btn-primary";
-			buttonSubmit.innerText = "Enregistrer";
-			$("#buttonModifier").replaceWith(buttonSubmit);
-			
-			var buttonDelete = document.createElement("button");
-			buttonDelete.type = "submit";
-			buttonDelete.value = "supprimer";
-			buttonDelete.value = "supprimer";
-			buttonDelete.className = "btn btn-primary";
-			buttonDelete.innerText = "Supprimer mon compte";	
-			$("#a_annuler").replaceWith(buttonDelete);
-		}
-	</script>
 </form>
+<form action="ServletSupprimerProfil" method="post">
+	<button type="submit" class="btn btn-primary" name="supprimer">Supprimer</button>
+</form>
+
+
+<script>
+	function debloquerProfil(){
+		$("input").removeAttr("readonly");
+		$("div").removeClass("d-none");
+		
+		var buttonSubmit = document.createElement("button");
+		buttonSubmit.type = "submit";
+		buttonSubmit.value = "modifier";
+		buttonSubmit.name = "modifier";
+		buttonSubmit.className = "btn btn-primary";
+		buttonSubmit.innerText = "Enregistrer";
+		$("#buttonModifier").replaceWith(buttonSubmit);
+	}
+</script>

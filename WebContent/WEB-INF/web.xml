@@ -74,11 +74,11 @@
     <url-pattern>/profil</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>ServletAccueil</servlet-name>
-  	<servlet-class>fr.eni.ecole.encheres.servlets.ServletAccueil</servlet-class>
+    <servlet-name>ServletAccueil</servlet-name>
+    <servlet-class>fr.eni.ecole.encheres.servlets.ServletAccueil</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>ServletAccueil</servlet-name>
-  	<url-pattern>/ServletAccueil</url-pattern>
+    <servlet-name>ServletAccueil</servlet-name>
+    <url-pattern>/ServletAccueil</url-pattern>
   </servlet-mapping>
 </web-app>

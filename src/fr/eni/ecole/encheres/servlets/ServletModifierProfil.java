@@ -53,6 +53,8 @@ public class ServletModifierProfil extends HttpServlet {
 				request.setAttribute("erreurModification", e.getMessage());
 				this.getServletContext().getNamedDispatcher("index?page=profil").forward(request, response);
 			}
+		}else {
+			this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		}
 	}
 
