@@ -16,18 +16,21 @@ public class RetraitBLL implements BLL<Retrait>{
 		return (Retrait) DAOFactory.getDAO(new Categorie()).selectById(idRetrait[0]).get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Retrait> get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectByString(chaine);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Retrait> get() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectAll();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void set(Retrait retrait) throws BLLException, DALException {
 		// TODO Auto-generated method stub

@@ -13,23 +13,25 @@ import fr.eni.ecole.encheres.dal.hibernate.RetraitDAOHibernate;
 import fr.eni.ecole.encheres.dal.hibernate.UtilisateurDAOHibernate;
 
 public class BLLManager {
-	public static <T> BLL getBLL(T t){
+	public static <T> BLL<T> getBLL(T t){
 		BLL bll = null;
    
         if(t instanceof Utilisateur) {
         	bll = new UtilisateurBLL();
         }
-       /* if(t instanceof Article) {
+       if(t instanceof Article) {
         	bll = new ArticleBLL();
         }
         if(t instanceof Categorie) {
         	bll = new CategorieBLL();
         }
-        if(t instanceof Enchere) {
-        	bll = new EnchereBLL();
-        }
         if(t instanceof Retrait) {
         	bll = new RetraitBLL();
+        }
+        /* if(t instanceof Enchere) {
+        	bll = new EnchereBLL();
+        }
+       
         }*/
         return bll;
     }

@@ -13,6 +13,7 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class ArticleDAOHibernate implements DAO<Article>{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Article> selectById(int...idArticle) throws DALException {
 		Session session = ConnectionProvider.session;
@@ -25,6 +26,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Article> selectByString(String chaine) throws DALException {
 		Session session = ConnectionProvider.session;
@@ -37,6 +39,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Article> selectAll() throws DALException {
 		Session session = ConnectionProvider.session;

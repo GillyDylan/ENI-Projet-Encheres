@@ -9,39 +9,41 @@ import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 import fr.eni.ecole.encheres.dal.hibernate.ArticleDAOHibernate;
 
-public class ArticleBLL implements BLL{
+public class ArticleBLL implements BLL<Article>{
 	
 	@Override
 	public Article get(int...idArticle) throws DALException {
 		// TODO Auto-generated method stub
-		return (Article) ((ArticleDAOHibernate) DAOFactory.getDAO(new Article())).selectById(idArticle[0]).get(0);
+		return (Article) DAOFactory.getDAO(new Article()).selectById(idArticle[0]).get(0);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Article> get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
-		return ((ArticleDAOHibernate) DAOFactory.getDAO(new Article())).selectByString(chaine);
+		return DAOFactory.getDAO(new Article()).selectByString(chaine);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Article> get() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Utilisateur()).selectAll();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void set(Object article) throws BLLException, DALException {
+	public void set(Article article) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-		Article a = (Article) article;
 
-		if(((ArticleDAOHibernate) DAOFactory.getDAO(new Article())).selectById(a.getIdArticle())!=null){
-			if(a.getDateDebutEncheresArticle().before(new Date())) {
+		if(((ArticleDAOHibernate) DAOFactory.getDAO(new Article())).selectById(article.getIdArticle())!=null){
+			if(article.getDateDebutEncheresArticle().before(new Date())) {
 				throw new BLLException("Début de l'enchère déjà passée");
 			}
-			DAOFactory.getDAO(new Article()).insert(a);
+			DAOFactory.getDAO(new Article()).insert(article);
 		}
 		else {
-			DAOFactory.getDAO(new Article()).update(a);
+			DAOFactory.getDAO(new Article()).update(article);
 		}
 		
 	}
@@ -51,4 +53,5 @@ public class ArticleBLL implements BLL{
 		// TODO Auto-generated method stub
 		
 	}
+
 }

@@ -2,11 +2,9 @@ package fr.eni.ecole.encheres.bll;
 
 import java.util.List;
 
-import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
-import fr.eni.ecole.encheres.dal.hibernate.ArticleDAOHibernate;
 import fr.eni.ecole.encheres.dal.hibernate.CategorieDAOHibernate;
 
 public class CategorieBLL implements BLL<Categorie>{
@@ -17,18 +15,21 @@ public class CategorieBLL implements BLL<Categorie>{
 		return (Categorie) DAOFactory.getDAO(new Categorie()).selectById(idCategorie[0]).get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Categorie> get(String nom) throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectByString(nom);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Categorie> get() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectAll();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void set(Categorie categorie) throws BLLException, DALException {
 		// TODO Auto-generated method stub

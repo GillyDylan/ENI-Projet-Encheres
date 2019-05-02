@@ -13,6 +13,7 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class CategorieDAOHibernate implements DAO<Categorie>{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Categorie> selectById(int...idCategorie) throws DALException {
 		// TODO Auto-generated method stub
@@ -26,6 +27,7 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Categorie> selectByString(String chaine) throws DALException {
 		// TODO Auto-generated method stub
@@ -39,6 +41,7 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Categorie> selectAll() throws DALException {
 		// TODO Auto-generated method stub

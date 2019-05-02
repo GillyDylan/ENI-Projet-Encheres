@@ -22,12 +22,14 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Utilisateur> get() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Utilisateur()).selectAll();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void set(Utilisateur utilisateur) throws BLLException, DALException {
 		// TODO Auto-generated method stub

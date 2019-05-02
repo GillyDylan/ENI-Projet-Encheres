@@ -20,7 +20,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	}
 
 	@Override
-	public List get() throws DALException {
+	public List<Enchere> get() throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}

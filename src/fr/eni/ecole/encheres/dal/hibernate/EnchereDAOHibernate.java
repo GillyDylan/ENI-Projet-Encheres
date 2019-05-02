@@ -13,6 +13,7 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class EnchereDAOHibernate implements DAO<Enchere>{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Enchere> selectById(int...idsEnchere) throws DALException {
 		Session session = ConnectionProvider.session;
@@ -25,6 +26,7 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Enchere> selectAll() throws DALException {
 		Session session = ConnectionProvider.session;

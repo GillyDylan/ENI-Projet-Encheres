@@ -6,7 +6,6 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
-import fr.eni.ecole.encheres.bll.RetraitBLL;
 import fr.eni.ecole.encheres.bo.Retrait;
 import fr.eni.ecole.encheres.dal.ConnectionProvider;
 import fr.eni.ecole.encheres.dal.DALException;
@@ -14,6 +13,7 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class RetraitDAOHibernate implements DAO<Retrait>{
 
+	@SuppressWarnings("unchecked")
 	public List<Retrait> selectById(int...idRetrait) throws DALException {
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Retrait WHERE idRetrait = "+idRetrait[0]);
@@ -25,6 +25,7 @@ public class RetraitDAOHibernate implements DAO<Retrait>{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Retrait> selectByString(String chaine) throws DALException {
 		// TODO Auto-generated method stub
@@ -39,6 +40,7 @@ public class RetraitDAOHibernate implements DAO<Retrait>{
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Retrait> selectAll() throws DALException {
 		// TODO Auto-generated method stub
