@@ -13,11 +13,11 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class CategorieDAOHibernate implements DAO<Categorie>{
 
-
-	public List<Categorie> selectById(int idCategorie) throws DALException {
+	@Override
+	public List<Categorie> selectById(int...idCategorie) throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Categorie WHERE idCategorie = "+idCategorie);
+		Query q = session.createQuery("FROM Categorie WHERE idCategorie = "+idCategorie[0]);
 		List<Categorie> categories = q.getResultList();
 		if(categories.size() != 0) {
 			return categories;
@@ -26,6 +26,7 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 		}
 	}
 	
+	@Override
 	public List<Categorie> selectByString(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;

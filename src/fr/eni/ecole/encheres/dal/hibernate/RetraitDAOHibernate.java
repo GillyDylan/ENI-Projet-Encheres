@@ -14,9 +14,9 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class RetraitDAOHibernate implements DAO<Retrait>{
 
-	public List<Retrait> selectById(int idRetrait) throws DALException {
+	public List<Retrait> selectById(int...idRetrait) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Retrait WHERE idRetrait = "+idRetrait);
+		Query q = session.createQuery("FROM Retrait WHERE idRetrait = "+idRetrait[0]);
 		List<Retrait> retraits = q.getResultList();
 		if(retraits.size() != 0) {
 			return retraits;

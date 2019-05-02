@@ -13,10 +13,10 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 
-
-	public List<Utilisateur> selectById(int id) throws DALException {
+	@Override
+	public List<Utilisateur> selectById(int...idUtilisateur) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Utilisateur WHERE id = "+id);
+		Query q = session.createQuery("FROM Utilisateur WHERE id = "+idUtilisateur[0]);
 		List<Utilisateur> utilisateurs = q.getResultList();
 		if(utilisateurs.size() != 0) {
 			return utilisateurs;
@@ -25,7 +25,7 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 		}
 	}
 	
-	
+	@Override
 	public List<Utilisateur> selectByString(String chaine) throws DALException {
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Utilisateur WHERE pseudonymeUtilisateur = '"+chaine+"' OR eMailUtilisateur = '"+chaine+"'");

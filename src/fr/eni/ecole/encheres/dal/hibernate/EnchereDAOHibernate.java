@@ -13,10 +13,10 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class EnchereDAOHibernate implements DAO<Enchere>{
 
-
-	public List<Enchere> selectByIds(int idUtilisateur, int idArticle) throws DALException {
+	@Override
+	public List<Enchere> selectById(int...idsEnchere) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idUtilisateur+" AND idArticle = "+idArticle);
+		Query q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idsEnchere[0]+" AND idArticle = "+idsEnchere[1]);
 		List<Enchere> encheres = q.getResultList();
 		if(encheres.size() != 0) {
 			return encheres;

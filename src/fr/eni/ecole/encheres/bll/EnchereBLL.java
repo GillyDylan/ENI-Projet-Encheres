@@ -8,7 +8,7 @@ import fr.eni.ecole.encheres.dal.DALException;
 public class EnchereBLL implements BLL<Enchere>{
 
 	@Override
-	public Enchere get(int id) throws DALException {
+	public Enchere get(int...idsEncheres) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}

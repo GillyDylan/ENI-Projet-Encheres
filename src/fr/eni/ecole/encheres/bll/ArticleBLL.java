@@ -12,9 +12,9 @@ import fr.eni.ecole.encheres.dal.hibernate.ArticleDAOHibernate;
 public class ArticleBLL implements BLL{
 	
 	@Override
-	public Article get(int id) throws DALException {
+	public Article get(int...idArticle) throws DALException {
 		// TODO Auto-generated method stub
-		return (Article) ((ArticleDAOHibernate) DAOFactory.getDAO(new Article())).selectById(id).get(0);
+		return (Article) ((ArticleDAOHibernate) DAOFactory.getDAO(new Article())).selectById(idArticle[0]).get(0);
 	}
 	
 	@Override

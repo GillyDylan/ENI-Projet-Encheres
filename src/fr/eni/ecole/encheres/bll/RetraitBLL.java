@@ -11,15 +11,15 @@ import fr.eni.ecole.encheres.dal.hibernate.RetraitDAOHibernate;
 public class RetraitBLL implements BLL<Retrait>{
 
 	@Override
-	public Retrait get(int idRetrait) throws DALException {
+	public Retrait get(int...idRetrait) throws DALException {
 		// TODO Auto-generated method stub
-		return (Retrait)((RetraitDAOHibernate) DAOFactory.getDAO(new Categorie())).selectById(idRetrait).get(0);
+		return (Retrait) DAOFactory.getDAO(new Categorie()).selectById(idRetrait[0]).get(0);
 	}
 
 	@Override
 	public List<Retrait> get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
-		return ((RetraitDAOHibernate) DAOFactory.getDAO(new Categorie())).selectByString(chaine);
+		return DAOFactory.getDAO(new Categorie()).selectByString(chaine);
 	}
 
 	@Override

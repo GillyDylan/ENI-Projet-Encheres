@@ -10,15 +10,15 @@ import fr.eni.ecole.encheres.dal.hibernate.UtilisateurDAOHibernate;
 public class UtilisateurBLL implements BLL<Utilisateur>{
 
 	@Override
-	public Utilisateur get(int id) throws DALException {
+	public Utilisateur get(int...idUtilisateur) throws DALException {
 		// TODO Auto-generated method stub
-		return((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectById(id).get(0);
+		return (Utilisateur) DAOFactory.getDAO(new Utilisateur()).selectById(idUtilisateur[0]).get(0);
 	}
 	
 	@Override
 	public Utilisateur get(String chaine)throws DALException {
 		// TODO Auto-generated method stub
-		return((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByString(chaine).get(0);
+		return (Utilisateur) DAOFactory.getDAO(new Utilisateur()).selectByString(chaine).get(0);
 	}
 
 

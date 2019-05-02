@@ -12,15 +12,15 @@ import fr.eni.ecole.encheres.dal.hibernate.CategorieDAOHibernate;
 public class CategorieBLL implements BLL<Categorie>{
 
 	@Override
-	public Categorie get(int idCategorie) throws DALException {
+	public Categorie get(int...idCategorie) throws DALException {
 		// TODO Auto-generated method stub
-		return ((CategorieDAOHibernate) DAOFactory.getDAO(new Categorie())).selectById(idCategorie).get(0);
+		return (Categorie) DAOFactory.getDAO(new Categorie()).selectById(idCategorie[0]).get(0);
 	}
 
 	@Override
 	public List<Categorie> get(String nom) throws DALException {
 		// TODO Auto-generated method stub
-		return ((CategorieDAOHibernate) DAOFactory.getDAO(new Categorie())).selectByString(nom);
+		return DAOFactory.getDAO(new Categorie()).selectByString(nom);
 	}
 
 	@Override
