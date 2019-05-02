@@ -26,19 +26,42 @@
 			</select>
 		</div>
 		<c:if test="${ utilisateur != null }">
-			<div class="form-check form-check-inline">
-				<input type="radio" class="form-check-input" id="chkboxAchats"
-					name="chkboxAchats"> <label class="form-check-label"
-					for="chkboxAchats">Achats</label>
-			</div>
-			<div class="form-check form-check-inline">
-				<input type="radio" class="form-check-input" id="chkboxVentes"
-					name="chkboxVentes"> <label class="form-check-label"
-					for="chkboxVentes">Ventes</label>
+			<div class="d-flex">
+				<div class="form-check form-check-inline d-flex flex-column">
+					<input type="radio" class="form-check-input" name="chkboxEnchere">
+					<label class="form-check-label" for="chkboxEnchere">Achats</label>
+					<div class="form-check d-flex flex-column">
+						<input type="checkbox" class="form-check-input"
+							id="chkEncheresOuvertes"> <label class="form-check-label"
+							for="chkEncheresOuvertes">Enchères ouvertes</label> <input
+							type="checkbox" class="form-check-input" id="chkEncheresEnCours">
+						<label class="form-check-label" for="chkEncheresEnCours">Mes
+							enchères en cours</label> <input type="checkbox" class="form-check-input"
+							id="chkEncheresRemportees"> <label
+							class="form-check-label" for="chkEncheresRemportees">Mes
+							enchères remportées</label>
+					</div>
+				</div>
+				<div class="form-check form-check-inline d-flex flex-column">
+					<input type="radio" class="form-check-input" name="chkboxEnchere">
+					<label class="form-check-label" for="chkboxEnchere">Ventes</label>
+					<div class="form-check d-flex flex-column">
+						<input type="checkbox" class="form-check-input"
+							id="chkEncheresOuvertes"> <label class="form-check-label"
+							for="chkVentesEnCours">Ventes en cours</label> <input
+							type="checkbox" class="form-check-input" id="chkEncheresEnCours">
+						<label class="form-check-label" for="chkVentesNonDebutees">Mes
+							ventes non débutées</label> <input type="checkbox" class="form-check-input"
+							id="chkEncheresRemportees"> <label
+							class="form-check-label" for="chkVentesTerminees">Mes
+							ventes terminées</label>
+					</div>
+				</div>
 			</div>
 		</c:if>
 	</div>
-	<div class="col-6 text-center d-flex align-items-center justify-content-center ">
+	<div
+		class="col-6 text-center d-flex align-items-center justify-content-center ">
 		<input type="button" value="Rechercher" class="btn btn-primary btn-lg" />
 	</div>
 </div>
@@ -55,7 +78,7 @@
 					<p class="card-text">Vendeur :</p>
 					<p class="card-text">${article.getUtilisateurVendant().getPrenomUtilisateur()}
 						${article.getUtilisateurVendant().getNomUtilisateur()}</p>
-					<a href="#" class="btn btn-primary">Détails</a>
+					<a href="index?page=details&id=${article.getIdArticle()}" class="btn btn-primary">Détails</a>
 				</div>
 			</div>
 		</div>
