@@ -13,10 +13,11 @@ import fr.eni.ecole.encheres.dal.DAO;
 
 public class EnchereDAOHibernate implements DAO<Enchere>{
 
-
-	public List<Enchere> selectByIds(int idUtilisateur, int idArticle) throws DALException {
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Enchere> selectById(int...idsEnchere) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idUtilisateur+" AND idArticle = "+idArticle);
+		Query q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idsEnchere[0]+" AND idArticle = "+idsEnchere[1]);
 		List<Enchere> encheres = q.getResultList();
 		if(encheres.size() != 0) {
 			return encheres;
@@ -25,6 +26,7 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Enchere> selectAll() throws DALException {
 		Session session = ConnectionProvider.session;
@@ -60,6 +62,12 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 	public void delete(int id) throws DALException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Enchere> selectByString(String string) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
