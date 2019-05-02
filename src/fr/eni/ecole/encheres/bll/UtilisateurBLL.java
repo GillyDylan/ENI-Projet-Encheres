@@ -42,8 +42,8 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 				utilisateur.getNomUtilisateur().trim() == null ||
 				utilisateur.getPrenomUtilisateur().trim() == null ||
 				utilisateur.getRueUtilisateur().trim() == null ||
-				utilisateur.getVilleUtilisateur().trim() == null){
-			throw new BLLException(5000,"Tous les champs obligatoires ne sont pas remplis");
+				utilisateur.getVilleUtilisateur().trim() == null) {
+			throw new BLLException(5000,"Tous les paramètres obligatoires ne sont pas fournis");
 		}
 		utilisateur.setMotDePasseUtilisateur(encrypt(utilisateur.getMotDePasseUtilisateur()));
 		if(!utilisateur.getTelephoneUtilisateur().trim().matches("(0|\\+33|0033)[1-9][0-9]{8}")) {
@@ -70,7 +70,8 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 				throw new BLLException(5013,"Cet E-Mail est déjà utilisé");
 			}
 			DAOFactory.getDAO(new Utilisateur()).insert(utilisateur);
-		}else {
+		}
+		else {
 			Utilisateur oldUtilisateur = utilisateurs.get(0);
 			if(oldUtilisateur.getPseudonymeUtilisateur()!=utilisateur.getPseudonymeUtilisateur()) {
 				throw new BLLException(5020,"Le pseudonyme d'un utilisateur déjà créé ne peut être modifié");
