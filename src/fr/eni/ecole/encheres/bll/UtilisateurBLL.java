@@ -1,5 +1,8 @@
 package fr.eni.ecole.encheres.bll;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.List;
 
 import fr.eni.ecole.encheres.bo.Utilisateur;
@@ -33,7 +36,15 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	@Override
 	public void set(Utilisateur utilisateur) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-
+		System.out.println(utilisateur.getMotDePasseUtilisateur());
+		try {
+			byte[] salt = getSalt();
+			utilisateur.setMotDePasseUtilisateur(get_SHA_512_SecurePassword(utilisateur.getMotDePasseUtilisateur(), salt));
+			System.out.println(utilisateur.getMotDePasseUtilisateur());
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(utilisateur.getTelephoneUtilisateur() < 10000000l || utilisateur.getTelephoneUtilisateur() > 9999999999l) {
 			throw new BLLException("Téléphone invalide");
 		}
@@ -62,6 +73,37 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		// TODO Auto-generated method stub
 		DAOFactory.getDAO(new Utilisateur()).delete(id);
 	}
+	
+	
+
+    private static byte[] getSalt() throws NoSuchAlgorithmException
+    {
+        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+        byte[] salt = new byte[16];
+        sr.nextBytes(salt);
+        return salt;
+    }
+    
+    private static String get_SHA_512_SecurePassword(String passwordToHash, byte[] salt)
+    {
+    	String generatedPassword = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            md.update(salt);
+            byte[] bytes = md.digest(passwordToHash.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            generatedPassword = sb.toString();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        return generatedPassword;
+    }
 
 
 }
