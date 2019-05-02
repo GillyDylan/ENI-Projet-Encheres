@@ -4,13 +4,14 @@ import java.util.List;
 
 import fr.eni.ecole.encheres.bo.Enchere;
 import fr.eni.ecole.encheres.dal.DALException;
+import fr.eni.ecole.encheres.dal.DAOFactory;
 
 public class EnchereBLL implements BLL<Enchere>{
 
 	@Override
 	public Enchere get(int...idsEncheres) throws DALException {
 		// TODO Auto-generated method stub
-		return null;
+		return DAOFactory.getDAO(new Enchere()).selectById(idsEncheres[0],idsEncheres[1]).get(0);
 	}
 
 	@Override
@@ -22,7 +23,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	@Override
 	public List<Enchere> get() throws DALException {
 		// TODO Auto-generated method stub
-		return null;
+		return DAOFactory.getDAO(new Enchere()).selectAll();
 	}
 
 
@@ -33,9 +34,14 @@ public class EnchereBLL implements BLL<Enchere>{
 	}
 
 	@Override
-	public void set(Enchere t) throws BLLException, DALException {
+	public void set(Enchere enchere) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-		
+		if(DAOFactory.getDAO(new Enchere()).selectById(enchere.getUtilisateur().getIdUtilisateur(), enchere.getArticle().getIdArticle())!=null){
+			DAOFactory.getDAO(new Enchere()).insert(enchere);
+		}
+		else {
+			DAOFactory.getDAO(new Enchere()).update(enchere);
+		}	
 	}
 
 }

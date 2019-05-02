@@ -4,10 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import fr.eni.ecole.encheres.bo.Article;
-import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
-import fr.eni.ecole.encheres.dal.hibernate.ArticleDAOHibernate;
 
 public class ArticleBLL implements BLL<Article>{
 	

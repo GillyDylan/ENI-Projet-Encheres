@@ -2,11 +2,9 @@ package fr.eni.ecole.encheres.bll;
 
 import java.util.List;
 
-import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.bo.Retrait;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
-import fr.eni.ecole.encheres.dal.hibernate.RetraitDAOHibernate;
 
 public class RetraitBLL implements BLL<Retrait>{
 

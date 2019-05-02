@@ -8,7 +8,6 @@ import java.util.List;
 import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
-import fr.eni.ecole.encheres.dal.hibernate.UtilisateurDAOHibernate;
 
 public class UtilisateurBLL implements BLL<Utilisateur>{
 
@@ -74,7 +73,9 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		DAOFactory.getDAO(new Utilisateur()).delete(id);
 	}
 	
-	
+	public boolean checkMotDePasse(Utilisateur utilsiateur) {
+		return true;
+	}
 
     private static byte[] getSalt() throws NoSuchAlgorithmException
     {

@@ -5,7 +5,6 @@ import java.util.List;
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
-import fr.eni.ecole.encheres.dal.hibernate.CategorieDAOHibernate;
 
 public class CategorieBLL implements BLL<Categorie>{
 
