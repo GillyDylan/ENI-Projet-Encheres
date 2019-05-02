@@ -41,7 +41,7 @@ public class ServletModifierProfil extends HttpServlet {
 		if(request.getParameter("modifier").equals("modifier")){
 			((Utilisateur)request.getSession().getAttribute("utilisateur")).setPrenomUtilisateur(request.getParameter("prenom").trim());
 			((Utilisateur)request.getSession().getAttribute("utilisateur")).setNomUtilisateur(request.getParameter("nom").trim());
-			((Utilisateur)request.getSession().getAttribute("utilisateur")).setTelephoneUtilisateur(Integer.valueOf(request.getParameter("telephone").trim()));
+			((Utilisateur)request.getSession().getAttribute("utilisateur")).setTelephoneUtilisateur(request.getParameter("telephone").trim());
 			((Utilisateur)request.getSession().getAttribute("utilisateur")).setMotDePasseUtilisateur(request.getParameter("mdp").trim());
 			((Utilisateur)request.getSession().getAttribute("utilisateur")).setRueUtilisateur(request.getParameter("rue").trim());
 			((Utilisateur)request.getSession().getAttribute("utilisateur")).setVilleUtilisateur(request.getParameter("ville").trim());

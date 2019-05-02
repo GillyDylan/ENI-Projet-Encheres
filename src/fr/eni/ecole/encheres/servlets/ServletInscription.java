@@ -43,7 +43,7 @@ public class ServletInscription extends HttpServlet {
 		newUtilisateur.setPrenomUtilisateur(request.getParameter("prenom"));
 		newUtilisateur.setNomUtilisateur(request.getParameter("nom"));
 		newUtilisateur.setEMailUtilisateur(request.getParameter("email"));
-		newUtilisateur.setTelephoneUtilisateur(Integer.valueOf(request.getParameter("telephone")));
+		newUtilisateur.setTelephoneUtilisateur(request.getParameter("telephone"));
 		newUtilisateur.setMotDePasseUtilisateur(request.getParameter("mdp"));
 		newUtilisateur.setRueUtilisateur(request.getParameter("rue"));
 		newUtilisateur.setVilleUtilisateur(request.getParameter("ville"));
