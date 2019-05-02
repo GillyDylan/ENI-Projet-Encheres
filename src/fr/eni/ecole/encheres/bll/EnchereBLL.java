@@ -36,7 +36,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	@Override
 	public void set(Enchere enchere) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-		if(DAOFactory.getDAO(new Enchere()).selectById(enchere.getUtilisateur().getIdUtilisateur(), enchere.getArticle().getIdArticle())!=null){
+		if(DAOFactory.getDAO(new Enchere()).selectById(enchere.getUtilisateur().getIdUtilisateur(), enchere.getArticle().getIdArticle()).size() != 0){
 			DAOFactory.getDAO(new Enchere()).insert(enchere);
 		}
 		else {

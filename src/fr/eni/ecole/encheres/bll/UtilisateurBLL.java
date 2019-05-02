@@ -50,14 +50,14 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		if(utilisateur.getCodePostalUtilisateur() < 1000 || utilisateur.getCodePostalUtilisateur() > 99999) {
 			throw new BLLException("Code postal invalide");
 		}
-		if(DAOFactory.getDAO(new Utilisateur()).selectById(utilisateur.getIdUtilisateur())!=null) {
+		if(DAOFactory.getDAO(new Utilisateur()).selectById(utilisateur.getIdUtilisateur()).size() != 0 ) {
 			if(!utilisateur.getPseudonymeUtilisateur().trim().matches("^[a-zA-Z0-9_]*$")) {
 				throw new BLLException("Le pseudonyme doit contenir uniquement des caractères alphanumériques");
 			}
-			if(DAOFactory.getDAO(new Utilisateur()).selectByString(utilisateur.getPseudonymeUtilisateur())!=null) {
+			if(DAOFactory.getDAO(new Utilisateur()).selectByString(utilisateur.getPseudonymeUtilisateur()).size() != 0) {
 				throw new BLLException("Ce pseudonyme est déjà utilisé");
 			}
-			if(DAOFactory.getDAO(new Utilisateur()).selectByString(utilisateur.getPseudonymeUtilisateur())!=null) {
+			if(DAOFactory.getDAO(new Utilisateur()).selectByString(utilisateur.getPseudonymeUtilisateur()).size() != 0) {
 				throw new BLLException("Cet E-Mail est déjà utilisé");
 			}
 			DAOFactory.getDAO(new Utilisateur()).insert(utilisateur);

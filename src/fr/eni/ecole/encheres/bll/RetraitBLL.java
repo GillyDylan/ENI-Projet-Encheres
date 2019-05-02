@@ -29,7 +29,7 @@ public class RetraitBLL implements BLL<Retrait>{
 	@Override
 	public void set(Retrait retrait) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-		if(DAOFactory.getDAO(new Retrait()).selectById(retrait.getIdRetrait())!=null){
+		if(DAOFactory.getDAO(new Retrait()).selectById(retrait.getIdRetrait()).size() != 0){
 			DAOFactory.getDAO(new Retrait()).insert(retrait);
 		}
 		else {

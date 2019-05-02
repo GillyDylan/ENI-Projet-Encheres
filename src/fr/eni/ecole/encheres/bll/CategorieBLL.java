@@ -26,7 +26,7 @@ public class CategorieBLL implements BLL<Categorie>{
 
 	public void set(Categorie categorie) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-		if(DAOFactory.getDAO(new Categorie()).selectById(categorie.getIdCategorie())!=null){
+		if(DAOFactory.getDAO(new Categorie()).selectById(categorie.getIdCategorie()).size() != 0){
 			DAOFactory.getDAO(new Categorie()).insert(categorie);
 		}
 		else {

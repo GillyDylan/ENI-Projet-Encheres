@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.encheres.bll.BLLException;
+import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
@@ -49,12 +51,12 @@ public class ServletInscription extends HttpServlet {
 		newUtilisateur.setVilleUtilisateur(request.getParameter("ville"));
 		newUtilisateur.setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal")));
 		try {
-			DAOFactory.getDAO(new Utilisateur()).insert(newUtilisateur);
+			BLLManager.getBLL(new Utilisateur()).set(newUtilisateur);
 			request.getSession().setAttribute("utilisateur", newUtilisateur); 
 			this.getServletContext().getNamedDispatcher("index").forward(request, response);
-		} catch (DALException e) {
+		} catch (DALException | BLLException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		}	
 	}
 
