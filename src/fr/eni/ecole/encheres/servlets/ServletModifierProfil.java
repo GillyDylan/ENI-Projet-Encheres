@@ -39,24 +39,19 @@ public class ServletModifierProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("modifier").equals("modifier")){
-			Utilisateur modUtilisateur = new Utilisateur();
-			modUtilisateur.setIdUtilisateur(1);
-			modUtilisateur.setPseudonymeUtilisateur(request.getParameter("pseudo"));
-			modUtilisateur.setPrenomUtilisateur(request.getParameter("prenom"));
-			modUtilisateur.setNomUtilisateur(request.getParameter("nom"));
-			modUtilisateur.setEMailUtilisateur(request.getParameter("email"));
-			modUtilisateur.setTelephoneUtilisateur(Integer.valueOf(request.getParameter("telephone")));
-			modUtilisateur.setMotDePasseUtilisateur(request.getParameter("mdp"));
-			modUtilisateur.setRueUtilisateur(request.getParameter("rue"));
-			modUtilisateur.setVilleUtilisateur(request.getParameter("ville"));
-			modUtilisateur.setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal")));
+			((Utilisateur)request.getSession().getAttribute("utilisateur")).setPrenomUtilisateur(request.getParameter("prenom").trim());
+			((Utilisateur)request.getSession().getAttribute("utilisateur")).setNomUtilisateur(request.getParameter("nom").trim());
+			((Utilisateur)request.getSession().getAttribute("utilisateur")).setTelephoneUtilisateur(Integer.valueOf(request.getParameter("telephone").trim()));
+			((Utilisateur)request.getSession().getAttribute("utilisateur")).setMotDePasseUtilisateur(request.getParameter("mdp").trim());
+			((Utilisateur)request.getSession().getAttribute("utilisateur")).setRueUtilisateur(request.getParameter("rue").trim());
+			((Utilisateur)request.getSession().getAttribute("utilisateur")).setVilleUtilisateur(request.getParameter("ville").trim());
+			((Utilisateur)request.getSession().getAttribute("utilisateur")).setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal").trim()));
 			try {
-				DAOFactory.getDAO(new Utilisateur()).update(modUtilisateur);
-				request.getSession().setAttribute("utilisateur", modUtilisateur); 
-				this.getServletContext().getNamedDispatcher("index?page=profil").forward(request, response);
+				DAOFactory.getDAO(new Utilisateur()).update((Utilisateur)request.getSession().getAttribute("utilisateur"));
+				this.getServletContext().getNamedDispatcher("index").forward(request, response);
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				request.setAttribute("erreurModification", e.getMessage());
+				this.getServletContext().getNamedDispatcher("index?page=profil").forward(request, response);
 			}
 		}
 	}

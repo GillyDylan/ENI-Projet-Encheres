@@ -53,6 +53,7 @@ public class ServletConnexion extends HttpServlet {
 			}
 		} catch (DALException e) {
 			request.setAttribute("erreurConnexion", e.getMessage());
+			this.getServletContext().getRequestDispatcher("/index?page=connexion").forward(request, response);			
 		}
 	}
 

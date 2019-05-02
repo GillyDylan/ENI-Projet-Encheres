@@ -6,10 +6,10 @@
 	<div class="d-flex">
 		<div class="col-6">
 			<div class="form-group">
-				<label for="pseudo">Pseudo:</label> <input type="pseudo"
-					class="form-control" name="pseudo"
-					value="<c:out value="${utilisateur.getPseudonymeUtilisateur()} "></c:out>"
-					readonly>
+				<label for="pseudo">Pseudo:</label> 
+					<span class="form-control" readonly>
+						<c:out value="${utilisateur.getPseudonymeUtilisateur()} "></c:out>
+					</span>
 			</div>
 			<div class="form-group">
 				<label for="prenom">Prénom:</label> <input type="prenom"
@@ -47,10 +47,10 @@
 					readonly>
 			</div>
 			<div class="form-group">
-				<label for="email">Email:</label> <input type="email"
-					class="form-control" name="email"
-					value="<c:out value="${utilisateur.geteMailUtilisateur()} "></c:out>"
-					readonly>
+				<label for="email">Email:</label> 
+					<span class="form-control" readonly>
+						<c:out value="${utilisateur.geteMailUtilisateur()} "></c:out>
+					</span>
 			</div>
 			<div class="form-group">
 				<label for="rue">Rue:</label> <input type="rue" class="form-control"
