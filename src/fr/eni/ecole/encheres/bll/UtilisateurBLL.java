@@ -45,14 +45,17 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(utilisateur.getTelephoneUtilisateur() < 10000000l || utilisateur.getTelephoneUtilisateur() > 9999999999l) {
+		if(utilisateur.getTelephoneUtilisateur().trim().matches("(0|\\\\+33|0033)[1-9][0-9]{8}")) {
 			throw new BLLException("Téléphone invalide");
+		}
+		if(utilisateur.geteMailUtilisateur().trim().matches("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*\r\n@[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")) {
+			throw new BLLException("E-Mail invalide");
 		}
 		if(utilisateur.getCodePostalUtilisateur() < 1000 || utilisateur.getCodePostalUtilisateur() > 99999) {
 			throw new BLLException("Code postal invalide");
 		}
 		if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectById(utilisateur.getIdUtilisateur())!=null) {
-			if(!utilisateur.getPseudonymeUtilisateur().equals("^[a-zA-Z0-9_]*$")) {
+			if(!utilisateur.getPseudonymeUtilisateur().trim().matches("^[a-zA-Z0-9_]*$")) {
 				throw new BLLException("Le pseudonyme doit contenir uniquement des caractères alphanumériques");
 			}
 			if(((UtilisateurDAOHibernate) DAOFactory.getDAO(new Utilisateur())).selectByString(utilisateur.getPseudonymeUtilisateur())!=null) {
