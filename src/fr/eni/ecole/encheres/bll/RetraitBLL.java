@@ -9,15 +9,21 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 public class RetraitBLL implements BLL<Retrait>{
 
 	@Override
-	public Retrait get(int...idRetrait) throws DALException {
+	public Retrait get(int idRetrait) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Retrait()).selectById(idRetrait[0]).get(0);
+		return DAOFactory.getDAO(new Retrait()).selectById(idRetrait).get(0);
 	}
 
 	@Override
 	public List<Retrait> get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Retrait()).selectByString(chaine);
+	}
+	
+	@Override
+	public List<Retrait> get(int... ids) throws DALException {
+		// TODO Auto-generated method stub
+		return DAOFactory.getDAO(new Retrait()).selectById(ids[0]);
 	}
 
 	@Override
@@ -42,5 +48,6 @@ public class RetraitBLL implements BLL<Retrait>{
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+
 }

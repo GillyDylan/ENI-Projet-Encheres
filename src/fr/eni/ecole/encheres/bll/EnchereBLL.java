@@ -7,7 +7,7 @@ import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
 public class EnchereBLL implements BLL<Enchere>{
-
+	
 	@Override
 	public List<Enchere> get(int...idsEncheres) throws DALException {
 		// TODO Auto-generated method stub
@@ -25,7 +25,12 @@ public class EnchereBLL implements BLL<Enchere>{
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Enchere()).selectAll();
 	}
-
+	
+	@Override
+	public Enchere get(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public void delete(int id) throws DALException {
@@ -43,5 +48,7 @@ public class EnchereBLL implements BLL<Enchere>{
 		}
 		DAOFactory.getDAO(new Enchere()).insert(enchere);
 	}
+
+
 
 }

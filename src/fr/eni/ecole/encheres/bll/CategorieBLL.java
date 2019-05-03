@@ -9,21 +9,30 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 public class CategorieBLL implements BLL<Categorie>{
 
 	@Override
-	public Categorie get(int...idCategorie) throws DALException {
+	public Categorie get(int idCategorie) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Categorie()).selectById(idCategorie[0]).get(0);
+		return DAOFactory.getDAO(new Categorie()).selectById(idCategorie).get(0);
 	}
 
+	@Override
 	public List<Categorie> get(String nom) throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectByString(nom);
 	}
 
+	@Override
 	public List<Categorie> get() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectAll();
 	}
+	
+	@Override
+	public List<Categorie> get(int... ids) throws DALException {
+		// TODO Auto-generated method stub
+		return DAOFactory.getDAO(new Categorie()).selectById(ids[0]);
+	}
 
+	@Override
 	public void set(Categorie categorie) throws BLLException, DALException {
 		// TODO Auto-generated method stub
 		if(categorie.getLibelleCategorie().trim() != null){
@@ -45,5 +54,6 @@ public class CategorieBLL implements BLL<Categorie>{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }
