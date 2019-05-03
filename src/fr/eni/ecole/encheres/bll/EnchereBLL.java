@@ -10,7 +10,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	
 	public List<Enchere> get(int idArticle) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Enchere()).selectById(idArticle);
+		return DAOFactory.getDAO(new Enchere()).selectById(idArticle, 0);
 	}
 
 	@Override

@@ -18,7 +18,14 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 	public List<Enchere> selectById(int...idsEnchere) throws DALException {
 		System.out.println(idsEnchere[1]);
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idsEnchere[0]+" AND idArticle = "+idsEnchere[1]);
+		Query q;
+		if(idsEnchere[1] != 0)
+		{
+			q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idsEnchere[0]+" AND idArticle = "+idsEnchere[1]);
+		}
+		else {
+			q = session.createQuery("FROM Enchere WHERE idArticle = "+idsEnchere[0]);
+		}
 		List<Enchere> encheres = q.getResultList();
 		return encheres;
 	}
