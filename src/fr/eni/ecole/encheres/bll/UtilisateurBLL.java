@@ -28,7 +28,7 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	}
 
 	@Override
-	public List<Utilisateur> get() throws DALException {
+	public List<Utilisateur> getList() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Utilisateur()).selectAll();
 	}
@@ -83,7 +83,7 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		}
 	}
 
-	@Override
+
 	public void delete(int id) throws DALException {
 		// TODO Auto-generated method stub
 		DAOFactory.getDAO(new Utilisateur()).delete(id);
@@ -124,6 +124,18 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		{
 				return null;
 		}
+	}
+
+	@Override
+	public List<Utilisateur> getList(int... ids) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Utilisateur> getList(String s) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

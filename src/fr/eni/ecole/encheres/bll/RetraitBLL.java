@@ -15,13 +15,13 @@ public class RetraitBLL implements BLL<Retrait>{
 	}
 
 	@Override
-	public List<Retrait> get(String chaine) throws DALException {
+	public List<Retrait> getList(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Retrait()).selectByString(chaine);
 	}
 
 	@Override
-	public List<Retrait> get() throws DALException {
+	public List<Retrait> getList() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Retrait()).selectAll();
 	}
@@ -37,10 +37,21 @@ public class RetraitBLL implements BLL<Retrait>{
 		}	
 	}
 
-	@Override
 	public void delete(int id) throws DALException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Retrait get(String s) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Retrait> getList(int... ids) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

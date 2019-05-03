@@ -21,10 +21,10 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 		Query q;
 		if(idsEnchere[1] != 0)
 		{
-			q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idsEnchere[0]+" AND idArticle = "+idsEnchere[1]);
+			q = session.createQuery("FROM Enchere WHERE idArticle = "+idsEnchere[0]+" AND idUtilisateur = "+idsEnchere[1]+" ORDER BY dateEnchere DESC");
 		}
 		else {
-			q = session.createQuery("FROM Enchere WHERE idArticle = "+idsEnchere[0]);
+			q = session.createQuery("FROM Enchere WHERE idArticle = "+idsEnchere[0]+" ORDER BY dateEnchere DESC");
 		}
 		List<Enchere> encheres = q.getResultList();
 		return encheres;
