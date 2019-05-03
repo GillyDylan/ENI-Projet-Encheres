@@ -16,18 +16,19 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Utilisateur> selectById(int...idUtilisateur) throws DALException {
+		// TODO Auto-generated method stub
+		int compteur = 0 ;
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Utilisateur WHERE id = "+idUtilisateur[0]);
-		List<Utilisateur> utilisateurs = q.getResultList();
-		return utilisateurs;
-
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Utilisateur> selectByString(String chaine) throws DALException {
-		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Utilisateur WHERE pseudonymeUtilisateur = '"+chaine+"' OR eMailUtilisateur = '"+chaine+"'");
+		StringBuilder requeteBuilder = new StringBuilder();
+		requeteBuilder.append("FROM Utilisateur WHERE");
+		for(int id : idUtilisateur) {
+			if(compteur != 0) {
+				requeteBuilder.append(" OR");
+			}
+			requeteBuilder.append(" idUtilisateur = " + id);
+			compteur++;
+		}
+		Query q = session.createQuery(requeteBuilder.toString());
 		List<Utilisateur> utilisateurs = q.getResultList();
 		return utilisateurs;
 	}

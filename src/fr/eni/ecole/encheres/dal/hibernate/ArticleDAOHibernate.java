@@ -32,15 +32,6 @@ public class ArticleDAOHibernate implements DAO<Article>{
 		List<Article> articles = q.getResultList();
 		return articles;
 	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Article> selectByString(String chaine) throws DALException {
-		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Article WHERE LOWER(nomArticle) LIKE LOWER('%"+chaine+"%') OR LOWER(descriptionArticle) LIKE LOWER('%"+chaine+"%') ORDER BY dateDebutEncheresArticle DESC");
-		List<Article> articles = q.getResultList();
-		return articles;
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override

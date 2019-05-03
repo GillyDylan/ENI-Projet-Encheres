@@ -14,19 +14,21 @@ import fr.eni.ecole.encheres.dal.DAO;
 public class RetraitDAOHibernate implements DAO<Retrait>{
 
 	@SuppressWarnings("unchecked")
-	public List<Retrait> selectById(int...idRetrait) throws DALException {
-		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Retrait WHERE idRetrait = "+idRetrait[0]);
-		List<Retrait> retraits = q.getResultList();
-		return retraits;
-	}
-
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Retrait> selectByString(String chaine) throws DALException {
+	public List<Retrait> selectById(int...idRetrait) throws DALException {
 		// TODO Auto-generated method stub
+		int compteur = 0 ;
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Retrait WHERE adresseRetrait LIKE '%"+chaine+"%' OR '%"+chaine+"%'");
+		StringBuilder requeteBuilder = new StringBuilder();
+		requeteBuilder.append("FROM Retrait WHERE");
+		for(int id : idRetrait) {
+			if(compteur != 0) {
+				requeteBuilder.append(" OR");
+			}
+			requeteBuilder.append(" idRetrait = " + id);
+			compteur++;
+		}
+		Query q = session.createQuery(requeteBuilder.toString());
 		List<Retrait> retraits = q.getResultList();
 		return retraits;
 	}

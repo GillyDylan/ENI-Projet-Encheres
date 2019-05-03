@@ -11,9 +11,6 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 
 public class ArticleBLL implements BLL<Article>{
 	
-	
-	
-	
 	/**
 	* @author ${Dylan Gilly}
 	*
@@ -24,8 +21,6 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Article()).selectById(idArticle[0]).get(0);
 	}
-	
-	
 	
 	
 	/**
@@ -39,8 +34,6 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub	
 		return BLLManager.getBLL(new Article()).getList(chaine).get(0);
 	}
-
-	
 	
 	
 	/**
@@ -54,9 +47,7 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Article()).selectById(idArticle);
 	}
-	
-	
-	
+		
 	
 	/**
 	* @author ${Dylan Gilly}
@@ -92,9 +83,7 @@ public class ArticleBLL implements BLL<Article>{
 			}
 		}
 		return articlesTrouves;
-	}
-
-	
+	}	
 	
 	
 	/**
@@ -107,8 +96,6 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Article()).selectAll();
 	}
-
-	
 	
 	
 	/**
@@ -156,9 +143,7 @@ public class ArticleBLL implements BLL<Article>{
 			}
 			DAOFactory.getDAO(new Article()).update(article);
 		}	
-	}
-
-	
+	}	
 	
 	
 	/**
@@ -173,10 +158,6 @@ public class ArticleBLL implements BLL<Article>{
 		if(encheres.size() != 0) {
 			throw new BLLException(1020,"Impossible de supprimer un article avec des enchères en cours");
 		}
-		DAOFactory.getDAO(new Article()).delete(article);
-		
+		DAOFactory.getDAO(new Article()).delete(article);	
 	}
-
-
-
 }

@@ -10,8 +10,6 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 
 public class CategorieBLL implements BLL<Categorie>{
 
-	
-	
 	/**
 	* @author ${Dylan Gilly}
 	*
@@ -22,8 +20,6 @@ public class CategorieBLL implements BLL<Categorie>{
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectById(idCategorie[0]).get(0);
 	}
-	
-	
 	
 	
 	/**
@@ -38,8 +34,6 @@ public class CategorieBLL implements BLL<Categorie>{
 	}
 
 	
-	
-	
 	/**
 	* @author ${Dylan Gilly}
 	*
@@ -52,8 +46,6 @@ public class CategorieBLL implements BLL<Categorie>{
 		return DAOFactory.getDAO(new Categorie()).selectById(idCategorie);
 	}
 
-	
-	
 	
 	/**
 	* @author ${Dylan Gilly}
@@ -84,7 +76,6 @@ public class CategorieBLL implements BLL<Categorie>{
 		}
 		return categoriesTrouves;
 	}
-
 	
 	
 	/**
@@ -97,7 +88,6 @@ public class CategorieBLL implements BLL<Categorie>{
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectAll();
 	}
-
 	
 	
 	/**
@@ -121,8 +111,6 @@ public class CategorieBLL implements BLL<Categorie>{
 			DAOFactory.getDAO(new Categorie()).update(categorie);
 		}	
 	}
-
-
 
 
 	/**
