@@ -10,21 +10,15 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 public class ArticleBLL implements BLL<Article>{
 	
 	@Override
-	public Article get(int idArticle) throws DALException {
+	public Article get(int...idArticle) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Article()).selectById(idArticle).get(0);
+		return DAOFactory.getDAO(new Article()).selectById(idArticle[0]).get(0);
 	}
 	
 	@Override
 	public List<Article> get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Article()).selectByString(chaine);
-	}
-	
-	@Override
-	public List<Article> get(int... ids) throws DALException {
-		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Article()).selectById(ids[0]);
 	}
 
 	@Override
@@ -80,7 +74,5 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 }
