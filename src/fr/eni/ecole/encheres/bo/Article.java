@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.sun.istack.NotNull;
@@ -19,9 +20,10 @@ public class Article {
 	@NotNull @Column(nullable = false) private String nomArticle;
 	@NotNull @Column(nullable = false) private String descriptionArticle;
 	@NotNull @Column(nullable = false) private Date dateDebutEncheresArticle;
-	@Nullable @Column(nullable = true) private Date dateFinEncheresArticle;
+	@NotNull @Column(nullable = false) private Date dateFinEncheresArticle;
 	@NotNull @Column(nullable = false) private int prixInitialArticle;
 	@Nullable @Column(nullable = true) private int prixVenteArticle;
+	@NotNull @Column(nullable = false) private boolean termine;
 
 	@NotNull @ManyToOne @JoinColumn(name="idCategorie", referencedColumnName = "idCategorie", nullable = false) 
 	private Categorie categorie;
@@ -31,7 +33,24 @@ public class Article {
 	private Utilisateur utilisateurAchetant;
 	@Nullable @ManyToOne @JoinColumn(name="idRetrait", referencedColumnName = "idRetrait", nullable = true) 
 	private Retrait retrait;
+	@Lob @Nullable @Column(nullable=true, columnDefinition="mediumblob")
+	private byte[] imageArticle;
 
+	public byte[] getImageArticle() {
+		return imageArticle;
+	}
+
+	public void setImageArticle(byte[] imageArticle) {
+		this.imageArticle = imageArticle;
+	}
+
+	public boolean isTermine() {
+		return termine;
+	}
+
+	public Retrait getRetrait() {
+		return retrait;
+	}
 
 	public Utilisateur getUtilisateurVendant() {
 		return utilisateurVendant;
@@ -51,10 +70,6 @@ public class Article {
 
 	public int getIdArticle() {
 		return idArticle;
-	}
-
-	public void setIdArticle(int idArticle) {
-		this.idArticle = idArticle;
 	}
 
 	public String getNomArticle() {
@@ -113,48 +128,37 @@ public class Article {
 		this.categorie = categorie;
 	}
 
-	public Article(int idArticle, String nomArticle, String descriptionArticle, Date dateDebutEncheresArticle,
-			Date dateFinEncheresArticle, int prixInitialArticle, int prixVenteArticle,
-			Categorie categorie) {
-		super();
-		this.setIdArticle(idArticle);
-		this.setNomArticle(nomArticle);
-		this.setDescriptionArticle(descriptionArticle);
-		this.setDateDebutEncheresArticle(dateDebutEncheresArticle);
-		this.setDateFinEncheresArticle(dateFinEncheresArticle);
-		this.setPrixInitialArticle(prixInitialArticle);
-		this.setPrixVenteArticle(prixVenteArticle);
-		this.setCategorie(categorie);
-	}
-	
 	public Article(String nomArticle, String descriptionArticle, Date dateDebutEncheresArticle,
-			Date dateFinEncheresArticle, int prixInitialArticle, int prixVenteArticle,
-			Categorie categorie) {
+			Date dateFinEncheresArticle, int prixInitialArticle, Categorie categorie, Utilisateur utilisateurVendant,
+			byte[] imageArticle) {
 		super();
 		this.setNomArticle(nomArticle);
 		this.setDescriptionArticle(descriptionArticle);
 		this.setDateDebutEncheresArticle(dateDebutEncheresArticle);
 		this.setDateFinEncheresArticle(dateFinEncheresArticle);
 		this.setPrixInitialArticle(prixInitialArticle);
-		this.setPrixVenteArticle(prixVenteArticle);
 		this.setCategorie(categorie);
+		this.setUtilisateurVendant(utilisateurVendant);
+		this.setImageArticle(imageArticle);
+		this.termine = false;
 	}
-	
-	
 
-	
-	public Article(String nomArticle, String descriptionArticle, int prixInitialArticle, int prixVenteArticle,
-			Categorie categorie) {
+	public Article(String nomArticle, String descriptionArticle, Date dateDebutEncheresArticle,
+			Date dateFinEncheresArticle, int prixInitialArticle, Categorie categorie, Utilisateur utilisateurVendant) {
 		super();
 		this.setNomArticle(nomArticle);
 		this.setDescriptionArticle(descriptionArticle);
+		this.setDateDebutEncheresArticle(dateDebutEncheresArticle);
+		this.setDateFinEncheresArticle(dateFinEncheresArticle);
 		this.setPrixInitialArticle(prixInitialArticle);
-		this.setPrixVenteArticle(prixVenteArticle);
 		this.setCategorie(categorie);
+		this.setUtilisateurVendant(utilisateurVendant);
+		this.termine = false;
 	}
-	
+
 	public Article() {
 		super();
+		this.termine = false;
 	}
 	
 	

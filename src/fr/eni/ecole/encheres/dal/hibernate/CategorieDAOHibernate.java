@@ -59,13 +59,14 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 		session.beginTransaction();
 		session.saveOrUpdate(categorie);
 		session.getTransaction().commit();
-		
 	}
 
 	@Override
 	public void delete(Categorie categorie) throws DALException {
 		// TODO Auto-generated method stub
-		
+		Session session = ConnectionProvider.session;
+		session.beginTransaction();
+		session.delete(categorie);
+		session.getTransaction().commit();
 	}
-
 }

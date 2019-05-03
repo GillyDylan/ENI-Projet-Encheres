@@ -66,7 +66,10 @@ public class RetraitDAOHibernate implements DAO<Retrait>{
 	@Override
 	public void delete(Retrait retrait) throws DALException {
 		// TODO Auto-generated method stub
-		
+		Session session = ConnectionProvider.session;
+		session.beginTransaction();
+		session.delete(retrait);
+		session.getTransaction().commit();
 	}
 
 

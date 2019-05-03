@@ -17,10 +17,6 @@ public class Categorie {
 		return idCategorie;
 	}
 	
-	public void setIdCategorie(int idCategorie) {
-		this.idCategorie = idCategorie;
-	}
-	
 	public String getLibelleCategorie() {
 		return libelleCategorie;
 	}
@@ -28,11 +24,6 @@ public class Categorie {
 	public void setLibelleCategorie(String libelleCategorie) {
 		this.libelleCategorie = libelleCategorie;
 	}
-	
-	public Categorie(int idCategorie, String libelleCategorie) {
-		super();
-		this.setIdCategorie(idCategorie);
-		this.setLibelleCategorie(libelleCategorie);	}
 	
 	public Categorie(String libelleCategorie) {
 		super();

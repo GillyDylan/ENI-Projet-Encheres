@@ -19,24 +19,27 @@ public class Retrait{
 	public int getIdRetrait() {
 		return idRetrait;
 	}
-	public void setIdRetrait(int idRetrait) {
-		this.idRetrait = idRetrait;
-	}
+
 	public String getAdresseRetrait() {
 		return adresseRetrait;
 	}
+	
 	public void setAdresseRetrait(String rueRetrait) {
 		this.adresseRetrait = rueRetrait;
 	}
+	
 	public int getCodePostalRetrait() {
 		return codePostalRetrait;
 	}
+	
 	public void setCodePostalRetrait(int codePostalRetrait) {
 		this.codePostalRetrait = codePostalRetrait;
 	}
+	
 	public String getVilleRetrait() {
 		return villeRetrait;
 	}
+	
 	public void setVilleRetrait(String villeRetrait) {
 		this.villeRetrait = villeRetrait;
 	}

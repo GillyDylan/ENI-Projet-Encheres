@@ -28,78 +28,103 @@ public class Utilisateur {
 	public boolean isActif() {
 		return actif;
 	}
+	
 	public void setActif(boolean actif) {
 		this.actif = actif;
 	}
+	
 	public void seteMailUtilisateur(String eMailUtilisateur) {
 		this.eMailUtilisateur = eMailUtilisateur;
 	}
+	
 	public int getIdUtilisateur() {
 		return idUtilisateur;
 	}
+	
 	public String getPseudonymeUtilisateur() {
 		return pseudonymeUtilisateur;
 	}
+	
 	public void setPseudonymeUtilisateur(String pseudonymeUtilisateur) {
 		this.pseudonymeUtilisateur = pseudonymeUtilisateur;
 	}
+	
 	public String getNomUtilisateur() {
 		return nomUtilisateur;
 	}
+	
 	public void setNomUtilisateur(String nomUtilisateur) {
 		this.nomUtilisateur = nomUtilisateur;
 	}
+	
 	public String getPrenomUtilisateur() {
 		return prenomUtilisateur;
 	}
+	
 	public void setPrenomUtilisateur(String prenomUtilisateur) {
 		this.prenomUtilisateur = prenomUtilisateur;
 	}
+	
 	public String geteMailUtilisateur() {
 		return eMailUtilisateur;
 	}
+	
 	public void setEMailUtilisateur(String eMailUtilisateur) {
 		this.eMailUtilisateur = eMailUtilisateur;
 	}
+	
 	public String getTelephoneUtilisateur() {
 		return telephoneUtilisateur;
 	}
+	
 	public void setTelephoneUtilisateur(String telephoneUtilisateur) {
 		this.telephoneUtilisateur = telephoneUtilisateur;
 	}
+	
 	public String getRueUtilisateur() {
 		return rueUtilisateur;
 	}
+	
 	public void setRueUtilisateur(String rueUtilisateur) {
 		this.rueUtilisateur = rueUtilisateur;
 	}
+	
 	public int getCodePostalUtilisateur() {
 		return codePostalUtilisateur;
 	}
+	
 	public void setCodePostalUtilisateur(int codePostalUtilisateur) {
 		this.codePostalUtilisateur = codePostalUtilisateur;
 	}
+	
 	public String getVilleUtilisateur() {
 		return villeUtilisateur;
 	}
+	
 	public void setVilleUtilisateur(String villeUtilisateur) {
 		this.villeUtilisateur = villeUtilisateur;
 	}
+	
 	public String getMotDePasseUtilisateur() {
 		return motDePasseUtilisateur;
 	}
+	
 	public void setMotDePasseUtilisateur(String motDePasseUtilisateur) {
 		this.motDePasseUtilisateur = motDePasseUtilisateur;
 	}
+	
 	public int getCreditUtilisateur() {
 		return creditUtilisateur;
 	}
+	
 	public void setCreditUtilisateur(int creditUtilisateur) {
 		this.creditUtilisateur = creditUtilisateur;
 	}
+	
 	public boolean isAdministrateur() {
 		return administrateur;
 	}
+	
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
