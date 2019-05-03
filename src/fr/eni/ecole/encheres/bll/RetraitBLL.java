@@ -3,6 +3,8 @@ package fr.eni.ecole.encheres.bll;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.ecole.encheres.bo.Article;
+import fr.eni.ecole.encheres.bo.Enchere;
 import fr.eni.ecole.encheres.bo.Retrait;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
@@ -24,7 +26,7 @@ public class RetraitBLL implements BLL<Retrait>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoie le retrait contenant la chaine entrée.
+	* Renvoie le retrait contenant la chaine entrï¿½e.
 	*/
 	@Override
 	public Retrait get(String chaine) throws DALException {
@@ -36,8 +38,8 @@ public class RetraitBLL implements BLL<Retrait>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoie la liste des retraits ayant les identifiants entrés
-	* en paramètre.
+	* Renvoie la liste des retraits ayant les identifiants entrï¿½s
+	* en paramï¿½tre.
 	*/
 	@Override
 	public List<Retrait> getList(int...idRetrait) throws DALException {
@@ -50,7 +52,7 @@ public class RetraitBLL implements BLL<Retrait>{
 	* @author ${Dylan Gilly}
 	*
 	* Renvoie la liste des retraits contenant dans leurs 
-	* adresses et villes la chaine entrée en paramètre.
+	* adresses et villes la chaine entrï¿½e en paramï¿½tre.
 	*/
 	@Override
 	public List<Retrait> getList(String chaine) throws DALException {
@@ -118,7 +120,14 @@ public class RetraitBLL implements BLL<Retrait>{
 	@Override
 	public void delete(Retrait retrait) throws DALException, BLLException {
 		// TODO Auto-generated method stub
-		//A faire
+		List<Article> articles = BLLManager.getBLL(new Article()).getList();
+		for(Article article : articles) {
+			if(retrait.getIdRetrait() == article.getRetrait().getIdRetrait()) {
+				throw new BLLException(4000,"Impossible de supprimer un retrait utilisÃ© par un article");
+			}
+		}
+		DAOFactory.getDAO(new Retrait()).delete(retrait);
+
 	}
 
 

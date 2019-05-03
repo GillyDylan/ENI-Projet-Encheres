@@ -26,8 +26,8 @@ public class ArticleBLL implements BLL<Article>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoie le dernier article publié contenant dans son 
-	* titre ou sa description la chaine entrée en paramètre.
+	* Renvoie le dernier article publiï¿½ contenant dans son 
+	* titre ou sa description la chaine entrï¿½e en paramï¿½tre.
 	*/
 	@Override
 	public Article get(String chaine) throws DALException {
@@ -39,8 +39,8 @@ public class ArticleBLL implements BLL<Article>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoie la liste des articles ayant les identifiants entrés
-	* en paramètre.
+	* Renvoie la liste des articles ayant les identifiants entrï¿½s
+	* en paramï¿½tre.
 	*/
 	@Override
 	public List<Article> getList(int...idArticle) throws DALException {
@@ -53,7 +53,7 @@ public class ArticleBLL implements BLL<Article>{
 	* @author ${Dylan Gilly}
 	*
 	* Renvoie la liste des articles contenant dans leurs 
-	* titres ou leurs descriptions la chaine entrée en paramètre.
+	* titres ou leurs descriptions la chaine entrï¿½e en paramï¿½tre.
 	*/
 	@Override
 	public List<Article> getList(String chaine) throws DALException {
@@ -108,10 +108,10 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub
 		if(BLLManager.getBLL(new Article()).getList(article.getIdArticle()).size() == 0){
 			if(article.getDateDebutEncheresArticle().before(new Date())) {
-				throw new BLLException(1000,"Début de l'enchère déjà passée");
+				throw new BLLException(1000,"DÃ©but de l'enchÃ¨re dï¿½jï¿½ passï¿½e");
 			}
 			if(BLLManager.getBLL(new Article()).getList(article.getDescriptionArticle().trim()).size() != 0) {
-				throw new BLLException(1001,"Cette description existe déjà");
+				throw new BLLException(1001,"Cette description existe dï¿½jï¿½");
 			}
 			DAOFactory.getDAO(new Article()).insert(article);
 		}
@@ -119,27 +119,27 @@ public class ArticleBLL implements BLL<Article>{
 			Article articleOld = BLLManager.getBLL(new Article()).get(article.getIdArticle());
 			if(articleOld.getCategorie().getIdCategorie() != article.getCategorie().getIdCategorie())
 			{
-				throw new BLLException(1010,"Impossible de changer la catégorie de d'un article déjà publié");
+				throw new BLLException(1010,"Impossible de changer la catï¿½gorie de d'un article dï¿½jï¿½ publiï¿½");
 			}
 			if(!articleOld.getDateDebutEncheresArticle().equals(article.getDateDebutEncheresArticle()))
 			{
-				throw new BLLException(1011,"Impossible de changer la date de début d'un article déjà publié");
+				throw new BLLException(1011,"Impossible de changer la date de dï¿½but d'un article dï¿½jï¿½ publiï¿½");
 			}
 			if(!articleOld.getDateFinEncheresArticle().equals(article.getDateFinEncheresArticle()))
 			{
-				throw new BLLException(1012,"Impossible de changer la date de fin d'un article déjà publié");
+				throw new BLLException(1012,"Impossible de changer la date de fin d'un article dï¿½jï¿½ publiï¿½");
 			}
 			if(!articleOld.getNomArticle().equals(article.getNomArticle()))
 			{
-				throw new BLLException(1013,"Impossible de changer le titre d'un article déjà publié");
+				throw new BLLException(1013,"Impossible de changer le titre d'un article dï¿½jï¿½ publiï¿½");
 			}
 			if(articleOld.getUtilisateurVendant().getIdUtilisateur() != article.getUtilisateurVendant().getIdUtilisateur())
 			{
-				throw new BLLException(1014,"Impossible de changer le vendeur d'un article déjà publié");
+				throw new BLLException(1014,"Impossible de changer le vendeur d'un article dï¿½jï¿½ publiï¿½");
 			}
 			if(articleOld.getDateFinEncheresArticle().after(new Date()) && articleOld.getUtilisateurAchetant().getIdUtilisateur() != article.getUtilisateurAchetant().getIdUtilisateur())
 			{
-				throw new BLLException(1015,"Impossible de changer l'acheteur d'un article déjà vendu");
+				throw new BLLException(1015,"Impossible de changer l'acheteur d'un article dï¿½jï¿½ vendu");
 			}
 			DAOFactory.getDAO(new Article()).update(article);
 		}	
@@ -156,7 +156,7 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub
 		List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList(article.getIdArticle());
 		if(encheres.size() != 0) {
-			throw new BLLException(1020,"Impossible de supprimer un article avec des enchères en cours");
+			throw new BLLException(1020,"Impossible de supprimer un article avec des enchï¿½res en cours");
 		}
 		DAOFactory.getDAO(new Article()).delete(article);	
 	}

@@ -33,7 +33,7 @@ public class Article {
 	private Utilisateur utilisateurAchetant;
 	@Nullable @ManyToOne @JoinColumn(name="idRetrait", referencedColumnName = "idRetrait", nullable = true) 
 	private Retrait retrait;
-	@Lob @Nullable @Column(nullable=true, columnDefinition="mediumblob")
+	@Lob @Nullable @Column(nullable=true)
 	private byte[] imageArticle;
 
 	public byte[] getImageArticle() {
