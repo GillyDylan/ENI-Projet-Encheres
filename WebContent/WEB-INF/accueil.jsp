@@ -96,8 +96,8 @@
 					<p class="card-text">Vendeur :</p>
 					<p class="card-text">${article.getUtilisateurVendant().getPrenomUtilisateur()}
 						${article.getUtilisateurVendant().getNomUtilisateur()}</p>
-					<a href="index?page=details&id=${article.getIdArticle()}"
-						class="btn btn-primary">Détails</a>
+					<input type="button" onclick="getDetails(${article.getIdArticle()})"
+						class="btn btn-primary" value="Détails" />
 				</div>
 			</div>
 		</div>

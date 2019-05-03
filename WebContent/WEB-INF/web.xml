@@ -90,11 +90,11 @@
     <url-pattern>/ServletAccueil</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>ServletDetailsEnchere</servlet-name>
+    <servlet-name>details</servlet-name>
     <servlet-class>fr.eni.ecole.encheres.servlets.ServletDetailsEnchere</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ServletDetailsEnchere</servlet-name>
-    <url-pattern>/ServletDetailsEnchere</url-pattern>
+    <servlet-name>details</servlet-name>
+    <url-pattern>/details</url-pattern>
   </servlet-mapping>
 </web-app>

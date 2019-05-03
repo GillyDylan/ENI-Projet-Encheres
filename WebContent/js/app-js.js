@@ -72,3 +72,19 @@ function ajouterNouvelleVente(){
 		}
 	});
 }
+
+function getDetails(id){
+	$.ajax({
+		url : 'details',
+		method : 'GET',
+		data : {
+			articleId : id
+		},
+		success : function(resultText) {
+			$('#content').html(resultText);
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}

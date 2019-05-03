@@ -37,7 +37,7 @@ public class ServletDetailsEnchere extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Article articleDetail = new Article();
 		try {
-			articleDetail = BLLManager.getBLL(new Article()).get(Integer.valueOf(request.getParameter("id")));
+			articleDetail = BLLManager.getBLL(new Article()).get(Integer.valueOf(request.getParameter("articleId")));
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,24 +46,24 @@ public class ServletDetailsEnchere extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		try {
-			int idArticle = Integer.parseInt(request.getParameter("id"));
-			List<Enchere> encheres = DAOFactory.getDAO(new Enchere()).selectById(idArticle);
-			Collections.sort(encheres, new Comparator<Enchere>() {
-				@Override
-				public int compare(Enchere ench1, Enchere ench2) {
-					return ench1.getDateEnchere().compareTo(ench2.getDateEnchere());
-				}
-			});
-			System.out.println(encheres.get(0).getDateEnchere());
-			
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			int idArticle = Integer.parseInt(request.getParameter("articleId"));
+//			List<Enchere> encheres = DAOFactory.getDAO(new Enchere()).selectById(idArticle);
+//			Collections.sort(encheres, new Comparator<Enchere>() {
+//				@Override
+//				public int compare(Enchere ench1, Enchere ench2) {
+//					return ench1.getDateEnchere().compareTo(ench2.getDateEnchere());
+//				}
+//			});
+//			System.out.println(encheres.get(0).getDateEnchere());
+//			
+//		} catch (DALException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		request.setAttribute("articleDetails", articleDetail);
-		this.getServletContext().getRequestDispatcher("/index?page=enchere").forward(request, response);
+		request.getRequestDispatcher("/enchere").include(request, response);
 	}
 
 	/**
