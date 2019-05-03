@@ -16,6 +16,7 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Enchere> selectById(int...idsEnchere) throws DALException {
+		System.out.println(idsEnchere[1]);
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Enchere WHERE idUtilisateur = "+idsEnchere[0]+" AND idArticle = "+idsEnchere[1]);
 		List<Enchere> encheres = q.getResultList();

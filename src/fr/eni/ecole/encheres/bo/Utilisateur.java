@@ -23,12 +23,19 @@ public class Utilisateur {
 	@NotNull @Column(nullable = false) private String motDePasseUtilisateur;
 	@NotNull @Column(nullable = false) private int creditUtilisateur;
 	@NotNull @Column(nullable = false) private boolean administrateur;
+	@NotNull @Column(nullable = false) private boolean actif;
 	
+	public boolean isActif() {
+		return actif;
+	}
+	public void setActif(boolean actif) {
+		this.actif = actif;
+	}
+	public void seteMailUtilisateur(String eMailUtilisateur) {
+		this.eMailUtilisateur = eMailUtilisateur;
+	}
 	public int getIdUtilisateur() {
 		return idUtilisateur;
-	}
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
 	}
 	public String getPseudonymeUtilisateur() {
 		return pseudonymeUtilisateur;
@@ -96,60 +103,47 @@ public class Utilisateur {
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
-	
-	public Utilisateur(int idUtilisateur, String pseudonymeUtilisateur, String nomUtilisateur, String prenomUtilisateur,
-			String eMailUtilisateur, String telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
-			String villeUtilisateur, String motDePasseUtilisateur, int creditUtilisateur, boolean administrateur) {
-		super();
-		this.setIdUtilisateur(idUtilisateur);
-		this.setPseudonymeUtilisateur(pseudonymeUtilisateur);
-		this.setNomUtilisateur(nomUtilisateur);
-		this.setPrenomUtilisateur(prenomUtilisateur);
-		this.setEMailUtilisateur(eMailUtilisateur);
-		this.setTelephoneUtilisateur(telephoneUtilisateur);
-		this.setRueUtilisateur(rueUtilisateur);
-		this.setCodePostalUtilisateur(codePostalUtilisateur);
-		this.setVilleUtilisateur(villeUtilisateur);
-		this.setMotDePasseUtilisateur(motDePasseUtilisateur);
-		this.setCreditUtilisateur(creditUtilisateur);
-		this.setAdministrateur(administrateur);
-	}
-	
+
 	public Utilisateur(String pseudonymeUtilisateur, String nomUtilisateur, String prenomUtilisateur,
 			String eMailUtilisateur, String telephoneUtilisateur, String rueUtilisateur, int codePostalUtilisateur,
-			String villeUtilisateur, String motDePasseUtilisateur, int creditUtilisateur, boolean administrateur) {
+			String villeUtilisateur, String motDePasseUtilisateur) {
 		super();
 		this.setPseudonymeUtilisateur(pseudonymeUtilisateur);
 		this.setNomUtilisateur(nomUtilisateur);
 		this.setPrenomUtilisateur(prenomUtilisateur);
-		this.setEMailUtilisateur(eMailUtilisateur);
+		this.seteMailUtilisateur(eMailUtilisateur);
 		this.setTelephoneUtilisateur(telephoneUtilisateur);
 		this.setRueUtilisateur(rueUtilisateur);
 		this.setCodePostalUtilisateur(codePostalUtilisateur);
 		this.setVilleUtilisateur(villeUtilisateur);
 		this.setMotDePasseUtilisateur(motDePasseUtilisateur);
-		this.setCreditUtilisateur(creditUtilisateur);
-		this.setAdministrateur(administrateur);
+		this.setCreditUtilisateur(0);
+		this.setActif(true);
+		this.setAdministrateur(false);
 	}
 	
 	public Utilisateur(String pseudonymeUtilisateur, String nomUtilisateur, String prenomUtilisateur,
 			String eMailUtilisateur, String rueUtilisateur, int codePostalUtilisateur, String villeUtilisateur,
-			String motDePasseUtilisateur, int creditUtilisateur, boolean administrateur) {
+			String motDePasseUtilisateur) {
 		super();
 		this.setPseudonymeUtilisateur(pseudonymeUtilisateur);
 		this.setNomUtilisateur(nomUtilisateur);
 		this.setPrenomUtilisateur(prenomUtilisateur);
-		this.setEMailUtilisateur(eMailUtilisateur);
+		this.seteMailUtilisateur(eMailUtilisateur);
 		this.setRueUtilisateur(rueUtilisateur);
 		this.setCodePostalUtilisateur(codePostalUtilisateur);
 		this.setVilleUtilisateur(villeUtilisateur);
 		this.setMotDePasseUtilisateur(motDePasseUtilisateur);
-		this.setCreditUtilisateur(creditUtilisateur);
-		this.setAdministrateur(administrateur);
+		this.setCreditUtilisateur(0);
+		this.setActif(true);
+		this.setAdministrateur(false);
 	}
 	
 	public Utilisateur() {
 		super();
+		this.setCreditUtilisateur(0);
+		this.setActif(true);
+		this.setAdministrateur(false);
 	}
 	
 	

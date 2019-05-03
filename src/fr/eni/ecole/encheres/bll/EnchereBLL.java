@@ -7,15 +7,15 @@ import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
 public class EnchereBLL implements BLL<Enchere>{
-
+	
 	@Override
-	public Enchere get(int...idsEncheres) throws DALException {
+	public List<Enchere> get(int...idsEncheres) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Enchere()).selectById(idsEncheres[0],idsEncheres[1]).get(0);
+		return DAOFactory.getDAO(new Enchere()).selectById(idsEncheres[0],idsEncheres[1]);
 	}
 
 	@Override
-	public Object get(String s) throws DALException {
+	public Enchere get(String s) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -25,26 +25,30 @@ public class EnchereBLL implements BLL<Enchere>{
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Enchere()).selectAll();
 	}
-
+	
+	@Override
+	public Enchere get(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public void delete(int id) throws DALException {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
 	public void set(Enchere enchere) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-		System.out.println("1");
-		if(DAOFactory.getDAO(new Enchere()).selectById(enchere.getUtilisateur().getIdUtilisateur(), enchere.getArticle().getIdArticle()).size() == 0){
-			System.out.println("2");
-			DAOFactory.getDAO(new Enchere()).insert(enchere);
+		List<Enchere> encheres = DAOFactory.getDAO(new Enchere()).selectAll();
+		for(Enchere oldEnchere : encheres) {
+			if(enchere.getArticle().getIdArticle() == oldEnchere.getArticle().getIdArticle() && enchere.getMontantEnchere() < oldEnchere.getMontantEnchere()) {
+				throw new BLLException(3000,"Il existe déjà une enchère plus elevée pour cet article");
+			}
 		}
-		else {
-			System.out.println("3");
-			DAOFactory.getDAO(new Enchere()).update(enchere);
-		}	
+		DAOFactory.getDAO(new Enchere()).insert(enchere);
 	}
+
+
 
 }
