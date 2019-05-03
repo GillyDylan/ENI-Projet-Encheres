@@ -18,9 +18,9 @@ public class EnchereBLL implements BLL<Enchere>{
 	* Ordre des paramètres : IdArticle, IdUtilisateur
 	*/
 	@Override
-	public Enchere get(int...idsEncheres) throws DALException {
+	public Enchere get(int...idEnchere) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Enchere()).selectById(idsEncheres[0],idsEncheres[1]).get(0);
+		return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0],idEnchere[1]).get(0);
 	}
 
 	
@@ -33,7 +33,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	* Aucune recherche par String possible sur Enchère
 	*/
 	@Override
-	public Enchere get(String s) throws DALException {
+	public Enchere get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -48,9 +48,9 @@ public class EnchereBLL implements BLL<Enchere>{
 	* Ordre des paramètres : IdArticle, IdUtilisateur
 	*/
 	@Override
-	public List<Enchere> getList(int...idsEnchere) throws DALException {
+	public List<Enchere> getList(int...idEnchere) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Enchere()).selectById(idsEnchere[0], idsEnchere[1]);
+		return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0], idEnchere[1]);
 	}
 	
 	
@@ -63,7 +63,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	* Aucune recherche par String possible sur Enchère
 	*/
 	@Override
-	public List<Enchere> getList(String s) throws DALException {
+	public List<Enchere> getList(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -91,8 +91,9 @@ public class EnchereBLL implements BLL<Enchere>{
 	* Supprime l'enchère.
 	* Ordre des paramètres : IdArticle, IdUtilisateur, dateEnchere
 	*/
-	public void delete(int idArticle, int idUtilisateur, Date date) throws DALException {
-		
+	@Override
+	public void delete(Enchere enchere) throws DALException, BLLException {
+		//A faire
 	}
 
 	

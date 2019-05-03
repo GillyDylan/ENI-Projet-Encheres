@@ -62,7 +62,7 @@ public class RetraitDAOHibernate implements DAO<Retrait>{
 	}
 
 	@Override
-	public void delete(int id) throws DALException {
+	public void delete(Retrait retrait) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -84,9 +84,9 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	}
 
 
-	public void delete(int id) throws DALException {
+	public void delete(Utilisateur utilisateur) throws DALException {
 		// TODO Auto-generated method stub
-		DAOFactory.getDAO(new Utilisateur()).delete(id);
+		DAOFactory.getDAO(new Utilisateur()).delete(utilisateur);
 	}
 	
 	public boolean checkMotDePasse(Utilisateur utilisateur, String motDePasse) {

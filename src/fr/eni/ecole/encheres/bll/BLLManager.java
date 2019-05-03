@@ -1,5 +1,7 @@
 package fr.eni.ecole.encheres.bll;
 
+import java.text.Normalizer;
+
 import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.bo.Enchere;
@@ -28,11 +30,13 @@ public class BLLManager {
         if(t instanceof Retrait) {
         	bll = new RetraitBLL();
         }
-        /* if(t instanceof Enchere) {
+        if(t instanceof Enchere) {
         	bll = new EnchereBLL();
         }
-       
-        }*/
         return bll;
     }
+	
+	public static String normalize(String input) {
+		return Normalizer.normalize(input, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+	}
 }

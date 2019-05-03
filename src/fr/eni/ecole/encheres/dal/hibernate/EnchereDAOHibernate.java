@@ -59,7 +59,7 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 	}
 
 	@Override
-	public void delete(int id) throws DALException {
+	public void delete(Enchere enchere) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}

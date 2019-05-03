@@ -13,5 +13,5 @@ public interface BLL<T> {
 	 List<T> getList() throws DALException;
 	 
      void set(T t) throws BLLException, DALException;
-     //void delete(int id) throws DALException;
+     void delete(T t) throws DALException, BLLException;
 }
