@@ -6,8 +6,12 @@ import fr.eni.ecole.encheres.dal.DALException;
 
 public interface BLL<T> {
 	 T get(int...ids) throws DALException;
-	 Object get(String s) throws DALException;
-     List<T> get() throws DALException;
+	 T get(String s) throws DALException;
+	 
+	 List<T> getList(int...ids) throws DALException;
+	 List<T> getList(String s) throws DALException;
+	 List<T> getList() throws DALException;
+	 
      void set(T t) throws BLLException, DALException;
-     void delete(int id) throws DALException;
+     //void delete(int id) throws DALException;
 }

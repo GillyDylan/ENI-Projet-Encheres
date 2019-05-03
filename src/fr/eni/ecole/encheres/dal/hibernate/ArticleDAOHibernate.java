@@ -16,8 +16,18 @@ public class ArticleDAOHibernate implements DAO<Article>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Article> selectById(int...idArticle) throws DALException {
+		int compteur = 0 ;
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Article WHERE idArticle = "+idArticle[0]);
+		StringBuilder requeteBuilder = new StringBuilder();
+		requeteBuilder.append("FROM Article WHERE");
+		for(int id : idArticle) {
+			if(compteur != 0) {
+				requeteBuilder.append(" OR");
+			}
+			requeteBuilder.append(" idArticle = " + id);
+			compteur++;
+		}
+		Query q = session.createQuery(requeteBuilder.toString());
 		List<Article> articles = q.getResultList();
 		return articles;
 	}
@@ -26,7 +36,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 	@Override
 	public List<Article> selectByString(String chaine) throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Article WHERE LOWER(nomArticle) LIKE LOWER('%"+chaine+"%') OR LOWER(descriptionArticle) LIKE LOWER('%"+chaine+"%')");
+		Query q = session.createQuery("FROM Article WHERE LOWER(nomArticle) LIKE LOWER('%"+chaine+"%') OR LOWER(descriptionArticle) LIKE LOWER('%"+chaine+"%') ORDER BY dateDebutEncheresArticle DESC");
 		List<Article> articles = q.getResultList();
 		return articles;
 	}

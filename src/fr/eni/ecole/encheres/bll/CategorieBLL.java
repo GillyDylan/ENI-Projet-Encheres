@@ -15,13 +15,13 @@ public class CategorieBLL implements BLL<Categorie>{
 	}
 
 	@Override
-	public List<Categorie> get(String nom) throws DALException {
+	public List<Categorie> getList(String nom) throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectByString(nom);
 	}
 
 	@Override
-	public List<Categorie> get() throws DALException {
+	public List<Categorie> getList() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Categorie()).selectAll();
 	}
@@ -43,10 +43,21 @@ public class CategorieBLL implements BLL<Categorie>{
 		}	
 	}
 
-	@Override
 	public void delete(int id) throws DALException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Categorie get(String s) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Categorie> getList(int... ids) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
