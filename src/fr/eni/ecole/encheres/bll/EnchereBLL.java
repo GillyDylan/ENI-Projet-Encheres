@@ -9,9 +9,9 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 public class EnchereBLL implements BLL<Enchere>{
 
 	@Override
-	public Enchere get(int...idsEncheres) throws DALException {
+	public List<Enchere> get(int...idsEncheres) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Enchere()).selectById(idsEncheres[0],idsEncheres[1]).get(0);
+		return DAOFactory.getDAO(new Enchere()).selectById(idsEncheres[0],idsEncheres[1]);
 	}
 
 	@Override
