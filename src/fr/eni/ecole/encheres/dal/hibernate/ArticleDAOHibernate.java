@@ -27,6 +27,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 			requeteBuilder.append(" idArticle = " + id);
 			compteur++;
 		}
+		requeteBuilder.append(" ORDER BY dateDebutEncheresArticle DESC");
 		Query q = session.createQuery(requeteBuilder.toString());
 		List<Article> articles = q.getResultList();
 		return articles;
@@ -45,7 +46,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 	@Override
 	public List<Article> selectAll() throws DALException {
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Article");
+		Query q = session.createQuery("FROM Article ORDER BY dateDebutEncheresArticle DESC");
 		List<Article> articles = q.getResultList();
 		return articles;
 	}
@@ -65,14 +66,16 @@ public class ArticleDAOHibernate implements DAO<Article>{
 		Session session = ConnectionProvider.session;
 		session.beginTransaction();
 		session.saveOrUpdate(article);
-		session.getTransaction().commit();	
-		
+		session.getTransaction().commit();		
 	}
 
 	@Override
-	public void delete(int id) throws DALException {
+	public void delete(Article article) throws DALException {
 		// TODO Auto-generated method stub
-		
+		Session session = ConnectionProvider.session;
+		session.beginTransaction();
+		session.delete(article);
+		session.getTransaction().commit();
 	}
 
 }

@@ -9,6 +9,6 @@ public interface DAO<T> {
         List<T> selectByString(String string) throws DALException;
         void insert(T t) throws DALException;
         void update(T t) throws DALException;
-        void delete(int id) throws DALException;
+        void delete(T t) throws DALException;
 }
 

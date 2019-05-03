@@ -6,6 +6,7 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
+import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.dal.ConnectionProvider;
 import fr.eni.ecole.encheres.dal.DALException;
@@ -17,8 +18,18 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 	@Override
 	public List<Categorie> selectById(int...idCategorie) throws DALException {
 		// TODO Auto-generated method stub
+		int compteur = 0 ;
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Categorie WHERE idCategorie = "+idCategorie[0]);
+		StringBuilder requeteBuilder = new StringBuilder();
+		requeteBuilder.append("FROM Categorie WHERE");
+		for(int id : idCategorie) {
+			if(compteur != 0) {
+				requeteBuilder.append(" OR");
+			}
+			requeteBuilder.append(" idCategorie = " + id);
+			compteur++;
+		}
+		Query q = session.createQuery(requeteBuilder.toString());
 		List<Categorie> categories = q.getResultList();
 		return categories;
 	}
@@ -28,7 +39,7 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 	public List<Categorie> selectByString(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Categorie WHERE libelleCategorie = "+chaine);
+		Query q = session.createQuery("FROM Categorie WHERE LOWER(libelleCategorie) LIKE LOWER('"+chaine+"') ORDER BY idCategorie DESC");
 		List<Categorie> categories = q.getResultList();
 		return categories;
 	}
@@ -63,7 +74,7 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 	}
 
 	@Override
-	public void delete(int id) throws DALException {
+	public void delete(Categorie categorie) throws DALException {
 		// TODO Auto-generated method stub
 		
 	}

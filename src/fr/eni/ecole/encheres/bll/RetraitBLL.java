@@ -37,7 +37,8 @@ public class RetraitBLL implements BLL<Retrait>{
 		}	
 	}
 
-	public void delete(int id) throws DALException {
+	@Override
+	public void delete(Retrait retrait) throws DALException, BLLException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -53,5 +54,7 @@ public class RetraitBLL implements BLL<Retrait>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 	
 }

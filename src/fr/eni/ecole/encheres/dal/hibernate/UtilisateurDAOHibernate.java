@@ -62,10 +62,9 @@ public class UtilisateurDAOHibernate implements DAO<Utilisateur>{
 	}
 
 	@Override
-	public void delete(int id) throws DALException {
+	public void delete(Utilisateur utilisateur) throws DALException {
 		// TODO Auto-generated method stub
 		Session session = ConnectionProvider.session;
-		Utilisateur utilisateur = (Utilisateur) session.get(Utilisateur.class, id);
 		session.beginTransaction();
 		session.delete(utilisateur);
 		session.getTransaction().commit();

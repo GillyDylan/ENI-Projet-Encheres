@@ -1,5 +1,6 @@
 package fr.eni.ecole.encheres.bll;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,8 +36,8 @@ public class ArticleBLL implements BLL<Article>{
 	*/
 	@Override
 	public Article get(String chaine) throws DALException {
-		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Article()).selectByString(chaine).get(0);
+		// TODO Auto-generated method stub	
+		return BLLManager.getBLL(new Article()).getList(chaine).get(0);
 	}
 
 	
@@ -45,13 +46,13 @@ public class ArticleBLL implements BLL<Article>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoie une liste d'article ayant les identifiants entrés
-	* en paramètres.
+	* Renvoie la liste des articles ayant les identifiants entrés
+	* en paramètre.
 	*/
 	@Override
-	public List<Article> getList(int...ids) throws DALException {
+	public List<Article> getList(int...idArticle) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Article()).selectById(ids);
+		return DAOFactory.getDAO(new Article()).selectById(idArticle);
 	}
 	
 	
@@ -60,13 +61,37 @@ public class ArticleBLL implements BLL<Article>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoie une liste d'article contenant dans leurs 
+	* Renvoie la liste des articles contenant dans leurs 
 	* titres ou leurs descriptions la chaine entrée en paramètre.
 	*/
 	@Override
 	public List<Article> getList(String chaine) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Article()).selectByString(chaine);
+		List<Article> articles = BLLManager.getBLL(new Article()).getList();
+		List<Article> articlesTrouves = new ArrayList<>();
+		for(Article article : articles) {
+			
+			String description = article.getDescriptionArticle();
+			String titre = article.getNomArticle();
+			
+			//Remplace les majuscules en minuscules
+			description = description.toLowerCase();
+			titre = titre.toLowerCase();
+			chaine = chaine.toLowerCase();
+			//Retirer ponctuations et espaces/tab
+			description = description.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
+			titre = titre.replaceAll("[\\p{Punct}\\p{Blank}]", "");
+			chaine = chaine.replaceAll("[\\p{Punct}\\p{Blank}]", "");
+			//Retirer les accents
+			description = BLLManager.normalize(description); 
+			titre = BLLManager.normalize(titre);
+			chaine = BLLManager.normalize(chaine);
+			
+			if(description.contains(chaine) || titre.contains(chaine)) {
+				articlesTrouves.add(article);
+			}
+		}
+		return articlesTrouves;
 	}
 
 	
@@ -133,14 +158,22 @@ public class ArticleBLL implements BLL<Article>{
 		}	
 	}
 
-
-	public void delete(int idArticle) throws DALException, BLLException {
-		Article article = BLLManager.getBLL(new Article()).get(idArticle);
-		List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList(idArticle);
+	
+	
+	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Supprime l'article
+	*/
+	@Override
+	public void delete(Article article) throws DALException, BLLException {
+		// TODO Auto-generated method stub
+		List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList(article.getIdArticle());
 		if(encheres.size() != 0) {
 			throw new BLLException(1020,"Impossible de supprimer un article avec des enchères en cours");
 		}
-		DAOFactory.getDAO(new Article()).delete(idArticle);
+		DAOFactory.getDAO(new Article()).delete(article);
 		
 	}
 
