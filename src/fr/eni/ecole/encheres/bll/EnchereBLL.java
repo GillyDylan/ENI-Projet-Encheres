@@ -1,6 +1,5 @@
 package fr.eni.ecole.encheres.bll;
 
-import java.util.Date;
 import java.util.List;
 
 import fr.eni.ecole.encheres.bo.Enchere;
@@ -8,8 +7,6 @@ import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
 public class EnchereBLL implements BLL<Enchere>{
-	
-	
 	
 	/**
 	* @author ${Dylan Gilly}
@@ -22,23 +19,19 @@ public class EnchereBLL implements BLL<Enchere>{
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0],idEnchere[1]).get(0);
 	}
-
-	
 	
 	
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoi NULL.
+	* Renvoie NULL.
 	* Aucune recherche par String possible sur Enchère
 	*/
 	@Override
 	public Enchere get(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	
+	}	
 	
 	
 	/**
@@ -51,24 +44,20 @@ public class EnchereBLL implements BLL<Enchere>{
 	public List<Enchere> getList(int...idEnchere) throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0], idEnchere[1]);
-	}
-	
-	
+	}		
 	
 	
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoi NULL.
+	* Renvoie NULL.
 	* Aucune recherche par String possible sur Enchère
 	*/
 	@Override
 	public List<Enchere> getList(String chaine) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	
+	}		
 	
 	
 	/**
@@ -80,9 +69,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	public List<Enchere> getList() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Enchere()).selectAll();
-	}
-
-	
+	}	
 
 	
 	/**
@@ -94,9 +81,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	@Override
 	public void delete(Enchere enchere) throws DALException, BLLException {
 		//A faire
-	}
-
-	
+	}	
 	
 	
 	/**

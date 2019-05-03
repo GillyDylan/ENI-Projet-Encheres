@@ -6,7 +6,6 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
-import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.dal.ConnectionProvider;
 import fr.eni.ecole.encheres.dal.DALException;
@@ -30,16 +29,6 @@ public class CategorieDAOHibernate implements DAO<Categorie>{
 			compteur++;
 		}
 		Query q = session.createQuery(requeteBuilder.toString());
-		List<Categorie> categories = q.getResultList();
-		return categories;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Categorie> selectByString(String chaine) throws DALException {
-		// TODO Auto-generated method stub
-		Session session = ConnectionProvider.session;
-		Query q = session.createQuery("FROM Categorie WHERE LOWER(libelleCategorie) LIKE LOWER('"+chaine+"') ORDER BY idCategorie DESC");
 		List<Categorie> categories = q.getResultList();
 		return categories;
 	}

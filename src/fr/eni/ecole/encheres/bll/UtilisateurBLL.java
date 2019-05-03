@@ -1,7 +1,7 @@
 package fr.eni.ecole.encheres.bll;
 
 import java.security.Key;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.crypto.Cipher;
@@ -15,27 +15,120 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 
 	private String key = "SmogogoCestVraimentLePlusBeauEtCestPasNegociable";
 	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Renvoie l'Utilisateur ayant pour identifiant idUtilisateur.
+	*/
 	@Override
 	public Utilisateur get(int...idUtilisateur) throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Utilisateur()).selectById(idUtilisateur[0]).get(0);
 	}
 	
+	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Renvoie l'utilisateur contenant la chaine entrée.
+	*/
 	@Override
 	public Utilisateur get(String chaine)throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Utilisateur()).selectByString(chaine).get(0);
+		return BLLManager.getBLL(new Utilisateur()).getList(chaine).get(0);
 	}
 
+	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Renvoie la liste des utilisateurs ayant les identifiants entrés
+	* en paramètre.
+	*/
+	@Override
+	public List<Utilisateur> getList(int...idUtilisateur) throws DALException {
+		// TODO Auto-generated method stub
+		return DAOFactory.getDAO(new Utilisateur()).selectById(idUtilisateur);
+	}
+
+	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Renvoie la liste des utilisateurs contenant dans leurs 
+	* champs la chaine entrée en paramètre.
+	*/
+	@Override
+	public List<Utilisateur> getList(String chaine) throws DALException {
+			// TODO Auto-generated method stub
+			List<Utilisateur> utilisateurs = BLLManager.getBLL(new Utilisateur()).getList();
+			List<Utilisateur> utilisateursTrouves = new ArrayList<>();
+			for(Utilisateur utilisateur : utilisateurs) {
+				String nom = utilisateur.getNomUtilisateur();
+				String prenom = utilisateur.getPrenomUtilisateur();
+				String eMail = utilisateur.geteMailUtilisateur();
+				String pseudo = utilisateur.getPseudonymeUtilisateur();
+				String adresse = utilisateur.getRueUtilisateur();
+				String ville = utilisateur.getVilleUtilisateur();
+				//Remplace les majuscules en minuscules
+				nom = nom.toLowerCase();
+				prenom = prenom.toLowerCase();
+				eMail = eMail.toLowerCase();
+				pseudo = pseudo.toLowerCase();
+				adresse = adresse.toLowerCase();
+				ville = ville.toLowerCase();
+				chaine = chaine.toLowerCase();
+				//Retirer ponctuations et espaces/tab
+				nom = nom.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
+				prenom = prenom.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
+				eMail = eMail.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
+				pseudo = pseudo.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
+				adresse = adresse.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
+				ville = ville.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
+				chaine = chaine.replaceAll("[\\p{Punct}\\p{Blank}]", "");
+				//Retirer les accents
+				nom = BLLManager.normalize(nom);
+				prenom = BLLManager.normalize(prenom);
+				eMail = BLLManager.normalize(eMail);
+				pseudo = BLLManager.normalize(pseudo);
+				adresse = BLLManager.normalize(adresse); 
+				ville = BLLManager.normalize(ville); 
+				chaine = BLLManager.normalize(chaine);
+								
+				if(ville.contains(chaine) ||
+						adresse.contains(chaine) || 
+						nom.contains(chaine) ||
+						prenom.contains(chaine) ||
+						eMail.contains(chaine) || 
+						pseudo.contains(chaine)){
+					utilisateursTrouves.add(utilisateur);
+				}
+			}
+			return utilisateursTrouves;
+	}
+	
+	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Renvoie la liste de tous les utilisateurs
+	*/
 	@Override
 	public List<Utilisateur> getList() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Utilisateur()).selectAll();
 	}
 
+	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Ajoute l'utilisateur
+	*/
 	@Override
 	public void set(Utilisateur utilisateur) throws BLLException, DALException {
 		// TODO Auto-generated method stub
+		List<Utilisateur> tousLesUtilisateurs = BLLManager.getBLL(new Utilisateur()).getList();
 		if(utilisateur.getPseudonymeUtilisateur().trim() == null || 
 				utilisateur.geteMailUtilisateur().trim() == null ||
 				utilisateur.getCodePostalUtilisateur() == 0 ||
@@ -55,7 +148,7 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		if(utilisateur.getCodePostalUtilisateur() < 1000 || utilisateur.getCodePostalUtilisateur() > 99999) {
 			throw new BLLException(5003,"Code postal invalide");
 		}
-		List<Utilisateur> utilisateurs = DAOFactory.getDAO(new Utilisateur()).selectById(utilisateur.getIdUtilisateur());
+		List<Utilisateur> utilisateurs = BLLManager.getBLL(new Utilisateur()).getList(utilisateur.getIdUtilisateur());
 		if(utilisateurs.size() == 0 ) {
 			if(utilisateur.getPseudonymeUtilisateur().trim().length() < 3) {
 				throw new BLLException(5010,"Le pseudonyme doit être de 3 caractères minimum");
@@ -63,32 +156,48 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 			if(!utilisateur.getPseudonymeUtilisateur().trim().matches("^[a-zA-Z0-9_]*$")) {
 				throw new BLLException(5011,"Le pseudonyme doit contenir uniquement des caractères alphanumériques");
 			}
-			if(DAOFactory.getDAO(new Utilisateur()).selectByString(utilisateur.getPseudonymeUtilisateur()).size() != 0) {
-				throw new BLLException(5012,"Ce pseudonyme est déjà utilisé");
-			}
-			if(DAOFactory.getDAO(new Utilisateur()).selectByString(utilisateur.geteMailUtilisateur()).size() != 0) {
-				throw new BLLException(5013,"Cet E-Mail est déjà utilisé");
+			for(Utilisateur u : tousLesUtilisateurs)
+			{
+				if(u.getPseudonymeUtilisateur().equals(utilisateur.getPseudonymeUtilisateur())) {
+					throw new BLLException(5012,"Ce pseudonyme est déjà utilisé");
+				}
+				if(u.geteMailUtilisateur().equals(utilisateur.geteMailUtilisateur())) {
+					throw new BLLException(5013,"Cet E-Mail est déjà utilisé");
+				}
 			}
 			DAOFactory.getDAO(new Utilisateur()).insert(utilisateur);
 		}
 		else {
 			Utilisateur oldUtilisateur = utilisateurs.get(0);
-			if(oldUtilisateur.getPseudonymeUtilisateur()!=utilisateur.getPseudonymeUtilisateur()) {
+			if(oldUtilisateur.getPseudonymeUtilisateur() != utilisateur.getPseudonymeUtilisateur()) {
 				throw new BLLException(5020,"Le pseudonyme d'un utilisateur déjà créé ne peut être modifié");
 			}
-			if(oldUtilisateur.geteMailUtilisateur()!=utilisateur.geteMailUtilisateur()) {
+			if(oldUtilisateur.geteMailUtilisateur() != utilisateur.geteMailUtilisateur()) {
 				throw new BLLException(5021,"L'E-Mail d'un utilisateur déjà créé ne peut être modifié");
 			}
 			DAOFactory.getDAO(new Utilisateur()).update(utilisateur);
 		}
 	}
 
-
+	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Supprime l'utilisateur
+	*/
+	@Override
 	public void delete(Utilisateur utilisateur) throws DALException {
 		// TODO Auto-generated method stub
 		DAOFactory.getDAO(new Utilisateur()).delete(utilisateur);
 	}
 	
+	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Renvoie true si le mot de passe correspond,
+	* sinon false.
+	*/
 	public boolean checkMotDePasse(Utilisateur utilisateur, String motDePasse) {
 		if(motDePasse.equals(decrypt(utilisateur.getMotDePasseUtilisateur()))) {
 			return true;
@@ -126,17 +235,7 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		}
 	}
 
-	@Override
-	public List<Utilisateur> getList(int... ids) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public List<Utilisateur> getList(String s) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }

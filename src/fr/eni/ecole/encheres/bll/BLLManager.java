@@ -21,7 +21,7 @@ public class BLLManager {
         if(t instanceof Utilisateur) {
         	bll = new UtilisateurBLL();
         }
-       if(t instanceof Article) {
+        if(t instanceof Article) {
         	bll = new ArticleBLL();
         }
         if(t instanceof Categorie) {
