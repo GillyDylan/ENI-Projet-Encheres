@@ -16,9 +16,9 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	private String key = "SmogogoCestVraimentLePlusBeauEtCestPasNegociable";
 	
 	@Override
-	public Utilisateur get(int idUtilisateur) throws DALException {
+	public Utilisateur get(int...idUtilisateur) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Utilisateur()).selectById(idUtilisateur).get(0);
+		return DAOFactory.getDAO(new Utilisateur()).selectById(idUtilisateur[0]).get(0);
 	}
 	
 	@Override
@@ -31,12 +31,6 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	public List<Utilisateur> get() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Utilisateur()).selectAll();
-	}
-	
-	@Override
-	public List<Utilisateur> get(int...ids) throws DALException {
-		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Utilisateur()).selectById(ids[0]);
 	}
 
 	@Override
@@ -131,8 +125,6 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 				return null;
 		}
 	}
-
-
 
 
 }
