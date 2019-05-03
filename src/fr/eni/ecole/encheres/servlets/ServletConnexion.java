@@ -46,7 +46,7 @@ public class ServletConnexion extends HttpServlet {
 			utilisateur = (Utilisateur) BLLManager.getBLL(new Utilisateur()).get(login);
 			if(utilisateur.getPseudonymeUtilisateur().equals(login) && utilisateur.getMotDePasseUtilisateur().equals(mdp)) {
 				request.getSession().setAttribute("utilisateur", utilisateur);
-				request.getRequestDispatcher("/WEB-INF/accueil.jsp").include(request, response);
+				request.getRequestDispatcher("/ServletAccueil").include(request, response);
 			}else {
 				request.setAttribute("erreurConnexion", "Erreur de connexion.");
 				request.getRequestDispatcher("/WEB-INF/connexion.jsp").include(request, response);			

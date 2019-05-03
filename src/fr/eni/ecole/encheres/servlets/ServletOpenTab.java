@@ -26,6 +26,13 @@ public class ServletOpenTab extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		switch(name) {
 			case "accueil":
@@ -48,16 +55,9 @@ public class ServletOpenTab extends HttpServlet {
 				break;	
 			case "deconnexion":
 				request.getSession().removeAttribute("utilisateur");
-				request.getRequestDispatcher("/WEB-INF/accueil.jsp").include(request, response);
+				request.getRequestDispatcher("/ServletAccueil").include(request, response);
 				break;
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 
 }

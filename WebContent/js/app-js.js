@@ -2,7 +2,7 @@ function openTab(el) {
 	var name = el.name;
 	$.ajax({
 		url : 'ServletOpenTab',
-		method : 'GET',
+		method : 'POST',
 		data : {
 			name : name
 		},

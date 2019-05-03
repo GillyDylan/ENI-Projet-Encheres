@@ -1,4 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java"
+	import="java.util.*,java.lang.*, java.time.LocalDate, fr.eni.ecole.encheres.bo.Article, fr.eni.ecole.encheres.bo.Categorie, fr.eni.ecole.encheres.bo.Utilisateur"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="/menu"></jsp:include>
 <div class="row">
 	<div class="col">
@@ -19,7 +22,7 @@
 			placeholder="Description du produit" name="description" required>
 	</div>
 	<div class="form-group row">
-		<label for="selectCategorie" class="col-sm-2 col-form-label">Catégories</label> 
+		<label for="selectCategorie" class="col-sm-2 col-form-label">CatÃ©gories</label> 
 			<select name="selectCategorie" class="form-control col-sm-10" id="selectCategorie">
 				<c:if test="${!empty categories}">
 					<c:forEach var="categorie" items="${categories}">
@@ -34,18 +37,18 @@
 			id="photo" name="photo">
 	</div>
 	<div class="form-group row">
-		<label for="prix" class="col-sm-2 col-form-label">Mise à prix:</label>
+		<label for="prix" class="col-sm-2 col-form-label">Mise Ã  prix:</label>
 		<input type="text" class="form-control col-sm-10" id="prix"
-			placeholder="Prix de départ" name="prix" required>
+			placeholder="Prix de dÃ©part" name="prix" required>
 	</div>
 	<div class="form-group row">
-		<label for="debutenchere" class="col-sm-2 col-form-label">Début
-			de l'enchère:</label> <input type="date" class="form-control col-sm-10"
+		<label for="debutenchere" class="col-sm-2 col-form-label">DÃ©but
+			de l'enchÃ¨re:</label> <input type="date" class="form-control col-sm-10"
 			id="debutenchere" name="debutenchere" required>
 	</div>
 	<div class="form-group row">
 		<label for="finenchere" class="col-sm-2 col-form-label">Fin de
-			l'enchère:</label> <input type="date" class="form-control col-sm-10"
+			l'enchÃ¨re:</label> <input type="date" class="form-control col-sm-10"
 			id="finenchere" name="finenchere" required>
 	</div>
 	<fieldset class="form-group">
