@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="/menu"></jsp:include>
 <div class="row">
 	<div class="col">
 		<h2>
@@ -6,7 +7,7 @@
 		</h2>
 	</div>
 </div>
-<form action="ServletNouvelleVente" method="post">
+<form id="formNouvelleVente">
 	<div class="form-group row">
 		<label for="article" class="col-sm-2 col-form-label">Article:</label>
 		<input type="text" class="form-control col-sm-10" id="article"
@@ -19,7 +20,7 @@
 	</div>
 	<div class="form-group row">
 		<label for="selectCategorie" class="col-sm-2 col-form-label">Catégories</label> 
-			<select name="selectCategorie" class="form-control col-sm-10">
+			<select name="selectCategorie" class="form-control col-sm-10" id="selectCategorie">
 				<c:if test="${!empty categories}">
 					<c:forEach var="categorie" items="${categories}">
 						<option value="${ categorie.getIdCategorie()  }">${ categorie.getLibelleCategorie() }</option>
@@ -28,8 +29,8 @@
 			</select>
 	</div>
 	<div class="form-group row">
-		<label for="photo" class="col-sm-2 col-form-label">Photo de
-			l'article:</label> <input type="file" class="form-control col-sm-10"
+		<label for="photo" class="col-sm-2 col-form-label">Photo de	l'article:</label> 
+		<input type="file" class="form-control col-sm-10"
 			id="photo" name="photo">
 	</div>
 	<div class="form-group row">
@@ -65,5 +66,10 @@
 			value="<c:out value="${ utilisateur.getCodePostalUtilisateur() }"></c:out>" readonly>
 		</div>
 	</fieldset>
-	<button type="submit" class="btn btn-primary">Enregistrer</button>
+	<input type="button" class="btn btn-primary" value="Enregistrer" onclick="ajouterNouvelleVente()"/>
 </form>
+<script>
+$( document ).ready(function() {
+	remplirSelectCategorie();
+});
+</script>

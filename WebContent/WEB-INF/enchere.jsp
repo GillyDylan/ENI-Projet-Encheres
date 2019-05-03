@@ -2,6 +2,7 @@
 <%@ page language="java"
 	import="java.util.*,java.lang.*, java.time.LocalDate, fr.eni.ecole.encheres.bo.Article, fr.eni.ecole.encheres.bo.Categorie , fr.eni.ecole.encheres.bo.Utilisateur"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="/menu"></jsp:include>
 <div class="row">
 	<div class="col">
 		<h2>

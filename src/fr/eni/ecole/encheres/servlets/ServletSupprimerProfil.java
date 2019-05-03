@@ -38,13 +38,13 @@ public class ServletSupprimerProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Utilisateur utilisateurToDelete = ((Utilisateur)request.getSession().getAttribute("utilisateur"));
-		try {
-			DAOFactory.getDAO(new Utilisateur()).delete(utilisateurToDelete.getIdUtilisateur());
-			request.getSession().removeAttribute("utilisateur");
-			this.getServletContext().getNamedDispatcher("index").forward(request, response);				
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
+//		Utilisateur utilisateurToDelete = ((Utilisateur)request.getSession().getAttribute("utilisateur"));
+//		try {
+//			//DAOFactory.getDAO(new Utilisateur()).delete(utilisateurToDelete.getIdUtilisateur());
+//			request.getSession().removeAttribute("utilisateur");
+//			this.getServletContext().getNamedDispatcher("index").forward(request, response);				
+//		} catch (DALException e) {
+//			e.printStackTrace();
+//		}
 	}
 }

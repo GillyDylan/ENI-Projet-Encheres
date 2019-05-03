@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="/menu"></jsp:include>
 <c:if test="${!empty errorMessage }">
 	<span class="alert alert-danger">${errorMessage }</span>
 </c:if>

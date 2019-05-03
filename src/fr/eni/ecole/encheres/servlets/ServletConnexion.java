@@ -31,8 +31,7 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
@@ -47,14 +46,14 @@ public class ServletConnexion extends HttpServlet {
 			utilisateur = (Utilisateur) BLLManager.getBLL(new Utilisateur()).get(login);
 			if(utilisateur.getPseudonymeUtilisateur().equals(login) && utilisateur.getMotDePasseUtilisateur().equals(mdp)) {
 				request.getSession().setAttribute("utilisateur", utilisateur);
-				this.getServletContext().getNamedDispatcher("index").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/accueil.jsp").include(request, response);
 			}else {
 				request.setAttribute("erreurConnexion", "Erreur de connexion.");
-				this.getServletContext().getRequestDispatcher("/index?page=connexion").forward(request, response);			
+				request.getRequestDispatcher("/WEB-INF/connexion.jsp").include(request, response);			
 			}
 		} catch (DALException e) {
 			request.setAttribute("erreurConnexion", e.getMessage());
-			this.getServletContext().getRequestDispatcher("/index?page=connexion").forward(request, response);			
+			request.getRequestDispatcher("/WEB-INF/connexion.jsp").include(request, response);			
 		}
 	}
 

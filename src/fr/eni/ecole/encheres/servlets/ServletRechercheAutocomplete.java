@@ -1,10 +1,9 @@
 package fr.eni.ecole.encheres.servlets;
 
 import java.io.IOException;
-import java.util.Calendar;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,25 +12,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.ecole.encheres.bll.BLLException;
+import com.google.gson.Gson;
+
 import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Article;
-import fr.eni.ecole.encheres.bo.Enchere;
-import fr.eni.ecole.encheres.bo.Utilisateur;
+import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.dal.DALException;
-import fr.eni.ecole.encheres.dal.DAOFactory;
 
 /**
- * Servlet implementation class ServletEncherir
+ * Servlet implementation class ServletRechercheAutocomplete
  */
-@WebServlet("/ServletEncherir")
-public class ServletEncherir extends HttpServlet {
+@WebServlet("/ServletRechercheAutocomplete")
+public class ServletRechercheAutocomplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Gson gson = new Gson();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletEncherir() {
+    public ServletRechercheAutocomplete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,27 +39,34 @@ public class ServletEncherir extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		List<Article> articles = null;
+		try {
+			articles = BLLManager.getBLL(new Article()).getList();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+		List<String> articlesNom = new ArrayList<String>();
+		
+		for (Article article : articles) {
+			articlesNom.add(article.getNomArticle());
+		}	
+		
+		String articlesJsonString = this.gson.toJson(articlesNom);
+ 
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        out.print(articlesJsonString);
+        out.flush();
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int valeurEnchere = Integer.valueOf(request.getParameter("nouvelleenchere"));
-		Article article = (Article) request.getSession().getAttribute("article"); 
-		Date date = new Date();
-		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");		
-		
-		Enchere nouvelleEnchere = new Enchere(utilisateur, article, date, valeurEnchere);
-		
-		try {
-			DAOFactory.getDAO(new Enchere()).insert(nouvelleEnchere);
-			this.getServletContext().getRequestDispatcher("/index?page=details&id="+article.getIdArticle()).forward(request, response);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

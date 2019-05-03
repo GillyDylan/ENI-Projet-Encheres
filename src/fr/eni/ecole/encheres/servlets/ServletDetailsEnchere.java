@@ -1,6 +1,10 @@
 package fr.eni.ecole.encheres.servlets;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Article;
+import fr.eni.ecole.encheres.bo.Enchere;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
@@ -40,6 +45,23 @@ public class ServletDetailsEnchere extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			int idArticle = Integer.parseInt(request.getParameter("id"));
+			List<Enchere> encheres = DAOFactory.getDAO(new Enchere()).selectById(idArticle);
+			Collections.sort(encheres, new Comparator<Enchere>() {
+				@Override
+				public int compare(Enchere ench1, Enchere ench2) {
+					return ench1.getDateEnchere().compareTo(ench2.getDateEnchere());
+				}
+			});
+			System.out.println(encheres.get(0).getDateEnchere());
+			
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		request.setAttribute("articleDetails", articleDetail);
 		this.getServletContext().getRequestDispatcher("/index?page=enchere").forward(request, response);
 	}

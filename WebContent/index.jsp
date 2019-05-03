@@ -7,51 +7,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>ENI-Encheres</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/app-js.js">
+$( document ).ready(function() {
+	remplirSelectCategorie();
+});
+</script>
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="/menu"></jsp:include>
-		<c:choose>
-			<c:when test="${param.page== 'connexion'}">
-				<jsp:include page="/connexion"></jsp:include>
-			</c:when>
-			<c:when test="${param.page== 'creercompte'}">
-				<jsp:include page="/creercompte"></jsp:include>
-			</c:when>
-			<c:when test="${param.page== 'details'}">
-				<jsp:include page="/ServletDetailsEnchere"></jsp:include>
-			</c:when>
-			<c:when test="${param.page== 'enchere'}">
-				<jsp:include page="/enchere"></jsp:include>
-			</c:when>
-			<c:when test="${param.page== 'nouvellevente' && utilisateur != null}">
-				<jsp:include page="/nouvellevente"></jsp:include>
-			</c:when>
-			<c:when test="${param.page== 'profil' && utilisateur != null}">
-				<jsp:include page="/profil"></jsp:include>
-			</c:when>
-			<c:otherwise>
-				<jsp:include page="/ServletAccueil"></jsp:include>
-			</c:otherwise>
-		</c:choose>
+		<div id="content">
+			<jsp:include page="/ServletAccueil"></jsp:include>
+		</div>
 	</div>	
 </body>
 </html>
