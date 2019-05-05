@@ -46,6 +46,8 @@ public class ServletModifierProfil extends HttpServlet {
 			((Utilisateur)request.getSession().getAttribute("utilisateur")).setRueUtilisateur(request.getParameter("rue").trim());
 			((Utilisateur)request.getSession().getAttribute("utilisateur")).setVilleUtilisateur(request.getParameter("ville").trim());
 			((Utilisateur)request.getSession().getAttribute("utilisateur")).setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal").trim()));
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
 			try {
 				DAOFactory.getDAO(new Utilisateur()).update((Utilisateur)request.getSession().getAttribute("utilisateur"));
 				this.getServletContext().getNamedDispatcher("index").forward(request, response);

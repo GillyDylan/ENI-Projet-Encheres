@@ -61,7 +61,8 @@ public class ServletDetailsEnchere extends HttpServlet {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		request.setAttribute("articleDetails", articleDetail);
 		request.getRequestDispatcher("/enchere").include(request, response);
 	}

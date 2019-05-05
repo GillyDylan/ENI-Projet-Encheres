@@ -2,6 +2,7 @@ function openTab(el) {
 	var name = el.name;
 	$.ajax({
 		url : 'ServletOpenTab',
+		contentType: "application/x-www-form-urlencoded;charset=utf-8",
 		method : 'POST',
 		data : {
 			name : name

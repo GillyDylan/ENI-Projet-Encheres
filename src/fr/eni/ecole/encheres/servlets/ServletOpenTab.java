@@ -34,6 +34,8 @@ public class ServletOpenTab extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		switch(name) {
 			case "accueil":
 				this.getServletContext().getNamedDispatcher("ServletAccueil").include(request, response);

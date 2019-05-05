@@ -50,7 +50,8 @@ public class ServletNouvelleVente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 				Article newArticle = new Article();
 				
-				System.out.println(request.getParameter("article"));
+				request.setCharacterEncoding("UTF-8");
+				response.setContentType("text/html; charset=UTF-8");
 				
 				List<Categorie> categories = null;
 				try {

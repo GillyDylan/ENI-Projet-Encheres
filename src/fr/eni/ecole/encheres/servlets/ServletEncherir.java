@@ -51,6 +51,8 @@ public class ServletEncherir extends HttpServlet {
 		Article article = (Article) request.getSession().getAttribute("article"); 
 		Date date = new Date();
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		Enchere nouvelleEnchere = new Enchere(utilisateur, article, date, valeurEnchere);
 		

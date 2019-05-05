@@ -41,7 +41,8 @@ public class ServletConnexion extends HttpServlet {
 		String login = request.getParameter("login");
 		String mdp = request.getParameter("mdp");
 		Utilisateur utilisateur = null;
-		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		try {
 			utilisateur = (Utilisateur) BLLManager.getBLL(new Utilisateur()).get(login);
 			if(utilisateur.getPseudonymeUtilisateur().equals(login) && utilisateur.getMotDePasseUtilisateur().equals(mdp)) {

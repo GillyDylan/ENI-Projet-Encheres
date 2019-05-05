@@ -42,6 +42,8 @@ public class ServletAccueil extends HttpServlet {
 		
 		request.setAttribute("articles", articles);
 		request.setAttribute("categories", categories);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		this.getServletContext().getNamedDispatcher("accueil").include(request, response);
 	}
 
