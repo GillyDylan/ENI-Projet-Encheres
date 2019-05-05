@@ -14,6 +14,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.css">
 <script src="js/app-js.js">
 $( document ).ready(function() {
 	remplirSelectCategorie();

@@ -1,30 +1,38 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<ul class="nav">
-	<li class="nav-item">
-		<button type="button" class="btn nav-link" onclick="openTab(this)" name="accueil">Accueil</button>
-	</li>
-	<c:if test="${ utilisateur == null }">
-		<li class="nav-item">
-			<button type="button" class="btn nav-link" onclick="openTab(this)" name="inscription">S'inscrire</button>
-		</li>
-		<li class="nav-item">
-			<button type="button" class="btn nav-link"  onclick="openTab(this)" name="connexion">Se connecter</button>
-		</li>
-	</c:if>
-	<c:if test="${ utilisateur != null }">
-		<li class="nav-item">
-			<button type="button" class="btn nav-link" onclick="openTab(this)" name="nouvellevente">Vendre un produit</button>
-		</li>
-		<li class="nav-item">
-			<button type="button" class="btn nav-link" onclick="openTab(this)" name="profil">Profil</button>
-		</li>
-		<li class="nav-item">
-			<button type="button" class="btn nav-link" onclick="openTab(this)" name="deconnexion">Deconnexion</button>
-		</li>
-	</c:if>
-	<c:if test="${ utilisateur.isAdministrateur() == true }">
-		<li class="nav-item">
-			<button type="button" class="btn nav-link" onclick="openTab(this)" name="administration">Administration</button>
-		</li>
-	</c:if>
-</ul> 
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div class="navbar-brand">ENI Enchères</div>
+
+	<div class="collapse navbar-collapse" id="navbarColor01">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item"><a class="nav-link" href="#"
+				onclick="openTab(this)" name="accueil">Accueil <span
+					class="sr-only">(current)</span></a></li>
+			<c:if test="${ utilisateur == null }">
+				<li class="nav-item"><a class="nav-link" href="#"
+					onclick="openTab(this)" name="inscription">S'inscrire</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"
+					onclick="openTab(this)" name="connexion">Se connecter</a></li>
+			</c:if>
+			<c:if test="${ utilisateur != null }">
+				<li class="nav-item">
+					<a class="nav-link" onclick="openTab(this)" href="#"
+						name="nouvellevente">Vendre un produit</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" onclick="openTab(this)" href="#"
+						name="profil">Profil</a>
+				</li>
+				<li class="nav-item">
+					<a  class="nav-link" onclick="openTab(this)" href="#"
+						name="deconnexion">Deconnexion</a>
+				</li>
+			</c:if>
+			<c:if test="${ utilisateur.isAdministrateur() == true }">
+				<li class="nav-item">
+					<a class="nav-link" onclick="openTab(this)" href="#"
+						name="administration">Administration</a>
+				</li>
+			</c:if>
+		</ul>
+	</div>
+</nav>
