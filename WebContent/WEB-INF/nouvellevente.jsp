@@ -45,18 +45,18 @@
 	<div class="form-group row">
 		<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 		<jsp:useBean id="now" class="java.util.Date" />
-		<fmt:formatDate var="datedeb" value="${now}" pattern = "yyyy-MM-dd"/>
+		<fmt:formatDate var="datedeb" value="${now}" pattern="yyyy-MM-dd" />
 		<%-- <fmt:formatDate var="timedeb" value="${now}" pattern = "HH:mm"/> --%>
 		<label for="debutenchere" class="col-sm-2 col-form-label">Début
-			de l'enchère:</label> <input type="date"
-			class="form-control col-sm-10" id="debutenchere" name="debutenchere"
-			value="${datedeb}" min="${datedeb}" required>
+			de l'enchère:</label> <input type="date" class="form-control col-sm-10"
+			id="debutenchere" name="debutenchere" value="${datedeb}"
+			min="${datedeb}" required>
 	</div>
 	<div class="form-group row">
 		<label for="finenchere" class="col-sm-2 col-form-label">Fin de
-			l'enchère:</label> <input type="date"
-			class="form-control col-sm-10" id="finenchere" name="finenchere"
-			value="${datedeb}" min="${datedeb}" required>
+			l'enchère:</label> <input type="date" class="form-control col-sm-10"
+			id="finenchere" name="finenchere" value="${datedeb}" min="${datedeb}"
+			required>
 	</div>
 	<fieldset class="form-group">
 		<legend>Retrait</legend>
@@ -81,6 +81,8 @@
 	</fieldset>
 	<button type="button" class="btn btn-primary" data-toggle="modal"
 		data-target="#modalValidationVente">Enregistrer</button>
+	<button type="button" class="btn btn-primary" onclick="openTab(this)"
+		name="accueil">Retour</button>
 </form>
 
 <div class="modal fade" id="modalValidationVente" tabindex="-1"

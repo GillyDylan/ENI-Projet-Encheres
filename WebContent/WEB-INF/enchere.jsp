@@ -31,18 +31,23 @@
 					<tr>
 						<td>Meilleur offre</td>
 						<td>${enchereDetails.getUtilisateur().getNomUtilisateur() == null ? 'Pas d acheteur en cours' : 
-								enchereDetails.getUtilisateur().getNomUtilisateur()}							
+								enchereDetails.getUtilisateur().getNomUtilisateur()}
 							<c:if test="${!empty enchereDetails.getUtilisateur() }">
-								<span>pour la somme de ${enchereDetails.getMontantEnchere() } points.</span>
-							</c:if>					
+								<span>pour la somme de
+									${enchereDetails.getMontantEnchere() } points.</span>
+							</c:if>
 						</td>
 					</tr>
-						<td>Mise à prix</td>
-						<td>${articleDetails.getPrixInitialArticle()} points</td>
+					<td>Mise à prix</td>
+					<td>${articleDetails.getPrixInitialArticle()} points</td>
 					</tr>
 					<tr>
 						<td>Fin de l'enchere</td>
-						<td>${articleDetails.getDateFinEncheresArticle()}</td>
+						<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+						<fmt:formatDate var="date"
+							value="${articleDetails.getDateFinEncheresArticle()}"
+							pattern="dd MMM YYYY" />
+						<td>${date}</td>
 					</tr>
 					<tr>
 						<td>Retrait</td>
@@ -59,17 +64,20 @@
 					</tr>
 					<c:if test="${!empty utilisateur }">
 						<form>
-						<tr>
-							<td>Ma proposition</td>
-							<c:set scope="session" var="article" value="${ articleDetails }"></c:set>
-							<td><input type="number" value="${enchereDetails.getMontantEnchere()+1}" min="${enchereDetails.getMontantEnchere()+1}" id="nouvelleEnchere" /></td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<button type="button" class="btn btn-primary"
-									data-toggle="modal" data-target="#modalValidationEnchere">Enchérir</button>
-							</td>
-						</tr>
+							<tr>
+								<td>Ma proposition</td>
+								<c:set scope="session" var="article" value="${ articleDetails }"></c:set>
+								<td><input type="number"
+									value="${enchereDetails == null ? articleDetails.getPrixInitialArticle() : enchereDetails.getMontantEnchere()+1}"
+									min="${enchereDetails.getMontantEnchere()+1}"
+									id="nouvelleEnchere" /></td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<button type="button" class="btn btn-primary"
+										data-toggle="modal" data-target="#modalValidationEnchere">Enchérir</button>
+								</td>
+							</tr>
 						</form>
 
 						<div class="modal fade" id="modalValidationEnchere" tabindex="-1"
@@ -87,11 +95,9 @@
 										de valider cette enchère?</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">Annuler</button>
+											id="butAnnulerEnchere" data-dismiss="modal">Annuler</button>
 										<button type="button" class="btn btn-primary"
-											onclick="encherir()">Sauvegarder</button>
-										<button type="button" class="btn btn-primary" onclick="openTab(this)" 
-											data-dismiss="modal" id="butAccueil" name="accueil" hidden="true">Retour à l'accueil</button>
+											id="butSauvegarderEnchere" onclick="encherir()">Sauvegarder</button>
 									</div>
 								</div>
 							</div>

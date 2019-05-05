@@ -97,6 +97,8 @@ function encherir(){
 		},
 		success : function(resultText) {
 			$('#modalMessage').html(resultText);
+			$('#butAnnulerEnchere').prop("hidden", "true");
+			$('#butSauvegarderEnchere').prop('hidden', 'true');	
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');

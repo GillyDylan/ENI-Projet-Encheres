@@ -19,10 +19,6 @@ import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Categorie;
 import fr.eni.ecole.encheres.dal.DALException;
 
-/**
- * Servlet implementation class ServletRechercheAutocomplete
- */
-@WebServlet("/ServletRechercheAutocomplete")
 public class ServletRechercheAutocomplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Gson gson = new Gson();
@@ -47,13 +43,16 @@ public class ServletRechercheAutocomplete extends HttpServlet {
 		}
 		
 		List<String> articlesNom = new ArrayList<String>();
+		String term = request.getParameter("term");
 		
 		for (Article article : articles) {
-			articlesNom.add(article.getNomArticle());
+			if(article.getNomArticle().toLowerCase().contains(term.toLowerCase())) {
+				articlesNom.add(article.getNomArticle());
+			}
 		}	
 		
 		String articlesJsonString = this.gson.toJson(articlesNom);
- 
+		System.out.println(articlesJsonString);
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

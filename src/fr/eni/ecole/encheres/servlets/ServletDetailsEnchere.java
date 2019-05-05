@@ -18,19 +18,16 @@ import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 import fr.eni.ecole.encheres.dal.hibernate.EnchereDAOHibernate;
 
-/**
- * Servlet implementation class ServletDetailsEnchere
- */
 public class ServletDetailsEnchere extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletDetailsEnchere() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletDetailsEnchere() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,15 +43,17 @@ public class ServletDetailsEnchere extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
 			int idArticle = Integer.parseInt(request.getParameter("articleId"));
 			System.out.println(idArticle);
 			List<Enchere> encheres = new EnchereDAOHibernate().selectByOneId(idArticle);
-			request.setAttribute("enchereDetails", encheres.get(0));
-			
+			if(encheres != null && !encheres.isEmpty()) {
+				request.setAttribute("enchereDetails", encheres.get(0));
+			}
+
+
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setCharacterEncoding("UTF-8");

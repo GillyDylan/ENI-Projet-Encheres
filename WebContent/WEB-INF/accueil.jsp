@@ -15,7 +15,7 @@
 		<div class="col-6">
 			<div class="form-group">
 				<label for="filtre">Filtre: </label> <input type="text"
-					class="form-control" id="filtre"
+					class="form-control ui-widget" id="filtre"
 					placeholder="Le nom de l'article contient">
 			</div>
 			<div class="form-group">
@@ -116,4 +116,10 @@
 	$(document).ready(function() {
 		remplirSelectCategorie();
 	});
+	
+	$( function() {
+	    $( "#filtre" ).autocomplete({
+	      source: 'autocomplete'
+	    });
+	  } );
 </script>

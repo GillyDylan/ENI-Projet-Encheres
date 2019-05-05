@@ -121,4 +121,12 @@
     <servlet-name>inscription</servlet-name>
     <url-pattern>/inscription</url-pattern>
   </servlet-mapping> 
+     <servlet>
+    <servlet-name>autocomplete</servlet-name>
+    <servlet-class>fr.eni.ecole.encheres.servlets.ServletRechercheAutocomplete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>autocomplete</servlet-name>
+    <url-pattern>/autocomplete</url-pattern>
+  </servlet-mapping> 
 </web-app>
