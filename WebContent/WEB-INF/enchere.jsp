@@ -30,9 +30,13 @@
 					</tr>
 					<tr>
 						<td>Meilleur offre</td>
-						<td>${articleDetails.getUtilisateurAchetant() == null ? 'Pas d\'acheteur en cours' : articleDetails.getPrixVenteArticle() + ' points ' + pararticleDetails.getUtilisateurAchetant().getNomUtilisateur()}</td>
+						<td>${enchereDetails.getUtilisateur().getNomUtilisateur() == null ? 'Pas d acheteur en cours' : 
+								enchereDetails.getUtilisateur().getNomUtilisateur()}							
+							<c:if test="${!empty enchereDetails.getUtilisateur() }">
+								<span>pour la somme de ${enchereDetails.getMontantEnchere() } points.</span>
+							</c:if>					
+						</td>
 					</tr>
-					<tr>
 						<td>Mise à prix</td>
 						<td>${articleDetails.getPrixInitialArticle()} points</td>
 					</tr>
@@ -54,18 +58,45 @@
 							${articleDetails.getUtilisateurVendant().getNomUtilisateur()}</td>
 					</tr>
 					<c:if test="${!empty utilisateur }">
-						<form action="ServletEncherir" method="post">
-							<tr>
-								<td>Ma proposition</td>
-								<c:set scope="session" var="article" value="${ articleDetails }"></c:set>
-								<td><input type="number" name="nouvelleenchere" /></td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<button type="submit" class="btn btn-primary">Enchérir</button>
-								</td>
-							</tr>
+						<form>
+						<tr>
+							<td>Ma proposition</td>
+							<c:set scope="session" var="article" value="${ articleDetails }"></c:set>
+							<td><input type="number" value="${enchereDetails.getMontantEnchere()+1}" min="${enchereDetails.getMontantEnchere()+1}" id="nouvelleEnchere" /></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<button type="button" class="btn btn-primary"
+									data-toggle="modal" data-target="#modalValidationEnchere">Enchérir</button>
+							</td>
+						</tr>
 						</form>
+
+						<div class="modal fade" id="modalValidationEnchere" tabindex="-1"
+							role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="modalLabel">Nouvelle enchère</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body" id="modalMessage">Etes-vous sûr
+										de valider cette enchère?</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Annuler</button>
+										<button type="button" class="btn btn-primary"
+											onclick="encherir()">Sauvegarder</button>
+										<button type="button" class="btn btn-primary" onclick="openTab(this)" 
+											data-dismiss="modal" id="butAccueil" name="accueil" hidden="true">Retour à l'accueil</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</c:if>
 				</tbody>
 			</table>

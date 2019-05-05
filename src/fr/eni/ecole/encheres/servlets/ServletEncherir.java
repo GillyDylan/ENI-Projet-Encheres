@@ -19,12 +19,9 @@ import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Enchere;
 import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
+import fr.eni.ecole.encheres.dal.DAO;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
-/**
- * Servlet implementation class ServletEncherir
- */
-@WebServlet("/ServletEncherir")
 public class ServletEncherir extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,21 +44,19 @@ public class ServletEncherir extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int valeurEnchere = Integer.valueOf(request.getParameter("nouvelleenchere"));
+		int valeurEnchere = Integer.valueOf(request.getParameter("nouvelleEnchere"));
 		Article article = (Article) request.getSession().getAttribute("article"); 
 		Date date = new Date();
-		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
+		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
+		article.setUtilisateurAchetant(utilisateur);
 		Enchere nouvelleEnchere = new Enchere(utilisateur, article, date, valeurEnchere);
-		
+		response.setContentType("text/plain");
 		try {
 			DAOFactory.getDAO(new Enchere()).insert(nouvelleEnchere);
-			this.getServletContext().getRequestDispatcher("/index?page=details&id="+article.getIdArticle()).forward(request, response);
+			DAOFactory.getDAO(new Article()).update(article);
+			response.getWriter().write("Encheres acceptées.");
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			response.getWriter().write("Erreur : " + e.getMessage());
 		}
 	}
 

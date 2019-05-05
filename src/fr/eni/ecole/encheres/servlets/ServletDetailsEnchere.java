@@ -16,6 +16,7 @@ import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Enchere;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
+import fr.eni.ecole.encheres.dal.hibernate.EnchereDAOHibernate;
 
 /**
  * Servlet implementation class ServletDetailsEnchere
@@ -46,21 +47,16 @@ public class ServletDetailsEnchere extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-//		try {
-//			int idArticle = Integer.parseInt(request.getParameter("articleId"));
-//			List<Enchere> encheres = DAOFactory.getDAO(new Enchere()).selectById(idArticle);
-//			Collections.sort(encheres, new Comparator<Enchere>() {
-//				@Override
-//				public int compare(Enchere ench1, Enchere ench2) {
-//					return ench1.getDateEnchere().compareTo(ench2.getDateEnchere());
-//				}
-//			});
-//			System.out.println(encheres.get(0).getDateEnchere());
-//			
-//		} catch (DALException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			int idArticle = Integer.parseInt(request.getParameter("articleId"));
+			System.out.println(idArticle);
+			List<Enchere> encheres = new EnchereDAOHibernate().selectByOneId(idArticle);
+			request.setAttribute("enchereDetails", encheres.get(0));
+			
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		request.setAttribute("articleDetails", articleDetail);

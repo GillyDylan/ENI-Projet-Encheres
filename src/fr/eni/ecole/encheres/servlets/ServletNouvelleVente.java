@@ -76,10 +76,9 @@ public class ServletNouvelleVente extends HttpServlet {
 				
 				try {
 					DAOFactory.getDAO(new Article()).insert(newArticle);
-					this.getServletContext().getNamedDispatcher("index").include(request, response);
+					response.getWriter().write("Produit ajouté à la liste des enchères.");
 				} catch (DALException e) {
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
+					response.getWriter().write("Une erreur s'est produite.");
 				}
 	}
 }

@@ -52,7 +52,6 @@ function remplirSelectCategorie(){
 }
 
 function ajouterNouvelleVente(){
-	console.log($( '#formNouvelleVente' ).serializeArray());
 	$.ajax({
 		url : 'nouvellevente',
 		method : 'POST',
@@ -65,8 +64,7 @@ function ajouterNouvelleVente(){
 			finenchere : $('#finenchere').val()
 		},
 		success : function(resultText) {
-			console.log('Ajout de données ok');
-			$('#content').html(resultText);
+			$('#modalMessage').html(resultText);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
@@ -88,4 +86,64 @@ function getDetails(id){
 			console.log('Error occured!!');
 		}
 	});
+}
+
+function encherir(){
+	$.ajax({
+		url : 'encherir',
+		method : 'POST',
+		data : {
+			nouvelleEnchere : $('#nouvelleEnchere').val()
+		},
+		success : function(resultText) {
+			$('#modalMessage').html(resultText);
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+function sinscrire(){
+	$.ajax({
+		url : 'inscription',
+		method : 'POST',
+		data : {
+			pseudo : $("input[name='pseudo']").val(),
+			prenom : $("input[name='prenom']").val(),
+			telephone : $("input[name='telephone']").val(),
+			codepostal : $("input[name='codepostal']").val(),
+			mdp : $("input[name='mdp']").val(),
+			nom : $("input[name='nom']").val(),
+			ville : $("input[name='ville']").val()
+		},
+		success : function(resultText) {
+			$('#content').html(resultText);
+		},
+		error : function(jqXHR, exception) {
+			
+		}
+	});
+}
+
+function supprimerProfil(){
+	$.ajax({
+		url : 'supprimerProfil',
+		method : 'POST',
+		success : function(resultText) {
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+function filtrerRecherche(){
+	console.log($('#selectCategorie').val())
+	console.log($('#chkEncheresOuvertes').prop('checked'))
+	console.log($('#chkEncheresEnCours').prop('checked'))
+	console.log($('#chkEncheresRemportees').prop('checked'))
+	console.log($('#chkVentesEnCours').prop('checked'))
+	console.log($('#chkVentesNonDebutees').prop('checked'))
+	console.log($('#chkVentesTerminees').prop('checked'))
 }

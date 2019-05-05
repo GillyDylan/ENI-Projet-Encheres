@@ -17,14 +17,14 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 @WebServlet("/ServletModifierProfil")
 public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletModifierProfil() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletModifierProfil() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,25 +38,20 @@ public class ServletModifierProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("modifier").equals("modifier")){
-			((Utilisateur)request.getSession().getAttribute("utilisateur")).setPrenomUtilisateur(request.getParameter("prenom").trim());
-			((Utilisateur)request.getSession().getAttribute("utilisateur")).setNomUtilisateur(request.getParameter("nom").trim());
-			((Utilisateur)request.getSession().getAttribute("utilisateur")).setTelephoneUtilisateur(request.getParameter("telephone").trim());
-			((Utilisateur)request.getSession().getAttribute("utilisateur")).setMotDePasseUtilisateur(request.getParameter("mdp").trim());
-			((Utilisateur)request.getSession().getAttribute("utilisateur")).setRueUtilisateur(request.getParameter("rue").trim());
-			((Utilisateur)request.getSession().getAttribute("utilisateur")).setVilleUtilisateur(request.getParameter("ville").trim());
-			((Utilisateur)request.getSession().getAttribute("utilisateur")).setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal").trim()));
-			request.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=UTF-8");
-			try {
-				DAOFactory.getDAO(new Utilisateur()).update((Utilisateur)request.getSession().getAttribute("utilisateur"));
-				this.getServletContext().getNamedDispatcher("index").forward(request, response);
-			} catch (DALException e) {
-				request.setAttribute("erreurModification", e.getMessage());
-				this.getServletContext().getNamedDispatcher("index?page=profil").forward(request, response);
-			}
-		}else {
-			this.getServletContext().getNamedDispatcher("index").forward(request, response);
+
+		((Utilisateur)request.getSession().getAttribute("utilisateur")).setPrenomUtilisateur(request.getParameter("prenom").trim());
+		((Utilisateur)request.getSession().getAttribute("utilisateur")).setNomUtilisateur(request.getParameter("nom").trim());
+		((Utilisateur)request.getSession().getAttribute("utilisateur")).setTelephoneUtilisateur(request.getParameter("telephone").trim());
+		((Utilisateur)request.getSession().getAttribute("utilisateur")).setMotDePasseUtilisateur(request.getParameter("mdp").trim());
+		((Utilisateur)request.getSession().getAttribute("utilisateur")).setRueUtilisateur(request.getParameter("rue").trim());
+		((Utilisateur)request.getSession().getAttribute("utilisateur")).setVilleUtilisateur(request.getParameter("ville").trim());
+		((Utilisateur)request.getSession().getAttribute("utilisateur")).setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal").trim()));
+		response.setContentType("text/plain");
+		try {
+			DAOFactory.getDAO(new Utilisateur()).update((Utilisateur)request.getSession().getAttribute("utilisateur"));
+			response.getWriter().write("Les modifications ont bien été enregistrées.");
+		} catch (DALException e) {
+			response.getWriter().write("Une erreur s'est produite lors de la mise à jour des données : " + e.getMessage());
 		}
 	}
 

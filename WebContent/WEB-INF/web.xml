@@ -97,4 +97,28 @@
     <servlet-name>details</servlet-name>
     <url-pattern>/details</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>encherir</servlet-name>
+    <servlet-class>fr.eni.ecole.encheres.servlets.ServletEncherir</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>encherir</servlet-name>
+    <url-pattern>/encherir</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>supprimerProfil</servlet-name>
+    <servlet-class>fr.eni.ecole.encheres.servlets.supprimerProfil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>supprimerProfil</servlet-name>
+    <url-pattern>/supprimerProfil</url-pattern>
+  </servlet-mapping> 
+   <servlet>
+    <servlet-name>inscription</servlet-name>
+    <servlet-class>fr.eni.ecole.encheres.servlets.ServletInscription</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>inscription</servlet-name>
+    <url-pattern>/inscription</url-pattern>
+  </servlet-mapping> 
 </web-app>

@@ -1,9 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/menu"></jsp:include>
-<c:if test="${!empty errorMessage }">
-	<span class="alert alert-danger">${errorMessage }</span>
-</c:if>
-<form action="ServletInscription" method="post">
+<form>
 	<h3>
 		<p class="text-center">Profil</p>
 	</h3>
@@ -26,10 +23,12 @@
 					type="codepostal" class="form-control" name="codepostal">
 			</div>
 			<div class="form-group">
-				<label for="mdp">Mot de passe:</label> <input type="mdp"
+				<label for="mdp">Mot de passe:</label> <input type="password"
 					class="form-control" name="mdp">
 			</div>
-			<button type="submit" class="btn btn-primary">Envoyer</button>
+			<button type="button" class="btn btn-primary" onclick="sinscrire()">Envoyer</button>
+			<button type="button" class="btn btn-primary" onclick="openTab(this)"
+				name="accueil">Accueil</button>
 		</div>
 		<div class="col-6">
 			<div class="form-group">
@@ -49,10 +48,9 @@
 					class="form-control" name="ville">
 			</div>
 			<div class="form-group">
-				<label for="mdp2">Confirmation:</label> <input type="mdp2"
+				<label for="mdp2">Confirmation:</label> <input type="password"
 					class="form-control" name="mdp2">
 			</div>
-			<a href="?page=accueil" class="btn btn-primary">Annuler</a>
 		</div>
 	</div>
 </form>

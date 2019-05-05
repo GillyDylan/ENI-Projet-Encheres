@@ -13,10 +13,6 @@ import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
-/**
- * Servlet implementation class ServletInscription
- */
-@WebServlet("/ServletInscription")
 public class ServletInscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,13 +49,11 @@ public class ServletInscription extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		try {
-			//BLLManager.getBLL(new Utilisateur()).set(newUtilisateur);
 			DAOFactory.getDAO(new Utilisateur()).insert(newUtilisateur);
 			request.getSession().setAttribute("utilisateur", newUtilisateur); 
 			this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		} catch (DALException e) {
-			request.setAttribute("errorMessage", e.getMessage());
-			this.getServletContext().getRequestDispatcher("/index?page=creercompte").forward(request, response);			
+			response.getWriter().write("Une erreur s'est produite lors de l'inscription des données : " + e.getMessage());			
 		}	
 	}
 
