@@ -188,30 +188,35 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	* @author ${Dylan Gilly}
 	*
 	* Supprime l'utilisateur
+	 * @throws BLLException 
 	*/
 	@Override
-	public void delete(Utilisateur utilisateur) throws DALException {
+	public void delete(Utilisateur utilisateur) throws DALException, BLLException {
 		// TODO Auto-generated method stub
-		boolean trouve = false;
 		List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList();
 		Collections.reverse(encheres);
 		List<Article> articles = BLLManager.getBLL(new Article()).getList();
 		for(Article article : articles) {
 			if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
+				//Si l'uilitsateur à supprimer a des enchères gagnantes
 				for(Enchere enchere : encheres) {
 					if(enchere.getArticle().getIdArticle() == article.getIdArticle()) {
 						if(enchere.getUtilisateur().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
 							DAOFactory.getDAO(new Enchere()).delete(enchere);
 						} 
 						else {
+							//On update l'article avec la précédente meilleure enchère
 							article.setUtilisateurAchetant(enchere.getUtilisateur());
 						}
 					}
 				}	
 			}
+			if(article.getUtilisateurVendant().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
+				//Si l'utilisateur à supprimer a des ventes en cours
+				BLLManager.getBLL(new Article()).delete(article);
+			}
 		}
-		DAOFactory.getDAO(new Utilisateur()).delete(utilisateur);
-		
+		DAOFactory.getDAO(new Utilisateur()).delete(utilisateur);	
 	}
 	
 	

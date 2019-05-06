@@ -2,7 +2,7 @@ package fr.eni.ecole.encheres.bo;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +28,7 @@ public class Article {
 
 	@NotNull @ManyToOne @JoinColumn(name="idCategorie", referencedColumnName = "idCategorie", nullable = false) 
 	private Categorie categorie;
-	@NotNull @ManyToOne(cascade = CascadeType.REMOVE) @JoinColumn(name="idUtilisateurVendant", referencedColumnName = "idUtilisateur", nullable = false) 
+	@NotNull @ManyToOne @JoinColumn(name="idUtilisateurVendant", referencedColumnName = "idUtilisateur", nullable = false) 
 	private Utilisateur utilisateurVendant;
 	@Nullable @ManyToOne @JoinColumn(name="idUtilisateurAchetant", referencedColumnName = "idUtilisateur", nullable = true) 
 	private Utilisateur utilisateurAchetant;

@@ -67,6 +67,7 @@ public class ArticleDAOHibernate implements DAO<Article>{
 		session.beginTransaction();
 		session.delete(article);
 		session.getTransaction().commit();
+		System.out.println("smogogo");
 	}
 
 }
