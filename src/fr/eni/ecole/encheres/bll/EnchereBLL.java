@@ -17,7 +17,13 @@ public class EnchereBLL implements BLL<Enchere>{
 	@Override
 	public Enchere get(int...idEnchere) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0],idEnchere[1]).get(0);
+		if(idEnchere.length != 1)
+		{
+			return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0],idEnchere[1]).get(0);
+		}
+		else {
+			return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0]).get(0);
+		}
 	}
 	
 	
@@ -43,7 +49,12 @@ public class EnchereBLL implements BLL<Enchere>{
 	@Override
 	public List<Enchere> getList(int...idEnchere) throws DALException {
 		// TODO Auto-generated method stub
-		return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0], idEnchere[1]);
+		if(idEnchere.length != 1)
+		{
+			return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0], idEnchere[1]);
+		}else {
+			return DAOFactory.getDAO(new Enchere()).selectById(idEnchere[0]);
+		}
 	}		
 	
 	

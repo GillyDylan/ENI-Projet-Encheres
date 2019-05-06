@@ -154,7 +154,13 @@ public class ArticleBLL implements BLL<Article>{
 	@Override
 	public void delete(Article article) throws DALException, BLLException {
 		// TODO Auto-generated method stub
-		//List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList(article.getIdArticle());
+		System.out.println("test3");
+		List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList(article.getIdArticle());
+		System.out.println("test2");
+		for(Enchere enchere : encheres) {
+			DAOFactory.getDAO(new Enchere()).delete(enchere);
+		}
+		System.out.println("test");
 		/*if(encheres.size() != 0) {
 			throw new BLLException(1020,"Impossible de supprimer un article avec des ench�res en cours");
 		}*/
