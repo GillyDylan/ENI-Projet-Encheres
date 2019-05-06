@@ -11,10 +11,6 @@ import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
-/**
- * Servlet implementation class ServletModifier
- */
-@WebServlet("/ServletModifierProfil")
 public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

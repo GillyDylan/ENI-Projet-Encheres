@@ -84,7 +84,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalLabel">Validation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" onclick="retourAccueil()"
+        data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -92,8 +93,10 @@
         Confirmez-vous ces changements?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary" onclick="sauvegarderProfil()">Sauvegarder</button>
+        <button type="button" class="btn btn-secondary" id="butAnnulerProfil"
+        data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" id="butSauvegarderProfil"
+        onclick="modifierProfil()">Sauvegarder</button>
       </div>
     </div>
   </div>
@@ -113,27 +116,5 @@
 		boutonValider.className = "btn btn-primary";
 		boutonValider.innerText = "Enregistrer";
 		$("#buttonModifier").replaceWith(boutonValider);
-	}
-	
-	function sauvegarderProfil(){
-		$.ajax({
-			url : 'ServletModifierProfil',
-			method : 'POST',
-			data : {
-				prenom : $('#prenom').val(),
-				nom : $('#nom').val(),
-				telephone : $('#telephone').val(),
-				mdp : $('#mdp').val(),
-				rue : $('#rue').val(),
-				ville : $('#ville').val(),
-				codepostal : $('#codepostal').val(),
-			},
-			success : function(resultText) {
-				$('#modalMessage').html(resultText);
-			},
-			error : function(jqXHR, exception) {
-				console.log('Error occured!!');
-			}
-		});
 	}
 </script>

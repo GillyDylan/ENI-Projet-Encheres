@@ -65,11 +65,33 @@ function ajouterNouvelleVente(){
 		},
 		success : function(resultText) {
 			$('#modalMessage').html(resultText);
+			$('#butAnnulerVente').toggle(false);
+			$('#butSauvegarderVente').toggle(false);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
 		}
 	});
+}
+
+function retourAccueil(){
+	$.ajax({
+		url : 'ServletOpenTab',
+		contentType: "application/x-www-form-urlencoded;charset=utf-8",
+		method : 'POST',
+		data : {
+			name : "accueil"
+		},
+		success : function(resultText) {
+			$('#content').html(resultText);
+			$('#butAnnulerVente').toggle(true);
+			$('#butSauvegarderVente').toggle(true);
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+	
 }
 
 function getDetails(id){
@@ -97,8 +119,8 @@ function encherir(){
 		},
 		success : function(resultText) {
 			$('#modalMessage').html(resultText);
-			$('#butAnnulerEnchere').prop("hidden", "true");
-			$('#butSauvegarderEnchere').prop('hidden', 'true');	
+			$('#butAnnulerEnchere').toggle(false);
+			$('#butSauvegarderEnchere').toggle(false);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
@@ -117,10 +139,35 @@ function sinscrire(){
 			codepostal : $("input[name='codepostal']").val(),
 			mdp : $("input[name='mdp']").val(),
 			nom : $("input[name='nom']").val(),
-			ville : $("input[name='ville']").val()
+			ville : $("input[name='ville']").val(),
+			rue : $("input[name='rue']").val()
 		},
 		success : function(resultText) {
 			$('#content').html(resultText);
+		},
+		error : function(jqXHR, exception) {
+			
+		}
+	});
+}
+
+function modifierProfil(){
+	$.ajax({
+		url : 'modifierProfil',
+		method : 'POST',
+		data : {
+			prenom : $("input[name='prenom']").val(),
+			telephone : $("input[name='telephone']").val(),
+			codepostal : $("input[name='codepostal']").val(),
+			mdp : $("input[name='mdp']").val(),
+			nom : $("input[name='nom']").val(),
+			ville : $("input[name='ville']").val(),
+			rue : $("input[name='rue']").val(),
+		},
+		success : function(resultText) {
+			$('#modalMessage').html(resultText);
+			$('#butAnnulerProfil').toggle(false);
+			$('#butSauvegarderProfil').toggle(false);
 		},
 		error : function(jqXHR, exception) {
 			

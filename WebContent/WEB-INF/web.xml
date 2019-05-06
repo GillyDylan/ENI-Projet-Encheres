@@ -129,4 +129,12 @@
     <servlet-name>autocomplete</servlet-name>
     <url-pattern>/autocomplete</url-pattern>
   </servlet-mapping> 
+       <servlet>
+    <servlet-name>modifierProfil</servlet-name>
+    <servlet-class>fr.eni.ecole.encheres.servlets.ServletModifierProfil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>modifierProfil</servlet-name>
+    <url-pattern>/modifierProfil</url-pattern>
+  </servlet-mapping> 
 </web-app>

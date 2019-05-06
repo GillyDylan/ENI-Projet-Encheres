@@ -92,15 +92,16 @@
 			<div class="modal-header">
 				<h5 class="modal-title" id="modalLabel">Nouvelle vente</h5>
 				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
+					aria-label="Close" onclick="retourAccueil()">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body" id="modalMessage">Etes-vous sûr de
 				valider cette vente?</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-				<button type="button" class="btn btn-primary"
+				<button type="button" class="btn btn-secondary" id="butAnnulerVente"
+					data-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="butSauvegarderVente"
 					onclick="ajouterNouvelleVente()">Sauvegarder</button>
 			</div>
 		</div>

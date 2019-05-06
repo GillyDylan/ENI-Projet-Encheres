@@ -54,7 +54,7 @@ public class ServletEncherir extends HttpServlet {
 		try {
 			DAOFactory.getDAO(new Enchere()).insert(nouvelleEnchere);
 			DAOFactory.getDAO(new Article()).update(article);
-			response.getWriter().write("Encheres acceptées.");
+			response.getWriter().write("Enchère acceptée.");
 		} catch (DALException e) {
 			response.getWriter().write("Erreur : " + e.getMessage());
 		}

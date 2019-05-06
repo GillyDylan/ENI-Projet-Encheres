@@ -87,16 +87,16 @@
 									<div class="modal-header">
 										<h5 class="modal-title" id="modalLabel">Nouvelle enchère</h5>
 										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
+											onclick="retourAccueil()" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									<div class="modal-body" id="modalMessage">Etes-vous sûr
 										de valider cette enchère?</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
+										<button type="button" class="btn btn-secondary" id="butAnnulerEnchere"
 											id="butAnnulerEnchere" data-dismiss="modal">Annuler</button>
-										<button type="button" class="btn btn-primary"
+										<button type="button" class="btn btn-primary" id="butSauvegarderEnchere"
 											id="butSauvegarderEnchere" onclick="encherir()">Sauvegarder</button>
 									</div>
 								</div>
