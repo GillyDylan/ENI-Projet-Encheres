@@ -7,20 +7,20 @@
 	<div class="d-flex">
 		<div class="col-6">
 			<div class="form-group">
-				<label for="pseudo">Pseudo:</label> <input type="pseudo"
+				<label for="pseudo">Pseudo:</label> <input type="text"
 					class="form-control" name="pseudo">
 			</div>
 			<div class="form-group">
-				<label for="prenom">Prénom:</label> <input type="prenom"
+				<label for="prenom">Prénom:</label> <input type="text"
 					class="form-control" name="prenom">
 			</div>
 			<div class="form-group">
-				<label for="telephone">Telephone:</label> <input type="telephone"
+				<label for="telephone">Telephone:</label> <input type="text"
 					class="form-control" name="telephone">
 			</div>
 			<div class="form-group">
 				<label for="codepostal">Code postal:</label> <input
-					type="codepostal" class="form-control" name="codepostal">
+					type="text" class="form-control" name="codepostal">
 			</div>
 			<div class="form-group">
 				<label for="mdp">Mot de passe:</label> <input type="password"
@@ -32,19 +32,19 @@
 		</div>
 		<div class="col-6">
 			<div class="form-group">
-				<label for="nom">Nom:</label> <input type="nom" class="form-control"
+				<label for="nom">Nom:</label> <input type="text" class="form-control"
 					name="nom">
 			</div>
 			<div class="form-group">
-				<label for="email">Email:</label> <input type="email"
+				<label for="email">Email:</label> <input type="text"
 					class="form-control" name="email">
 			</div>
 			<div class="form-group">
-				<label for="rue">Rue:</label> <input type="rue" class="form-control"
+				<label for="rue">Rue:</label> <input type="text" class="form-control"
 					name="rue">
 			</div>
 			<div class="form-group">
-				<label for="ville">Ville:</label> <input type="ville"
+				<label for="ville">Ville:</label> <input type="text"
 					class="form-control" name="ville">
 			</div>
 			<div class="form-group">

@@ -102,7 +102,6 @@
 								</div>
 							</div>
 						</div>
-
 					</c:if>
 				</tbody>
 			</table>
