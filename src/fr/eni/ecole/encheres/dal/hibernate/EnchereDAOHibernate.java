@@ -16,10 +16,9 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Enchere> selectById(int...idsEnchere) throws DALException {
-		System.out.println(idsEnchere[1]);
 		Session session = ConnectionProvider.session;
 		Query q;
-		if(idsEnchere[1] != 0)
+		if(idsEnchere.length != 1)
 		{
 			q = session.createQuery("FROM Enchere WHERE idArticle = "+idsEnchere[0]+" AND idUtilisateur = "+idsEnchere[1]+" ORDER BY dateEnchere DESC");
 		}
@@ -30,14 +29,14 @@ public class EnchereDAOHibernate implements DAO<Enchere>{
 		return encheres;
 	}
 	
-	//mini patch en attendant une meilleure solution
+	/*mini patch en attendant une meilleure solution
 	@SuppressWarnings("unchecked")
 	public List<Enchere> selectByOneId(int id) throws DALException{
 		Session session = ConnectionProvider.session;
 		Query q = session.createQuery("FROM Enchere WHERE idArticle = "+id+" ORDER BY dateEnchere DESC");
 		List<Enchere> encheres = q.getResultList();
 		return encheres;
-	}
+	}*/
 
 	@SuppressWarnings("unchecked")
 	@Override

@@ -47,7 +47,7 @@ public class ServletDetailsEnchere extends HttpServlet {
 		try {
 			int idArticle = Integer.parseInt(request.getParameter("articleId"));
 			System.out.println(idArticle);
-			List<Enchere> encheres = new EnchereDAOHibernate().selectByOneId(idArticle);
+			List<Enchere> encheres = new EnchereDAOHibernate().selectById(idArticle);
 			if(encheres != null && !encheres.isEmpty()) {
 				request.setAttribute("enchereDetails", encheres.get(0));
 			}
