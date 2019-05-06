@@ -1,9 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	<div class="navbar-brand">ENI Enchères</div>
-
-	<div class="collapse navbar-collapse" id="navbarColor01">
-		<ul class="navbar-nav mr-auto">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-expand-md">
+	<a class="navbar-brand" href="#">ENI Enchères</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarSupportedContent"
+		aria-controls="navbarSupportedContent" aria-expanded="false"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto ">
 			<li class="nav-item"><a class="nav-link" href="#"
 				onclick="openTab(this)" name="accueil">Accueil <span
 					class="sr-only">(current)</span></a></li>
@@ -14,23 +19,18 @@
 					onclick="openTab(this)" name="connexion">Se connecter</a></li>
 			</c:if>
 			<c:if test="${ utilisateur != null }">
-				<li class="nav-item">
-					<a class="nav-link" onclick="openTab(this)" href="#"
-						name="nouvellevente">Vendre un produit</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" onclick="openTab(this)" href="#"
-						name="profil">Profil</a>
-				</li>
-				<li class="nav-item">
-					<a  class="nav-link" onclick="openTab(this)" href="#"
-						name="deconnexion">Deconnexion</a>
+				<li class="nav-item"><a class="nav-link"
+					onclick="openTab(this)" href="#" name="nouvellevente">Vendre un
+						produit</a></li>
+				<li class="nav-item"><a class="nav-link"
+					onclick="openTab(this)" href="#" name="profil">Profil</a></li>
+				<li class="nav-item"><a class="nav-link"
+					onclick="openTab(this)" href="#" name="deconnexion">Deconnexion</a>
 				</li>
 			</c:if>
 			<c:if test="${ utilisateur.isAdministrateur() == true }">
-				<li class="nav-item">
-					<a class="nav-link" onclick="openTab(this)" href="#"
-						name="administration">Administration</a>
+				<li class="nav-item"><a class="nav-link"
+					onclick="openTab(this)" href="#" name="administration">Administration</a>
 				</li>
 			</c:if>
 		</ul>

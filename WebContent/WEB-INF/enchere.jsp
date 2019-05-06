@@ -123,9 +123,9 @@
 										de vouloir supprimer cette enchère?</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" id="butAnnuler"
-											id="butAnnulerEnchere" data-dismiss="modal">Annuler</button>
+											data-dismiss="modal">Annuler</button>
 										<button type="button" class="btn btn-primary" id="butSauvegarder"
-											id="butSupprimerEnchere" onclick="supprimerEnchere()">Supprimer</button>
+										 onclick="supprimerEnchere()">Supprimer</button>
 									</div>
 								</div>
 							</div>

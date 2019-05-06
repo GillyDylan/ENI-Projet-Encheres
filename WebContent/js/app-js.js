@@ -204,11 +204,29 @@ function supprimerEnchere(){
 }
 
 function filtrerRecherche(){
-	console.log($('#selectCategorie').val())
-	console.log($('#chkEncheresOuvertes').prop('checked'))
-	console.log($('#chkEncheresEnCours').prop('checked'))
-	console.log($('#chkEncheresRemportees').prop('checked'))
-	console.log($('#chkVentesEnCours').prop('checked'))
-	console.log($('#chkVentesNonDebutees').prop('checked'))
-	console.log($('#chkVentesTerminees').prop('checked'))
+	if($("input[name='chkboxEnchere']:checked").val() == "achat"){
+		$('#chkEncheresOuvertes').prop( "disabled", false );
+		$('#chkEncheresEnCours').prop( "disabled", false );
+		$('#chkEncheresRemportees').prop( "disabled", false );
+		$('#chkVentesEnCours').prop( "disabled", true );
+		$('#chkVentesNonDebutees').prop( "disabled", true );
+		$('#chkVentesTerminees').prop( "disabled", true );
+		$('#chkVentesEnCours').prop( "checked", false );
+		$('#chkVentesNonDebutees').prop( "checked", false );
+		$('#chkVentesTerminees').prop( "checked", false );
+	}else{
+		$('#chkEncheresOuvertes').prop( "disabled", true );
+		$('#chkEncheresEnCours').prop( "disabled", true );
+		$('#chkEncheresRemportees').prop( "disabled", true );
+		$('#chkEncheresOuvertes').prop( "checked", false );
+		$('#chkEncheresEnCours').prop( "checked", false );
+		$('#chkEncheresRemportees').prop( "checked", false );
+		$('#chkVentesEnCours').prop( "disabled", false );
+		$('#chkVentesNonDebutees').prop( "disabled", false );
+		$('#chkVentesTerminees').prop( "disabled", false );
+	}
 }
+
+$(document).ready(function() {
+	filtrerRecherche();
+});

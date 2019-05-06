@@ -39,8 +39,8 @@ public class ServletSupprimerEnchere extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Article article = (Article) request.getSession().getAttribute("article"); 
 		response.setContentType("text/plain");
-		System.out.println(article.getIdArticle());
 		try {
+			response.getWriter().write("Enchère supprimée.");
 			BLLManager.getBLL(new Article()).delete(article);
 			response.getWriter().write("Enchère supprimée.");
 		} catch (DALException | BLLException e) {
