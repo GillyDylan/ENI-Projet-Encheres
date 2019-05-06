@@ -11,13 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import com.sun.istack.NotNull;
 import com.sun.istack.Nullable;
 
-@Entity @OnDelete(action = OnDeleteAction.CASCADE)
+@Entity
 public class Article {
 	
 	@Id @GeneratedValue private int idArticle;
