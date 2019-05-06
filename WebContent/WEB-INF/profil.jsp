@@ -93,10 +93,33 @@
         Confirmez-vous ces changements?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="butAnnulerProfil"
+        <button type="button" class="btn btn-secondary" id="butAnnuler"
         data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary" id="butSauvegarderProfil"
+        <button type="button" class="btn btn-primary" id="butSauvegarder"
         onclick="modifierProfil()">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalSupprimerProfil" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Validation</h5>
+        <button type="button" class="close" onclick="retourAccueil()"
+        data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"  id="modalMessage">
+        Voulez-vous vraiment mourir de ce site?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="butAnnuler"
+        data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" id="butSauvegarder"
+        onclick="supprimerProfil()">Supprimer</button>
       </div>
     </div>
   </div>

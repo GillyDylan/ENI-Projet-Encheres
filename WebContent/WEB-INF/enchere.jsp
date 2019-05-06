@@ -74,8 +74,14 @@
 							</tr>
 							<tr>
 								<td colspan="2">
+								<c:if test="${!articleDetails.getUtilisateurVendant().equals(utilisateur)}">
 									<button type="button" class="btn btn-primary"
 										data-toggle="modal" data-target="#modalValidationEnchere">Enchérir</button>
+								</c:if>
+								<c:if test="${articleDetails.getUtilisateurVendant().equals(utilisateur)}">
+									<button type="button" class="btn btn-primary"
+										data-toggle="modal" data-target="#modalSuppressionEnchere">Supprimer cette vente</button>
+								</c:if>
 								</td>
 							</tr>
 						</form>
@@ -94,10 +100,32 @@
 									<div class="modal-body" id="modalMessage">Etes-vous sûr
 										de valider cette enchère?</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" id="butAnnulerEnchere"
+										<button type="button" class="btn btn-secondary" id="butAnnuler"
 											id="butAnnulerEnchere" data-dismiss="modal">Annuler</button>
-										<button type="button" class="btn btn-primary" id="butSauvegarderEnchere"
+										<button type="button" class="btn btn-primary" id="butSauvegarder"
 											id="butSauvegarderEnchere" onclick="encherir()">Sauvegarder</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="modalSuppressionEnchere" tabindex="-1"
+							role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="modalLabel">Supprimer enchère</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											onclick="retourAccueil()" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body" id="modalMessage">Etes-vous sûr
+										de vouloir supprimer cette enchère?</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" id="butAnnuler"
+											id="butAnnulerEnchere" data-dismiss="modal">Annuler</button>
+										<button type="button" class="btn btn-primary" id="butSauvegarder"
+											id="butSupprimerEnchere" onclick="supprimerEnchere()">Supprimer</button>
 									</div>
 								</div>
 							</div>

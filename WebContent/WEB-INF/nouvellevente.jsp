@@ -99,9 +99,9 @@
 			<div class="modal-body" id="modalMessage">Etes-vous sûr de
 				valider cette vente?</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" id="butAnnulerVente"
+				<button type="button" class="btn btn-secondary" id="butAnnuler"
 					data-dismiss="modal">Annuler</button>
-				<button type="button" class="btn btn-primary" id="butSauvegarderVente"
+				<button type="button" class="btn btn-primary" id="butSauvegarder"
 					onclick="ajouterNouvelleVente()">Sauvegarder</button>
 			</div>
 		</div>

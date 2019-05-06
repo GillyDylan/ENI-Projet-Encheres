@@ -65,8 +65,8 @@ function ajouterNouvelleVente(){
 		},
 		success : function(resultText) {
 			$('#modalMessage').html(resultText);
-			$('#butAnnulerVente').toggle(false);
-			$('#butSauvegarderVente').toggle(false);
+			$('#butAnnuler').toggle(false);
+			$('#butSauvegarder').toggle(false);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
@@ -84,8 +84,8 @@ function retourAccueil(){
 		},
 		success : function(resultText) {
 			$('#content').html(resultText);
-			$('#butAnnulerVente').toggle(true);
-			$('#butSauvegarderVente').toggle(true);
+			$('#butAnnuler').toggle(true);
+			$('#butSauvegarder').toggle(true);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
@@ -119,8 +119,8 @@ function encherir(){
 		},
 		success : function(resultText) {
 			$('#modalMessage').html(resultText);
-			$('#butAnnulerEnchere').toggle(false);
-			$('#butSauvegarderEnchere').toggle(false);
+			$('#butAnnuler').toggle(false);
+			$('#butSauvegarder').toggle(false);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
@@ -140,7 +140,8 @@ function sinscrire(){
 			mdp : $("input[name='mdp']").val(),
 			nom : $("input[name='nom']").val(),
 			ville : $("input[name='ville']").val(),
-			rue : $("input[name='rue']").val()
+			rue : $("input[name='rue']").val(),
+			email : $("input[name='email']").val()
 		},
 		success : function(resultText) {
 			$('#content').html(resultText);
@@ -166,8 +167,8 @@ function modifierProfil(){
 		},
 		success : function(resultText) {
 			$('#modalMessage').html(resultText);
-			$('#butAnnulerProfil').toggle(false);
-			$('#butSauvegarderProfil').toggle(false);
+			$('#butAnnuler').toggle(false);
+			$('#butSauvegarder').toggle(false);
 		},
 		error : function(jqXHR, exception) {
 			
@@ -180,6 +181,21 @@ function supprimerProfil(){
 		url : 'supprimerProfil',
 		method : 'POST',
 		success : function(resultText) {
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+function supprimerEnchere(){
+	$.ajax({
+		url : 'supprimerEnchere',
+		method : 'POST',
+		success : function(resultText) {
+			$('#modalMessage').html(resultText);
+			$('#butAnnuler').toggle(false);
+			$('#butSauvegarder').toggle(false);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');

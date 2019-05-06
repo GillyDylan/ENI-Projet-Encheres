@@ -105,36 +105,45 @@
     <servlet-name>encherir</servlet-name>
     <url-pattern>/encherir</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>supprimerProfil</servlet-name>
-    <servlet-class>fr.eni.ecole.encheres.servlets.supprimerProfil</servlet-class>
+    <servlet-class>fr.eni.ecole.encheres.servlets.ServletSupprimerProfil</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>supprimerProfil</servlet-name>
     <url-pattern>/supprimerProfil</url-pattern>
-  </servlet-mapping> 
-   <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>inscription</servlet-name>
     <servlet-class>fr.eni.ecole.encheres.servlets.ServletInscription</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>inscription</servlet-name>
     <url-pattern>/inscription</url-pattern>
-  </servlet-mapping> 
-     <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>autocomplete</servlet-name>
     <servlet-class>fr.eni.ecole.encheres.servlets.ServletRechercheAutocomplete</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>autocomplete</servlet-name>
     <url-pattern>/autocomplete</url-pattern>
-  </servlet-mapping> 
-       <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>modifierProfil</servlet-name>
     <servlet-class>fr.eni.ecole.encheres.servlets.ServletModifierProfil</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>modifierProfil</servlet-name>
     <url-pattern>/modifierProfil</url-pattern>
-  </servlet-mapping> 
+  </servlet-mapping>
+ <servlet>
+    <servlet-name>supprimerEnchere</servlet-name>
+    <servlet-class>fr.eni.ecole.encheres.servlets.ServletSupprimerEnchere</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>supprimerEnchere</servlet-name>
+    <url-pattern>/supprimerEnchere</url-pattern>
+  </servlet-mapping>
+
 </web-app>
