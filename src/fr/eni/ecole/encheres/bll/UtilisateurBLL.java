@@ -2,6 +2,7 @@ package fr.eni.ecole.encheres.bll;
 
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.crypto.Cipher;
@@ -193,6 +194,7 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		// TODO Auto-generated method stub
 		boolean trouve = false;
 		List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList();
+		Collections.reverse(encheres);
 		List<Article> articles = BLLManager.getBLL(new Article()).getList();
 		for(Article article : articles) {
 			if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {

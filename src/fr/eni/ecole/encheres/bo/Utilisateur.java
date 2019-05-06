@@ -142,7 +142,7 @@ public class Utilisateur {
 		this.setCodePostalUtilisateur(codePostalUtilisateur);
 		this.setVilleUtilisateur(villeUtilisateur);
 		this.setMotDePasseUtilisateur(motDePasseUtilisateur);
-		this.setCreditUtilisateur(0);
+		this.setCreditUtilisateur(100);
 		this.setActif(true);
 		this.setAdministrateur(false);
 	}
@@ -159,14 +159,14 @@ public class Utilisateur {
 		this.setCodePostalUtilisateur(codePostalUtilisateur);
 		this.setVilleUtilisateur(villeUtilisateur);
 		this.setMotDePasseUtilisateur(motDePasseUtilisateur);
-		this.setCreditUtilisateur(0);
+		this.setCreditUtilisateur(100);
 		this.setActif(true);
 		this.setAdministrateur(false);
 	}
 	
 	public Utilisateur() {
 		super();
-		this.setCreditUtilisateur(0);
+		this.setCreditUtilisateur(100);
 		this.setActif(true);
 		this.setAdministrateur(false);
 	}
