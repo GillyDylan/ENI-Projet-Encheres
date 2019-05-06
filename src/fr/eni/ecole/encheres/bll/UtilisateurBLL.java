@@ -7,8 +7,11 @@ import java.util.List;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import fr.eni.ecole.encheres.bo.Article;
+import fr.eni.ecole.encheres.bo.Enchere;
 import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
+import fr.eni.ecole.encheres.dal.DAO;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
 public class UtilisateurBLL implements BLL<Utilisateur>{
@@ -188,18 +191,24 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	@Override
 	public void delete(Utilisateur utilisateur) throws DALException {
 		// TODO Auto-generated method stub
-		/*boolean trouve = false;
+		boolean trouve = false;
 		List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList();
 		List<Article> articles = BLLManager.getBLL(new Article()).getList();
-		for(Enchere enchere : encheres) {
-			if(enchere.getUtilisateur().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
-				trouve = true;
-				desactiverUtilisateur(utilisateur);
+		for(Article article : articles) {
+			if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
+				for(Enchere enchere : encheres) {
+					if(enchere.getArticle().getIdArticle() == article.getIdArticle()) {
+						if(enchere.getUtilisateur().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
+							DAOFactory.getDAO(new Enchere()).delete(enchere);
+						} 
+						else {
+							article.setUtilisateurAchetant(enchere.getUtilisateur());
+						}
+					}
+				}	
 			}
-		}*/
-		
-
-			DAOFactory.getDAO(new Utilisateur()).delete(utilisateur);
+		}
+		DAOFactory.getDAO(new Utilisateur()).delete(utilisateur);
 		
 	}
 	
