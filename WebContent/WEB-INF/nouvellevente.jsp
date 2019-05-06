@@ -22,9 +22,9 @@
 			placeholder="Description du produit" name="description" required>
 	</div>
 	<div class="form-group row">
-		<label for="selectCategorie" class="col-sm-2 col-form-label">Catégories</label>
-		<select name="selectCategorie" class="form-control col-sm-10"
-			id="selectCategorie">
+		<label for="selectCategorieVente" class="col-sm-2 col-form-label">Catégories</label>
+		<select name="selectCategorieVente" class="form-control col-sm-10"
+			id="selectCategorieVente">
 			<c:if test="${!empty categories}">
 				<c:forEach var="categorie" items="${categories}">
 					<option value="${ categorie.getIdCategorie()  }">${ categorie.getLibelleCategorie() }</option>
@@ -110,6 +110,6 @@
 
 <script>
 	$(document).ready(function() {
-		remplirSelectCategorie();
+		remplirSelectCategorieVente();
 	});
 </script>

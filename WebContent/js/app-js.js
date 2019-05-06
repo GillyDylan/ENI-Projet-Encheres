@@ -33,24 +33,6 @@ function connexion() {
 	});
 }
 
-function remplirSelectCategorie(){
-	$.ajax({
-		url : 'ServletSelectCategorie',
-		method : 'GET',
-		success : function(resultText) {
-			var select = $('#selectCategorie'),
-			options = select.prop('options');
-			$('option', select).remove();
-			$.each(resultText, function(val, text) {
-				options[options.length] = new Option(text.libelleCategorie, text.idCategorie);
-			});
-		},
-		error : function(jqXHR, exception) {
-			console.log('Error occured!!');
-		}
-	});
-}
-
 function ajouterNouvelleVente(){
 	$.ajax({
 		url : 'nouvellevente',
@@ -58,7 +40,7 @@ function ajouterNouvelleVente(){
 		data : {
 			article : $('#article').val(),
 			description : $('#description').val(),
-			selectCategorie : $('#selectCategorie').val(),
+			selectCategorie : $('#selectCategorieVente').val(),
 			prix : $('#prix').val(),
 			debutenchere : $('#debutenchere').val(),
 			finenchere : $('#finenchere').val()
@@ -230,3 +212,41 @@ function filtrerRecherche(){
 $(document).ready(function() {
 	filtrerRecherche();
 });
+
+function remplirSelectCategorieVente(){
+	$.ajax({
+		url : 'ServletSelectCategorie',
+		method : 'GET',
+		success : function(resultText) {
+			var selectVente = $('#selectCategorieVente');
+			options = selectVente.prop('options');
+			$('option', selectVente).remove();
+			$.each(resultText, function(val, text) {
+				options[options.length] = new Option(text.libelleCategorie, text.idCategorie);
+			});
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+
+function remplirSelectCategorieAccueil(){
+	$.ajax({
+		url : 'ServletSelectCategorie',
+		method : 'GET',
+		success : function(resultText) {
+			var selectAccueil = $('#selectCategorieAccueil');
+			options = selectAccueil.prop('options');
+			$('option', selectAccueil).remove();
+			$('#selectCategorieAccueil').append(new Option('Toutes les catégories', 0, true, true));
+			$.each(resultText, function(val, text) {
+				options[options.length] = new Option(text.libelleCategorie, text.idCategorie);
+			});
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}

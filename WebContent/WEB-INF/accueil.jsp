@@ -20,7 +20,7 @@
 			</div>
 			<div class="form-group">
 				<label for="selectCategorie">Catégories</label> <select
-					name="selectCategorie" id="selectCategorie" class="form-control">
+					name="selectCategorie" id="selectCategorieAccueil" class="form-control">
 					<c:if test="${!empty categories}">
 						<c:forEach var="categorie" items="${categories}">
 							<option value="${ categorie.getIdCategorie()  }">${ categorie.getLibelleCategorie() }</option>
@@ -119,7 +119,7 @@
 
 <script>
 	$(document).ready(function() {
-		remplirSelectCategorie();
+		remplirSelectCategorieAccueil();
 	});
 	
 	$( function() {

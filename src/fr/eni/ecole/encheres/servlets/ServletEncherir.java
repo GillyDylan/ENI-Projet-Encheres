@@ -49,6 +49,7 @@ public class ServletEncherir extends HttpServlet {
 		Date date = new Date();
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
 		article.setUtilisateurAchetant(utilisateur);
+		article.setPrixVenteArticle(valeurEnchere);
 		Enchere nouvelleEnchere = new Enchere(utilisateur, article, date, valeurEnchere);
 		response.setContentType("text/plain");
 		try {

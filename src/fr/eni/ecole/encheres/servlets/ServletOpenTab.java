@@ -59,6 +59,9 @@ public class ServletOpenTab extends HttpServlet {
 				request.getSession().removeAttribute("utilisateur");
 				request.getRequestDispatcher("/ServletAccueil").include(request, response);
 				break;
+			case "administration":
+				request.getRequestDispatcher("/WEB-INF/administration.jsp").include(request, response);
+				break;
 		}
 	}
 
