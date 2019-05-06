@@ -17,7 +17,7 @@ public class Enchere implements Serializable{
 	
 	private static final long serialVersionUID = 2788660754053141952L;
 	
-	@ManyToOne @JoinColumn(name="idUtilisateur" , referencedColumnName = "idUtilisateur") @Id private Utilisateur utilisateur;
+	@ManyToOne @JoinColumn(name="idUtilisateur" , referencedColumnName = "idUtilisateur" ) @Id private Utilisateur utilisateur;
 	@ManyToOne @JoinColumn(name="idArticle" , referencedColumnName = "idArticle") @Id private Article article;
 	@NotNull @Column(nullable = false) @Id private Date dateEnchere;
 	@NotNull @Column(nullable = false) private int montantEnchere;

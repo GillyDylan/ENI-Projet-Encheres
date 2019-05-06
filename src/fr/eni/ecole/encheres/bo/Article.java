@@ -2,6 +2,7 @@ package fr.eni.ecole.encheres.bo;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.sun.istack.NotNull;
 import com.sun.istack.Nullable;
 
-@Entity
+@Entity @OnDelete(action = OnDeleteAction.CASCADE)
 public class Article {
 	
 	@Id @GeneratedValue private int idArticle;
@@ -27,7 +31,7 @@ public class Article {
 
 	@NotNull @ManyToOne @JoinColumn(name="idCategorie", referencedColumnName = "idCategorie", nullable = false) 
 	private Categorie categorie;
-	@NotNull @ManyToOne @JoinColumn(name="idUtilisateurVendant", referencedColumnName = "idUtilisateur", nullable = false) 
+	@NotNull @ManyToOne(cascade = CascadeType.REMOVE) @JoinColumn(name="idUtilisateurVendant", referencedColumnName = "idUtilisateur", nullable = false) 
 	private Utilisateur utilisateurVendant;
 	@Nullable @ManyToOne @JoinColumn(name="idUtilisateurAchetant", referencedColumnName = "idUtilisateur", nullable = true) 
 	private Utilisateur utilisateurAchetant;

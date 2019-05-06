@@ -5,11 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.sun.istack.NotNull;
 import com.sun.istack.Nullable;
 
 
-@Entity
+@Entity @OnDelete(action = OnDeleteAction.CASCADE)
 public class Utilisateur {
 	@Id @GeneratedValue private int idUtilisateur;
 	@NotNull @Column(nullable = false) private String pseudonymeUtilisateur;
