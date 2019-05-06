@@ -86,9 +86,9 @@
 </c:if>
 <c:if test="${articles.size() > 0}">
 	<div class="row d-flex justify-content-center m-2">
-		<a href="?start=${pageStart - 3}" class="btn btn-primary btn-sm"><<</a>
+		<a href="?start=${pageStart - 3}" class="btn btn-primary btn-sm" onclick="test()"><<</a>
 		<span class="btn btn-primary">${pageStart + 1}- ${pageStart + 3}
-		</span> <a href="?start=${pageStart + 3}" class="btn btn-primary btn-sm">>></a>
+		</span> <a href="?start=${pageStart + 3}" class="btn btn-primary btn-sm" onclick="pageSuivante()">>></a>
 	</div>
 	<div class="row d-flex">
 		<c:forEach var="article" items="${articles}" begin="${pageStart}"
@@ -98,7 +98,7 @@
 					<div class="card-body">
 						<h4 class="card-title">${article.getNomArticle()}</h4>
 						<p class="card-text">Prix : ${article.getPrixInitialArticle() }
-							points</p>
+							points</p> 
 						<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 						<fmt:formatDate var="date"
 							value="${article.getDateFinEncheresArticle()}"
