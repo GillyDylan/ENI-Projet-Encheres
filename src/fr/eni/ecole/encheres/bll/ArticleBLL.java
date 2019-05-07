@@ -17,6 +17,7 @@ public class ArticleBLL implements BLL<Article>{
 	* @author ${Dylan Gilly}
 	*
 	* Renvoie l'article ayant pour identifiant idArticle.
+	* @throws DALException
 	*/
 	@Override
 	public Article get(int...idArticle) throws DALException {
@@ -28,8 +29,9 @@ public class ArticleBLL implements BLL<Article>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoie le dernier article publi� contenant dans son 
-	* titre ou sa description la chaine entr�e en param�tre.
+	* Renvoie le dernier article publié contenant dans son 
+	* titre ou sa description la chaine entrée en paramètre.
+	* @throws DALException
 	*/
 	@Override
 	public Article get(String chaine) throws DALException {
@@ -41,8 +43,9 @@ public class ArticleBLL implements BLL<Article>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoie la liste des articles ayant les identifiants entr�s
-	* en param�tre.
+	* Renvoie la liste des articles ayant les identifiants entrés
+	* en paramètre.
+	* @throws DALException
 	*/
 	@Override
 	public List<Article> getList(int...idArticle) throws DALException {
@@ -55,7 +58,8 @@ public class ArticleBLL implements BLL<Article>{
 	* @author ${Dylan Gilly}
 	*
 	* Renvoie la liste des articles contenant dans leurs 
-	* titres ou leurs descriptions la chaine entr�e en param�tre.
+	* titres ou leurs descriptions la chaine entrée en paramètre.
+	* @throws DALException
 	*/
 	@Override
 	public List<Article> getList(String chaine) throws DALException {
@@ -92,6 +96,7 @@ public class ArticleBLL implements BLL<Article>{
 	* @author ${Dylan Gilly}
 	*
 	* Renvoie la liste de tous les articles
+	* @throws DALException
 	*/
 	@Override
 	public List<Article> getList() throws DALException {
@@ -106,6 +111,7 @@ public class ArticleBLL implements BLL<Article>{
 	* Renvoie la liste de tous les articles selon les paramètres d'entrée :
 	* String "filtre" est la chaine a rechercher, null si aucune
 	* int idCategorie est l'id de la catégorie a rechercher, 0 si aucune
+	* @throws DALException
 	* 
 	*/
 	public List<Article> getList(ArticleRecherche recherche, Utilisateur utilisateur) throws DALException{
@@ -138,7 +144,7 @@ public class ArticleBLL implements BLL<Article>{
 		if(!recherche.isParam1() && !recherche.isParam2() && !recherche.isParam3()) {
 			if(recherche.isAchat()) {
 				for( Article article : articles) {
-					if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur() && !article.isTermine()) {
+					if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur()) {
 						articlesFiltres.add(article);
 					}
 				}
@@ -155,12 +161,39 @@ public class ArticleBLL implements BLL<Article>{
 			if(recherche.isAchat()) {
 				if(recherche.isParam1()) {
 					for( Article article : articles) {
-						
+						if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur() && !article.isTermine()) {
+							articlesFiltres.add(article);
+						}
+					}
+				}
+				if(!recherche.isParam1() && recherche.isParam2()) {
+					List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList();
+					for( Article article : articles) {
+						boolean trouve = false;
+						for(Enchere enchere : encheres) {
+							if(enchere.getArticle().getIdArticle() == article.getIdArticle() && enchere.getUtilisateur().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
+								trouve = true;
+							}
+						}
+						if(trouve) {
+							articlesFiltres.add(article);
+						}
+					}
+				}
+				if(recherche.isParam3()) {
+					for( Article article : articles) {
+						if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur() && article.isTermine()) {
+							articlesFiltres.add(article);
+						}
 					}
 				}
 			}
 			else {
-				
+				if(recherche.isParam1()) {
+					for( Article article : articles) {
+						
+					}
+				}
 			}
 		}
 		return articlesFiltres;
@@ -179,10 +212,10 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub
 		if(BLLManager.getBLL(new Article()).getList(article.getIdArticle()).size() == 0){
 			if(article.getDateDebutEncheresArticle().before(new Date())) {
-				throw new BLLException(1000,"Début de l'enchère d�j� pass�e");
+				throw new BLLException(1000,"Début de l'enchère déjà passée");
 			}
 			if(BLLManager.getBLL(new Article()).getList(article.getDescriptionArticle().trim()).size() != 0) {
-				throw new BLLException(1001,"Cette description existe d�j�");
+				throw new BLLException(1001,"Cette description existe déjà");
 			}
 			DAOFactory.getDAO(new Article()).insert(article);
 		}
@@ -190,27 +223,27 @@ public class ArticleBLL implements BLL<Article>{
 			Article articleOld = BLLManager.getBLL(new Article()).get(article.getIdArticle());
 			if(articleOld.getCategorie().getIdCategorie() != article.getCategorie().getIdCategorie())
 			{
-				throw new BLLException(1010,"Impossible de changer la cat�gorie de d'un article d�j� publi�");
+				throw new BLLException(1010,"Impossible de changer la cat�gorie de d'un article déjà publié");
 			}
 			if(!articleOld.getDateDebutEncheresArticle().equals(article.getDateDebutEncheresArticle()))
 			{
-				throw new BLLException(1011,"Impossible de changer la date de d�but d'un article d�j� publi�");
+				throw new BLLException(1011,"Impossible de changer la date de d�but d'un article déjà publié");
 			}
 			if(!articleOld.getDateFinEncheresArticle().equals(article.getDateFinEncheresArticle()))
 			{
-				throw new BLLException(1012,"Impossible de changer la date de fin d'un article d�j� publi�");
+				throw new BLLException(1012,"Impossible de changer la date de fin d'un article déjà publié");
 			}
 			if(!articleOld.getNomArticle().equals(article.getNomArticle()))
 			{
-				throw new BLLException(1013,"Impossible de changer le titre d'un article d�j� publi�");
+				throw new BLLException(1013,"Impossible de changer le titre d'un article déjà publié");
 			}
 			if(articleOld.getUtilisateurVendant().getIdUtilisateur() != article.getUtilisateurVendant().getIdUtilisateur())
 			{
-				throw new BLLException(1014,"Impossible de changer le vendeur d'un article d�j� publi�");
+				throw new BLLException(1014,"Impossible de changer le vendeur d'un article déjà publié");
 			}
 			if(articleOld.getDateFinEncheresArticle().after(new Date()) && articleOld.getUtilisateurAchetant().getIdUtilisateur() != article.getUtilisateurAchetant().getIdUtilisateur())
 			{
-				throw new BLLException(1015,"Impossible de changer l'acheteur d'un article d�j� vendu");
+				throw new BLLException(1015,"Impossible de changer l'acheteur d'un article déjà vendu");
 			}
 			DAOFactory.getDAO(new Article()).update(article);
 		}	

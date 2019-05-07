@@ -93,9 +93,13 @@ public class EnchereBLL implements BLL<Enchere>{
 		// TODO Auto-generated method stub
 		List<Enchere> encheres = DAOFactory.getDAO(new Enchere()).selectAll();
 		for(Enchere oldEnchere : encheres) {
-			if(enchere.getArticle().getIdArticle() == oldEnchere.getArticle().getIdArticle() && enchere.getMontantEnchere() < oldEnchere.getMontantEnchere()) {
-				throw new BLLException(3000,"Il existe d�j� une ench�re plus elev�e pour cet article");
+			if(enchere.getArticle().getIdArticle() == oldEnchere.getArticle().getIdArticle() && enchere.getMontantEnchere() <= oldEnchere.getMontantEnchere()) {
+				throw new BLLException(3000,"Il existe déjà une enchère plus elevée pour cet article");
 			}
+		}
+		Enchere oldEnchere = this.get(enchere.getArticle().getIdArticle());
+		if(enchere.getArticle().getUtilisateurAchetant().getIdUtilisateur() == oldEnchere.getArticle().getUtilisateurAchetant().getIdUtilisateur()) {
+			throw new BLLException(3001, "Vous êtes déjà le meilleur enchérisseur");
 		}
 		DAOFactory.getDAO(new Enchere()).insert(enchere);
 	}
