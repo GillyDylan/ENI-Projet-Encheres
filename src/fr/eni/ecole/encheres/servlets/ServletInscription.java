@@ -49,6 +49,7 @@ public class ServletInscription extends HttpServlet {
 		newUtilisateur.setVilleUtilisateur(request.getParameter("ville"));
 		newUtilisateur.setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal")));
 		request.setCharacterEncoding("UTF-8");
+		
 		response.setContentType("text/html; charset=UTF-8");
 		try {
 			BLLManager.getBLL(new Utilisateur()).set(newUtilisateur);
