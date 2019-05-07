@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.encheres.bll.ArticleBLL;
+import fr.eni.ecole.encheres.bll.BLL;
 import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Categorie;
@@ -33,7 +35,7 @@ public class ServletAccueil extends HttpServlet {
 		List<Article> articles = null;
 		List<Categorie> categories = null;
 		try {
-			articles = DAOFactory.getDAO(new Article()).selectAll();
+			articles = ((ArticleBLL) BLLManager.getBLL(new Article())).getList(null, 2, true, true, true, true);
 			categories = DAOFactory.getDAO(new Categorie()).selectAll();
 		} catch (DALException e) {
 			// TODO Auto-generated catch block

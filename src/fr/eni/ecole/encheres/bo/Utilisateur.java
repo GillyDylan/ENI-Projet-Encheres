@@ -12,15 +12,15 @@ import com.sun.istack.Nullable;
 @Entity
 public class Utilisateur {
 	@Id @GeneratedValue private int idUtilisateur;
-	@NotNull @Column(nullable = false) private String pseudonymeUtilisateur;
+	@Nullable @Column(nullable = true) private String pseudonymeUtilisateur;
 	@NotNull @Column(nullable = false) private String nomUtilisateur;
 	@NotNull @Column(nullable = false) private String prenomUtilisateur;
-	@NotNull @Column(nullable = false) private String eMailUtilisateur;
+	@Nullable @Column(nullable = true) private String eMailUtilisateur;
 	@Nullable @Column(nullable = true) private String telephoneUtilisateur;
 	@NotNull @Column(nullable = false) private String rueUtilisateur;
 	@NotNull @Column(nullable = false) private int codePostalUtilisateur;
-	@NotNull @Column(nullable = false) private String villeUtilisateur;
-	@NotNull @Column(nullable = false) private String motDePasseUtilisateur;
+	@Nullable @Column(nullable = true) private String villeUtilisateur;
+	@Nullable @Column(nullable = true) private String motDePasseUtilisateur;
 	@NotNull @Column(nullable = false) private int creditUtilisateur;
 	@NotNull @Column(nullable = false) private boolean administrateur;
 	@NotNull @Column(nullable = false) private boolean actif;
@@ -67,10 +67,6 @@ public class Utilisateur {
 	
 	public String geteMailUtilisateur() {
 		return eMailUtilisateur;
-	}
-	
-	public void setEMailUtilisateur(String eMailUtilisateur) {
-		this.eMailUtilisateur = eMailUtilisateur;
 	}
 	
 	public String getTelephoneUtilisateur() {

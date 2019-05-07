@@ -95,6 +95,54 @@ public class ArticleBLL implements BLL<Article>{
 	public List<Article> getList() throws DALException {
 		// TODO Auto-generated method stub
 		return DAOFactory.getDAO(new Article()).selectAll();
+		//return this.getList("gogo", 0, true, true, true, true);
+	}
+	
+	/**
+	* @author ${Dylan Gilly}
+	*
+	* Renvoie la liste de tous les articles selon les paramètres d'entrée :
+	* String "filtre" est la chaine a rechercher, null si aucune
+	* int idCategorie est l'id de la catégorie a rechercher, 0 si aucune
+	* 
+	*/
+	public List<Article> getList(String filtre, int idCategorie, boolean achatVente, boolean param1, boolean param2, boolean param3) throws DALException{
+		List<Article> articles;
+		List<Article> articlesFiltres = new ArrayList<>();
+		
+		if(filtre == null ) {
+			articles =  DAOFactory.getDAO(new Article()).selectAll();
+			//articles = this.getList();
+		}
+		else {
+			articles = this.getList(filtre);
+		}
+		
+		if(idCategorie != 0)
+		{
+			for( Article article : articles) {
+				if(article.getCategorie().getIdCategorie() == idCategorie) {
+					articlesFiltres.add(article);
+				}
+			}
+		}
+		else {
+			articlesFiltres = articles;
+		}
+		articles = articlesFiltres;
+		
+		if(achatVente) {
+			if(param1) {
+				
+			}
+		}
+		else {
+			
+		}
+		
+		return articlesFiltres;
+		
+		
 	}
 	
 	
@@ -156,11 +204,13 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub
 		List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList(article.getIdArticle());
 		/*if(encheres.size() != 0) {
-		throw new BLLException(1020,"Impossible de supprimer un article avec des ench�res en cours");
-		}*/
-		for(Enchere enchere : encheres) {
-			DAOFactory.getDAO(new Enchere()).delete(enchere);
+			throw new BLLException(1020,"Impossible de supprimer un article avec des enchères en cours");
 		}
-		DAOFactory.getDAO(new Article()).delete(article);	
+		else {*/
+			for(Enchere enchere : encheres) {
+				DAOFactory.getDAO(new Enchere()).delete(enchere);
+			}
+			DAOFactory.getDAO(new Article()).delete(article);	
+		
 	}
 }
