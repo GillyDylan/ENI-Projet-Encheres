@@ -261,10 +261,12 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		try{
 			Key clef = new SecretKeySpec(this.key.getBytes("ISO-8859-2"),"Blowfish");
 			Cipher cipher=Cipher.getInstance("Blowfish");
+			System.out.println(clef);
 			cipher.init(Cipher.ENCRYPT_MODE,clef);
 		return new String(cipher.doFinal(password.getBytes()));
 		}
 			catch (Exception e){
+				e.printStackTrace();
 				System.out.println(e.getMessage());
 				return null;
 		}

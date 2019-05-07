@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.ecole.encheres.bll.BLLManager;
+import fr.eni.ecole.encheres.bll.UtilisateurBLL;
 import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
@@ -44,8 +45,8 @@ public class ServletConnexion extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		try {
-			utilisateur = (Utilisateur) BLLManager.getBLL(new Utilisateur()).get(login);
-			if(utilisateur.getPseudonymeUtilisateur().equals(login) && utilisateur.getMotDePasseUtilisateur().equals(mdp)) {
+			if(((UtilisateurBLL) BLLManager.getBLL(new Utilisateur())).checkMotDePasse(login, mdp)) {
+				utilisateur = (Utilisateur) BLLManager.getBLL(new Utilisateur()).get(login);
 				request.getSession().setAttribute("utilisateur", utilisateur);
 				request.getRequestDispatcher("/ServletAccueil").include(request, response);
 			}else {
