@@ -1,11 +1,13 @@
 package fr.eni.ecole.encheres.bll;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
+
 import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import fr.eni.ecole.encheres.bo.Article;
@@ -16,7 +18,8 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 
 public class UtilisateurBLL implements BLL<Utilisateur>{
 
-	private String key = "SmogogoCestVraimentLePlusBeauEtCestPasNegociable";
+	private final String key = "SmogogoEstTropBo";
+	private final String vector = "CestPaNegociable";
 	
 	/**
 	* @author ${Dylan Gilly}
@@ -121,9 +124,7 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 				utilisateur.getMotDePasseUtilisateur().trim() == "") {
 			throw new BLLException(5000,"Tous les paramètres obligatoires ne sont pas fournis");
 		}
-		System.out.println(utilisateur.getMotDePasseUtilisateur());
 		utilisateur.setMotDePasseUtilisateur(encrypt(utilisateur.getMotDePasseUtilisateur()));
-		System.out.println(utilisateur.getMotDePasseUtilisateur());
 		
 		if(!utilisateur.getTelephoneUtilisateur().trim().matches("(0|\\+33|0033)[1-9][0-9]{8}")) {
 			throw new BLLException(5001,"Téléphone invalide");
@@ -216,46 +217,48 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	 * @throws DALException 
 	*/
 	public boolean checkMotDePasse(String login, String motDePasse) throws DALException {
-		boolean check = false;
-		List<Utilisateur> utilisateurs = this.getList();
-		for(Utilisateur utilisateur : utilisateurs) {
-			if(utilisateur.getPseudonymeUtilisateur().contentEquals(login)){
-				if(motDePasse.equals(decrypt(utilisateur.getMotDePasseUtilisateur()))) {
-					check = true;
-					return check;
-				}
-			}
+		Utilisateur utilisateur = this.get(login);
+		if(motDePasse.equals(decrypt(utilisateur.getMotDePasseUtilisateur()))) {
+			return true;	
 		}
-		return check;
+		else {
+			return false;
+		}
 	}
 
 
 	private String encrypt(String password){
-		try{
-			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"Blowfish");
-			Cipher cipher=Cipher.getInstance("Blowfish");
-			System.out.println(clef);
-			cipher.init(Cipher.ENCRYPT_MODE,clef);
-			return new String(cipher.doFinal(password.getBytes()));
-		}
-			catch (Exception e){
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-				return null;
+		try {
+			IvParameterSpec iv = new IvParameterSpec(this.vector.getBytes("UTF-8"));
+			SecretKeySpec skeySpec = new SecretKeySpec(this.key.getBytes("UTF-8"), "AES");
+			 
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+			 
+			byte[] encrypted = cipher.doFinal(password.getBytes());
+			return Base64.encodeBase64String(encrypted);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 	
 	
 	private String decrypt(String password){
-		try{
-			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"Blowfish");
-			Cipher cipher=Cipher.getInstance("Blowfish");
-			cipher.init(Cipher.DECRYPT_MODE,clef);
-			return new String(cipher.doFinal(password.getBytes()));
-		}
-			catch (Exception e){
-				return null;
-		}
+		try {
+	        IvParameterSpec iv = new IvParameterSpec(this.vector.getBytes("UTF-8"));
+	        SecretKeySpec skeySpec = new SecretKeySpec(this.key.getBytes("UTF-8"), "AES");
+	 
+	        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+	        cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+	        byte[] original = cipher.doFinal(Base64.decodeBase64(password));
+	 
+	        return new String(original);
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	        return null;
+	    }
 	}
 
 
