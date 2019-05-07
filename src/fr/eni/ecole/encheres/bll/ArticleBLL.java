@@ -138,7 +138,7 @@ public class ArticleBLL implements BLL<Article>{
 		if(!recherche.isParam1() && !recherche.isParam2() && !recherche.isParam3()) {
 			if(recherche.isAchat()) {
 				for( Article article : articles) {
-					if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur() && !article.isTermine()) {
+					if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur()) {
 						articlesFiltres.add(article);
 					}
 				}
@@ -155,8 +155,19 @@ public class ArticleBLL implements BLL<Article>{
 			if(recherche.isAchat()) {
 				if(recherche.isParam1()) {
 					for( Article article : articles) {
-						
+						if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur() && !article.isTermine()) {
+							articlesFiltres.add(article);
+						}
 					}
+				}
+				if(!recherche.isParam1() && recherche.isParam2()) {
+					
+					for( Article article : articles) {
+						List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList(article.getIdArticle());
+					}
+				}
+				if(recherche.isParam3()) {
+					
 				}
 			}
 			else {

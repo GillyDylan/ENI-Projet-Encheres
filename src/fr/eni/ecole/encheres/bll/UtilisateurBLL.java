@@ -266,8 +266,8 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 
 	private String encrypt(String password){
 		try{
-			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"Blowfish");
-			Cipher cipher=Cipher.getInstance("Blowfish");
+			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"AES");
+			Cipher cipher=Cipher.getInstance("AES");
 			System.out.println(clef);
 			cipher.init(Cipher.ENCRYPT_MODE,clef);
 			return new String(cipher.doFinal(password.getBytes()));
@@ -282,8 +282,8 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	
 	private String decrypt(String password){
 		try{
-			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"Blowfish");
-			Cipher cipher=Cipher.getInstance("Blowfish");
+			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"AES");
+			Cipher cipher=Cipher.getInstance("AES");
 			cipher.init(Cipher.DECRYPT_MODE,clef);
 			return new String(cipher.doFinal(password.getBytes()));
 		}
