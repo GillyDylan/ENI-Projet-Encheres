@@ -118,7 +118,7 @@ public class ArticleBLL implements BLL<Article>{
 		List<Article> articles;
 		List<Article> articlesFiltres = new ArrayList<>();
 		
-		if(recherche.getFiltre() == null ) {
+		if(recherche.getFiltre() == null || recherche.getFiltre()=="" ) {
 			articles = this.getList();
 		}
 		else {
