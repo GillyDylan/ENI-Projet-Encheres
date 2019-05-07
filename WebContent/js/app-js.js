@@ -111,6 +111,7 @@ function encherir(){
 }
 
 function sinscrire(){
+	console.log($("#mdpInscription").val());
 	$.ajax({
 		url : 'inscription',
 		method : 'POST',
@@ -119,7 +120,7 @@ function sinscrire(){
 			prenom : $("input[name='prenom']").val(),
 			telephone : $("input[name='telephone']").val(),
 			codepostal : $("input[name='codepostal']").val(),
-			mdp : $("input[name='mdp']").val(),
+			mdp : $("#mdpInscription").val(),
 			nom : $("input[name='nom']").val(),
 			ville : $("input[name='ville']").val(),
 			rue : $("input[name='rue']").val(),
@@ -129,7 +130,7 @@ function sinscrire(){
 			$('#content').html(resultText);
 		},
 		error : function(jqXHR) {
-			//$('#errorInscription').toggle(true);
+			$('#errorInscription').prop("hidden",false);
 			$('#errorInscription').html(jqXHR.responseText);
 		}
 	});

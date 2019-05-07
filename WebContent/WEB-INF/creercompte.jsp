@@ -24,7 +24,7 @@
 			</div>
 			<div class="form-group">
 				<label for="mdp">Mot de passe:</label> <input type="password"
-					class="form-control" name="mdp">
+					class="form-control" name="mdp" id="mdpInscription">
 			</div>
 			<button type="button" class="btn btn-primary" onclick="sinscrire()">Envoyer</button>
 			<button type="button" class="btn btn-primary" onclick="openTab(this)"
@@ -54,4 +54,4 @@
 		</div>
 	</div>
 </form>
-<div class="alert alert-danger" role="alert" id="errorInscription"></div>
+<div class="alert alert-danger m-2" role="alert" id="errorInscription" hidden="true"></div>

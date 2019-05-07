@@ -17,14 +17,14 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 
 public class ServletInscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletInscription() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletInscription() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,27 +38,27 @@ public class ServletInscription extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Utilisateur newUtilisateur = new Utilisateur();
-		newUtilisateur.setPseudonymeUtilisateur(request.getParameter("pseudo"));
-		newUtilisateur.setPrenomUtilisateur(request.getParameter("prenom"));
-		newUtilisateur.setNomUtilisateur(request.getParameter("nom"));
-		newUtilisateur.seteMailUtilisateur(request.getParameter("email"));
-		newUtilisateur.setTelephoneUtilisateur(request.getParameter("telephone"));
-		newUtilisateur.setMotDePasseUtilisateur(request.getParameter("mdp"));
-		newUtilisateur.setRueUtilisateur(request.getParameter("rue"));
-		newUtilisateur.setVilleUtilisateur(request.getParameter("ville"));
-		newUtilisateur.setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal")));
 		request.setCharacterEncoding("UTF-8");
-		
 		response.setContentType("text/html; charset=UTF-8");
 		try {
+			Utilisateur newUtilisateur = new Utilisateur();
+			newUtilisateur.setPseudonymeUtilisateur(request.getParameter("pseudo"));
+			newUtilisateur.setPrenomUtilisateur(request.getParameter("prenom"));
+			newUtilisateur.setNomUtilisateur(request.getParameter("nom"));
+			newUtilisateur.seteMailUtilisateur(request.getParameter("email"));
+			newUtilisateur.setTelephoneUtilisateur(request.getParameter("telephone"));
+			newUtilisateur.setMotDePasseUtilisateur(request.getParameter("mdp"));
+			newUtilisateur.setRueUtilisateur(request.getParameter("rue"));
+			newUtilisateur.setVilleUtilisateur(request.getParameter("ville"));
+			if(request.getParameter("codepostal").trim() != null || !request.getParameter("codepostal").trim().equals("")) {
+				newUtilisateur.setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal")));
+			}else {
+				newUtilisateur.setCodePostalUtilisateur(0);
+			}
 			BLLManager.getBLL(new Utilisateur()).set(newUtilisateur);
 			request.getSession().setAttribute("utilisateur", newUtilisateur); 
 			this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		} catch (DALException | BLLException e) {
-			//response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//			response.getWriter().write(e.getMessage());
-//            response.flushBuffer();
 			PrintWriter out = response.getWriter();
 			response.setStatus(400);
 			out.print(e.getMessage());
