@@ -148,6 +148,7 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 			throw new BLLException(5000,"Tous les paramètres obligatoires ne sont pas fournis");
 		}
 		utilisateur.setMotDePasseUtilisateur(encrypt(utilisateur.getMotDePasseUtilisateur()));
+		System.out.println(utilisateur.getMotDePasseUtilisateur());
 		if(!utilisateur.getTelephoneUtilisateur().trim().matches("(0|\\+33|0033)[1-9][0-9]{8}")) {
 			throw new BLLException(5001,"Téléphone invalide");
 		}

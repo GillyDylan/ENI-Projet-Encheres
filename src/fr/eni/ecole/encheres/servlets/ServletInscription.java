@@ -40,7 +40,7 @@ public class ServletInscription extends HttpServlet {
 		newUtilisateur.setPseudonymeUtilisateur(request.getParameter("pseudo"));
 		newUtilisateur.setPrenomUtilisateur(request.getParameter("prenom"));
 		newUtilisateur.setNomUtilisateur(request.getParameter("nom"));
-		newUtilisateur.setEMailUtilisateur(request.getParameter("email"));
+		newUtilisateur.seteMailUtilisateur(request.getParameter("email"));
 		newUtilisateur.setTelephoneUtilisateur(request.getParameter("telephone"));
 		newUtilisateur.setMotDePasseUtilisateur(request.getParameter("mdp"));
 		newUtilisateur.setRueUtilisateur(request.getParameter("rue"));
@@ -49,10 +49,10 @@ public class ServletInscription extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		try {
-			DAOFactory.getDAO(new Utilisateur()).insert(newUtilisateur);
+			BLLManager.getBLL(new Utilisateur()).set(newUtilisateur);
 			request.getSession().setAttribute("utilisateur", newUtilisateur); 
 			this.getServletContext().getNamedDispatcher("index").forward(request, response);
-		} catch (DALException e) {
+		} catch (DALException | BLLException e) {
 			response.getWriter().write("Une erreur s'est produite lors de l'inscription des données : " + e.getMessage());			
 		}	
 	}
