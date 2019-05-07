@@ -182,18 +182,27 @@ public class ArticleBLL implements BLL<Article>{
 				}
 				if(recherche.isParam3()) {
 					for( Article article : articles) {
-						if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur() && article.isTermine()) {
-							articlesFiltres.add(article);
+						if(article.getUtilisateurAchetant() != null) {
+							if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur() && article.isTermine()) {
+								articlesFiltres.add(article);
+							}
 						}
 					}
 				}
 			}
 			else {
-				if(recherche.isParam1()) {
-					for( Article article : articles) {
-						
+				for( Article article : articles) {
+					if(recherche.isParam1() && article.getDateDebutEncheresArticle().after(new Date())) {
+						articlesFiltres.add(article);
 					}
+					if(recherche.isParam2() && article.getDateDebutEncheresArticle().before(new Date()) && !article.isTermine()) {
+						articlesFiltres.add(article);
+					}
+					if(recherche.isParam3() && article.isTermine()) {
+						articlesFiltres.add(article);
+					}		
 				}
+			
 			}
 		}
 		return articlesFiltres;
@@ -223,11 +232,11 @@ public class ArticleBLL implements BLL<Article>{
 			Article articleOld = BLLManager.getBLL(new Article()).get(article.getIdArticle());
 			if(articleOld.getCategorie().getIdCategorie() != article.getCategorie().getIdCategorie())
 			{
-				throw new BLLException(1010,"Impossible de changer la cat�gorie de d'un article déjà publié");
+				throw new BLLException(1010,"Impossible de changer la catégorie de d'un article déjà publié");
 			}
 			if(!articleOld.getDateDebutEncheresArticle().equals(article.getDateDebutEncheresArticle()))
 			{
-				throw new BLLException(1011,"Impossible de changer la date de d�but d'un article déjà publié");
+				throw new BLLException(1011,"Impossible de changer la date de début d'un article déjà publié");
 			}
 			if(!articleOld.getDateFinEncheresArticle().equals(article.getDateFinEncheresArticle()))
 			{
