@@ -53,10 +53,10 @@ public class ServletEncherir extends HttpServlet {
 		Enchere nouvelleEnchere = new Enchere(utilisateur, article, date, valeurEnchere);
 		response.setContentType("text/plain");
 		try {
-			DAOFactory.getDAO(new Enchere()).insert(nouvelleEnchere);
-			DAOFactory.getDAO(new Article()).update(article);
+			BLLManager.getBLL(new Enchere()).set(nouvelleEnchere);
+			BLLManager.getBLL(new Article()).set(article);
 			response.getWriter().write("Enchère acceptée.");
-		} catch (DALException e) {
+		} catch (DALException | BLLException e) {
 			response.getWriter().write("Erreur : " + e.getMessage());
 		}
 	}

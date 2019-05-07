@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
+import fr.eni.ecole.encheres.bll.BLLException;
 import fr.eni.ecole.encheres.bll.BLLManager;
 import fr.eni.ecole.encheres.bo.Article;
 import fr.eni.ecole.encheres.bo.Categorie;
@@ -75,10 +76,10 @@ public class ServletNouvelleVente extends HttpServlet {
 				newArticle.setUtilisateurVendant(vendeur);
 				
 				try {
-					DAOFactory.getDAO(new Article()).insert(newArticle);
+					BLLManager.getBLL(new Article()).set(newArticle);
 					response.getWriter().write("Produit ajouté à la liste des enchères.");
-				} catch (DALException e) {
-					response.getWriter().write("Une erreur s'est produite.");
+				} catch (DALException | BLLException e) {
+					response.getWriter().write(e.getMessage());
 				}
 	}
 }

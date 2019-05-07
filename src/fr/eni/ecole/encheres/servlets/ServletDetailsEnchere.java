@@ -46,10 +46,11 @@ public class ServletDetailsEnchere extends HttpServlet {
 
 		try {
 			int idArticle = Integer.parseInt(request.getParameter("articleId"));
-			System.out.println(idArticle);
-			List<Enchere> encheres = new EnchereDAOHibernate().selectById(idArticle);
+			//List<Enchere> encheres = new EnchereDAOHibernate().selectById(idArticle);
+			List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList(idArticle);
 			if(encheres != null && !encheres.isEmpty()) {
-				request.setAttribute("enchereDetails", encheres.get(0));
+				request.setAttribute("enchereMax", encheres.get(0));
+				request.setAttribute("listEncheres", encheres);
 			}
 
 
