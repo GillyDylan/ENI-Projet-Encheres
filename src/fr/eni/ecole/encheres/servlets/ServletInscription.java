@@ -1,6 +1,8 @@
 package fr.eni.ecole.encheres.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +55,13 @@ public class ServletInscription extends HttpServlet {
 			request.getSession().setAttribute("utilisateur", newUtilisateur); 
 			this.getServletContext().getNamedDispatcher("index").forward(request, response);
 		} catch (DALException | BLLException e) {
-			response.getWriter().write("Une erreur s'est produite lors de l'inscription des données : " + e.getMessage());			
+			//response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//			response.getWriter().write(e.getMessage());
+//            response.flushBuffer();
+			PrintWriter out = response.getWriter();
+			response.setStatus(400);
+			out.print(e.getMessage());
+			out.flush();
 		}	
 	}
 

@@ -11,7 +11,7 @@
 					class="form-control" name="pseudo">
 			</div>
 			<div class="form-group">
-				<label for="prenom">Prénom:</label> <input type="text"
+				<label for="prenom">PrÃ©nom:</label> <input type="text"
 					class="form-control" name="prenom">
 			</div>
 			<div class="form-group">
@@ -19,8 +19,8 @@
 					class="form-control" name="telephone">
 			</div>
 			<div class="form-group">
-				<label for="codepostal">Code postal:</label> <input
-					type="text" class="form-control" name="codepostal">
+				<label for="codepostal">Code postal:</label> <input type="text"
+					class="form-control" name="codepostal">
 			</div>
 			<div class="form-group">
 				<label for="mdp">Mot de passe:</label> <input type="password"
@@ -32,16 +32,16 @@
 		</div>
 		<div class="col-6">
 			<div class="form-group">
-				<label for="nom">Nom:</label> <input type="text" class="form-control"
-					name="nom">
+				<label for="nom">Nom:</label> <input type="text"
+					class="form-control" name="nom">
 			</div>
 			<div class="form-group">
 				<label for="email">Email:</label> <input type="text"
 					class="form-control" name="email">
 			</div>
 			<div class="form-group">
-				<label for="rue">Rue:</label> <input type="text" class="form-control"
-					name="rue">
+				<label for="rue">Rue:</label> <input type="text"
+					class="form-control" name="rue">
 			</div>
 			<div class="form-group">
 				<label for="ville">Ville:</label> <input type="text"
@@ -54,3 +54,4 @@
 		</div>
 	</div>
 </form>
+<div class="alert alert-danger" role="alert" id="errorInscription"></div>

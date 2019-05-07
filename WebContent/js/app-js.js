@@ -128,8 +128,9 @@ function sinscrire(){
 		success : function(resultText) {
 			$('#content').html(resultText);
 		},
-		error : function(jqXHR, exception) {
-			
+		error : function(jqXHR) {
+			//$('#errorInscription').toggle(true);
+			$('#errorInscription').html(jqXHR.responseText);
 		}
 	});
 }
@@ -244,6 +245,23 @@ function remplirSelectCategorieAccueil(){
 			$.each(resultText, function(val, text) {
 				options[options.length] = new Option(text.libelleCategorie, text.idCategorie);
 			});
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+function sesouvenir(){
+	$.ajax({
+		url : 'sesouvenir',
+		method : 'POST',
+		data : {
+			login : $('#login').val(),
+			mdp : $('#mdp').val()
+		},
+		success : function(resultText) {
+			console.log("cookies crées");
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
