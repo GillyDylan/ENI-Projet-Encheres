@@ -118,7 +118,7 @@ public class ArticleBLL implements BLL<Article>{
 		List<Article> articles;
 		List<Article> articlesFiltres = new ArrayList<>();
 		
-		if(recherche.getFiltre() == null || recherche.getFiltre()=="" ) {
+		if(recherche.getFiltre() == null || recherche.getFiltre() == "" ) {
 			articles = this.getList();
 		}
 		else {
@@ -136,73 +136,73 @@ public class ArticleBLL implements BLL<Article>{
 		else {
 			articlesFiltres = articles;
 		}
-		
-		articles.clear();
-		articles.addAll(articlesFiltres);
-		articlesFiltres.clear();
-		
-		if(!recherche.isParam1() && !recherche.isParam2() && !recherche.isParam3()) {
-			if(recherche.isAchat()) {
-				for( Article article : articles) {
-					if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur()) {
-						articlesFiltres.add(article);
-					}
-				}
-			}
-			else {
-				for( Article article : articles) {
-					if(article.getUtilisateurVendant().getIdUtilisateur() == utilisateur.getIdUtilisateur()){
-						articlesFiltres.add(article);
-					}
-				}
-			}
-		} 
-		else {	
-			if(recherche.isAchat()) {
-				if(recherche.isParam1()) {
+		if(utilisateur != null) {
+			articles.clear();
+			articles.addAll(articlesFiltres);
+			articlesFiltres.clear();
+			
+			if(!recherche.isParam1() && !recherche.isParam2() && !recherche.isParam3()) {
+				if(recherche.isAchat()) {
 					for( Article article : articles) {
-						if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur() && !article.isTermine()) {
+						if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur()) {
 							articlesFiltres.add(article);
 						}
 					}
 				}
-				if(!recherche.isParam1() && recherche.isParam2()) {
-					List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList();
+				else {
 					for( Article article : articles) {
-						boolean trouve = false;
-						for(Enchere enchere : encheres) {
-							if(enchere.getArticle().getIdArticle() == article.getIdArticle() && enchere.getUtilisateur().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
-								trouve = true;
-							}
-						}
-						if(trouve) {
+						if(article.getUtilisateurVendant().getIdUtilisateur() == utilisateur.getIdUtilisateur()){
 							articlesFiltres.add(article);
 						}
 					}
 				}
-				if(recherche.isParam3()) {
-					for( Article article : articles) {
-						if(article.getUtilisateurAchetant() != null) {
-							if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur() && article.isTermine()) {
+			} 
+			else {	
+				if(recherche.isAchat()) {
+					if(recherche.isParam1()) {
+						for( Article article : articles) {
+							if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur() && !article.isTermine()) {
 								articlesFiltres.add(article);
 							}
 						}
 					}
-				}
-			}
-			else {
-				for( Article article : articles) {
-					if(recherche.isParam1() && article.getDateDebutEncheresArticle().after(new Date())) {
-						articlesFiltres.add(article);
+					if(!recherche.isParam1() && recherche.isParam2()) {
+						List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList();
+						for( Article article : articles) {
+							boolean trouve = false;
+							for(Enchere enchere : encheres) {
+								if(enchere.getArticle().getIdArticle() == article.getIdArticle() && enchere.getUtilisateur().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
+									trouve = true;
+								}
+							}
+							if(trouve) {
+								articlesFiltres.add(article);
+							}
+						}
 					}
-					if(recherche.isParam2() && article.getDateDebutEncheresArticle().before(new Date()) && !article.isTermine()) {
-						articlesFiltres.add(article);
+					if(recherche.isParam3()) {
+						for( Article article : articles) {
+							if(article.getUtilisateurAchetant() != null) {
+								if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur() && article.isTermine()) {
+									articlesFiltres.add(article);
+								}
+							}
+						}
 					}
-					if(recherche.isParam3() && article.isTermine()) {
-						articlesFiltres.add(article);
-					}		
 				}
-			
+				else {
+					for( Article article : articles) {
+						if(recherche.isParam1() && article.getDateDebutEncheresArticle().after(new Date())) {
+							articlesFiltres.add(article);
+						}
+						if(recherche.isParam2() && article.getDateDebutEncheresArticle().before(new Date()) && !article.isTermine()) {
+							articlesFiltres.add(article);
+						}
+						if(recherche.isParam3() && article.isTermine()) {
+							articlesFiltres.add(article);
+						}		
+					}
+				}
 			}
 		}
 		return articlesFiltres;
