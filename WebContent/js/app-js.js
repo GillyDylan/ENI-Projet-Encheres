@@ -215,6 +215,34 @@ function filtrerRecherche(){
 	}
 }
 
+function rechercheDetaillee(){
+	var isAchat = false;
+	if($("input[name='chkboxEnchere']:checked").val() == "achat"){
+		var isAchat = true;
+	}
+	$.ajax({
+		url : 'rechercheDetaillee',
+		method : 'GET',
+		data : {
+			strRecherche : $('#strRecherche').val(),
+			categorie : $('#selectCategorieAccueil').val(),
+			isAchat : isAchat,
+			encheresOuvertes : $('#chkEncheresOuvertes').attr( "checked" ),
+			encheresEnCours : $('#chkEncheresEnCours').attr( "checked" ),
+			encheresRemportees :$('#chkEncheresRemportees').attr( "checked" ),
+			venteEnCours : $('#chkVentesEnCours').attr( "checked" ),
+			venteNonDebutees : $('#chkVentesNonDebutees').attr( "checked" ),
+			ventesTerminees : $('#chkVentesTerminees').attr( "checked" )
+		},
+		success : function(resultText) {
+			$('#recherche').html(resultText);
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
 $(document).ready(function() {
 	filtrerRecherche();
 });

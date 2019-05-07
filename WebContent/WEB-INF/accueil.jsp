@@ -15,12 +15,13 @@
 		<div class="col-6">
 			<div class="form-group">
 				<label for="filtre">Filtre: </label> <input type="text"
-					class="form-control ui-widget" id="filtre"
+					class="form-control ui-widget" id="strRecherche"
 					placeholder="Le nom de l'article contient">
 			</div>
 			<div class="form-group">
 				<label for="selectCategorie">Catégories</label> <select
-					name="selectCategorie" id="selectCategorieAccueil" class="form-control">
+					name="selectCategorie" id="selectCategorieAccueil"
+					class="form-control">
 					<c:if test="${!empty categories}">
 						<c:forEach var="categorie" items="${categories}">
 							<option value="${ categorie.getIdCategorie()  }">${ categorie.getLibelleCategorie() }</option>
@@ -70,52 +71,57 @@
 		<div
 			class="col-6 text-center d-flex align-items-center justify-content-center ">
 			<input type="button" value="Rechercher"
-				class="btn btn-primary btn-lg" onclick="filtrerRecherche()" />
+				class="btn btn-primary btn-lg" onclick="rechercheDetaillee()" />
 		</div>
 	</div>
 </form>
-<c:set var="articles" scope="session" value="${articles}" />
-<c:set var="totalCount" scope="session" value="${articles.size()}" />
-<c:set var="perPage" scope="session" value="3" />
-<c:set var="pageStart" value="${param.start}" />
-<c:if test="${empty pageStart or pageStart < 0}">
-	<c:set var="pageStart" value="0" />
-</c:if>
-<c:if test="${totalCount < pageStart}">
-	<c:set var="pageStart" value="${pageStart - 3}" />
-</c:if>
-<c:if test="${articles.size() > 0}">
-	<div class="row d-flex justify-content-center m-2">
-		<a href="?start=${pageStart - 3}" class="btn btn-primary btn-sm" onclick="test()"><<</a>
-		<span class="btn btn-primary">${pageStart + 1}- ${pageStart + 3}
-		</span> <a href="?start=${pageStart + 3}" class="btn btn-primary btn-sm" onclick="pageSuivante()">>></a>
-	</div>
-	<div class="row d-flex">
-		<c:forEach var="article" items="${articles}" begin="${pageStart}"
-			end="${pageStart + perPage - 1}">
-			<div class="col-12 col-lg-4">
-				<div class="card">
-					<div class="card-body">
-						<h4 class="card-title">${article.getNomArticle()}</h4>
-						<p class="card-text">Prix : ${article.getPrixInitialArticle() }
-							points</p> 
-						<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-						<fmt:formatDate var="date"
-							value="${article.getDateFinEncheresArticle()}"
-							pattern="dd MMM YYYY" />
-						<p class="card-text">Fin de l'enchere : ${date }</p>
-						<p class="card-text">Vendeur :</p>
-						<p class="card-text">${article.getUtilisateurVendant().getPrenomUtilisateur()}
-							${article.getUtilisateurVendant().getNomUtilisateur()}</p>
-						<input type="button"
-							onclick="getDetails(${article.getIdArticle()})"
-							class="btn btn-primary" value="Détails" />
+
+<div id="recherche">
+	<c:set var="articles" scope="session" value="${articles}" />
+	<c:set var="totalCount" scope="session"
+		value="${articles.size()}" />
+	<c:set var="perPage" scope="session" value="3" />
+	<c:set var="pageStart" value="${param.start}" />
+	<c:if test="${empty pageStart or pageStart < 0}">
+		<c:set var="pageStart" value="0" />
+	</c:if>
+	<c:if test="${totalCount < pageStart}">
+		<c:set var="pageStart" value="${pageStart - 3}" />
+	</c:if>
+	<c:if test="${articles.size() > 0}">
+		<div class="row d-flex justify-content-center m-2">
+			<a href="?start=${pageStart - 3}" class="btn btn-primary btn-sm"
+				onclick="test()"><<</a> <span class="btn btn-primary">${pageStart + 1}-
+				${pageStart + 3} </span> <a href="?start=${pageStart + 3}"
+				class="btn btn-primary btn-sm" onclick="pageSuivante()">>></a>
+		</div>
+		<div class="row d-flex">
+			<c:forEach var="article" items="${articles}"
+				begin="${pageStart}" end="${pageStart + perPage - 1}">
+				<div class="col-12 col-lg-4">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">${article.getNomArticle()}</h4>
+							<p class="card-text">Prix : ${article.getPrixInitialArticle() }
+								points</p>
+							<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+							<fmt:formatDate var="date"
+								value="${article.getDateFinEncheresArticle()}"
+								pattern="dd MMM YYYY" />
+							<p class="card-text">Fin de l'enchere : ${date }</p>
+							<p class="card-text">Vendeur :</p>
+							<p class="card-text">${article.getUtilisateurVendant().getPrenomUtilisateur()}
+								${article.getUtilisateurVendant().getNomUtilisateur()}</p>
+							<input type="button"
+								onclick="getDetails(${article.getIdArticle()})"
+								class="btn btn-primary" value="Détails" />
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
-	</div>
-</c:if>
+			</c:forEach>
+		</div>
+	</c:if>
+</div>
 
 <script>
 	$(document).ready(function() {
@@ -123,7 +129,7 @@
 	});
 	
 	$( function() {
-	    $( "#filtre" ).autocomplete({
+	    $( "#strRecherche" ).autocomplete({
 	      source: 'autocomplete'
 	    });
 	  } );
