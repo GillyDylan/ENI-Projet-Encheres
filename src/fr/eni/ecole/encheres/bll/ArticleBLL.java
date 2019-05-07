@@ -161,17 +161,33 @@ public class ArticleBLL implements BLL<Article>{
 					}
 				}
 				if(!recherche.isParam1() && recherche.isParam2()) {
-					
+					List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList();
 					for( Article article : articles) {
-						List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList(article.getIdArticle());
+						boolean trouve = false;
+						for(Enchere enchere : encheres) {
+							if(enchere.getArticle().getIdArticle() == article.getIdArticle() && enchere.getUtilisateur().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
+								trouve = true;
+							}
+						}
+						if(trouve) {
+							articlesFiltres.add(article);
+						}
 					}
 				}
 				if(recherche.isParam3()) {
-					
+					for( Article article : articles) {
+						if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur() && article.isTermine()) {
+							articlesFiltres.add(article);
+						}
+					}
 				}
 			}
 			else {
-				
+				if(recherche.isParam1()) {
+					for( Article article : articles) {
+						
+					}
+				}
 			}
 		}
 		return articlesFiltres;
