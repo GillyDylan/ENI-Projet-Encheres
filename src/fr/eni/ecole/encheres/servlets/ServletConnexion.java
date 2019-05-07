@@ -3,6 +3,7 @@ package fr.eni.ecole.encheres.servlets;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,24 +40,50 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("login");
-		String mdp = request.getParameter("mdp");
+		String login = request.getParameter("login").trim();
+		String mdp = request.getParameter("mdp").trim();
 		Utilisateur utilisateur = null;
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");		
 		response.setContentType("text/html; charset=UTF-8");
 		try {
 			if(((UtilisateurBLL) BLLManager.getBLL(new Utilisateur())).checkMotDePasse(login, mdp)) {
 				utilisateur = (Utilisateur) BLLManager.getBLL(new Utilisateur()).get(login);
+				if(request.getParameter("remember").equals("true")) {
+					String cookieName = "login";
+					Cookie[] cookies = request.getCookies();
+					if (cookies != null) 
+					{
+						for(int i=0; i<cookies.length; i++) 
+						{
+							Cookie cookie = cookies[i];
+							if (!cookieName.equals(cookie.getName())) 
+							{
+								try {
+									utilisateur = BLLManager.getBLL(new Utilisateur()).get(login);
+								} catch (DALException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								if(utilisateur != null) {
+									mdp = utilisateur.getMotDePasseUtilisateur();
+									Cookie cookiePseudo = new Cookie("login", login);
+									response.addCookie(cookiePseudo);
+									Cookie cookieMdp = new Cookie("mdp", mdp);
+									response.addCookie(cookieMdp);
+								}
+							}
+						}
+					}
+				}
 				request.getSession().setAttribute("utilisateur", utilisateur);
 				request.getRequestDispatcher("/ServletAccueil").include(request, response);
 			}else {
 				request.setAttribute("erreurConnexion", "Erreur de connexion.");
 				request.getRequestDispatcher("/WEB-INF/connexion.jsp").include(request, response);			
 			}
-		} catch (DALException e) {
+		} catch (Exception e) {
 			request.setAttribute("erreurConnexion", e.getMessage());
 			request.getRequestDispatcher("/WEB-INF/connexion.jsp").include(request, response);			
 		}
 	}
-
 }

@@ -35,14 +35,12 @@ public class ServletAccueil extends HttpServlet {
 		List<Article> articles = null;
 		List<Categorie> categories = null;
 		try {
-			//articles = ((ArticleBLL) BLLManager.getBLL(new Article())).getList(null, 2, true, true, true, true);
+			articles = ((ArticleBLL) BLLManager.getBLL(new Article())).getList();
 			categories = DAOFactory.getDAO(new Categorie()).selectAll();
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 		
 		request.setAttribute("articles", articles);
 		request.setAttribute("categories", categories);

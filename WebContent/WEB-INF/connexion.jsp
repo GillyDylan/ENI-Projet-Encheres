@@ -14,7 +14,7 @@
 	</div>
 	<div class="form-group form-check">
 		<label class="form-check-label"> <input
-			class="form-check-input" type="checkbox" onclick="sesouvenir()"> Se souvenir de moi
+			class="form-check-input" type="checkbox" id="seSouvenirDeMoi">Se souvenir de moi
 		</label>
 	</div>
 	<input type="button" class="btn btn-primary" onclick="connexion()" value="Se connecter" />

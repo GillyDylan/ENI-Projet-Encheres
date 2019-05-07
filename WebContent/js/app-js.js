@@ -17,12 +17,17 @@ function openTab(el) {
 }
 
 function connexion() {
+	var remember = false;
+	if($('#seSouvenirDeMoi').is(':checked')){
+		remember = true;
+	}
 	$.ajax({
 		url : 'ServletConnexion',
 		method : 'POST',
 		data : {
 			login : $('#login').val(),
-			mdp : $('#mdp').val()
+			mdp : $('#mdp').val(),
+			remember : remember
 		},
 		success : function(resultText) {
 			$('#content').html(resultText);
@@ -111,7 +116,6 @@ function encherir(){
 }
 
 function sinscrire(){
-	console.log($("#mdpInscription").val());
 	$.ajax({
 		url : 'inscription',
 		method : 'POST',
@@ -246,23 +250,6 @@ function remplirSelectCategorieAccueil(){
 			$.each(resultText, function(val, text) {
 				options[options.length] = new Option(text.libelleCategorie, text.idCategorie);
 			});
-		},
-		error : function(jqXHR, exception) {
-			console.log('Error occured!!');
-		}
-	});
-}
-
-function sesouvenir(){
-	$.ajax({
-		url : 'sesouvenir',
-		method : 'POST',
-		data : {
-			login : $('#login').val(),
-			mdp : $('#mdp').val()
-		},
-		success : function(resultText) {
-			console.log("cookies crées");
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
