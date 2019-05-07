@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import fr.eni.ecole.encheres.bo.Article;
+import fr.eni.ecole.encheres.bo.ArticleRecherche;
 import fr.eni.ecole.encheres.bo.Enchere;
+import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
 
@@ -106,22 +108,21 @@ public class ArticleBLL implements BLL<Article>{
 	* int idCategorie est l'id de la catégorie a rechercher, 0 si aucune
 	* 
 	*/
-	public List<Article> getList(String filtre, int idCategorie, boolean achatVente, boolean param1, boolean param2, boolean param3) throws DALException{
+	public List<Article> getList(ArticleRecherche recherche, Utilisateur utilisateur) throws DALException{
 		List<Article> articles;
 		List<Article> articlesFiltres = new ArrayList<>();
 		
-		if(filtre == null ) {
-			articles =  DAOFactory.getDAO(new Article()).selectAll();
-			//articles = this.getList();
+		if(recherche.getFiltre() == null ) {
+			articles = this.getList();
 		}
 		else {
-			articles = this.getList(filtre);
+			articles = this.getList(recherche.getFiltre());
 		}
 		
-		if(idCategorie != 0)
+		if(recherche.getCategorie() != null)
 		{
 			for( Article article : articles) {
-				if(article.getCategorie().getIdCategorie() == idCategorie) {
+				if(article.getCategorie().getIdCategorie() == recherche.getCategorie().getIdCategorie()) {
 					articlesFiltres.add(article);
 				}
 			}
@@ -129,17 +130,39 @@ public class ArticleBLL implements BLL<Article>{
 		else {
 			articlesFiltres = articles;
 		}
-		articles = articlesFiltres;
 		
-		if(achatVente) {
-			if(param1) {
+		articles.clear();
+		articles.addAll(articlesFiltres);
+		articlesFiltres.clear();
+		
+		if(!recherche.isParam1() && !recherche.isParam2() && !recherche.isParam3()) {
+			if(recherche.isAchat()) {
+				for( Article article : articles) {
+					if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur() && !article.isTermine()) {
+						articlesFiltres.add(article);
+					}
+				}
+			}
+			else {
+				for( Article article : articles) {
+					if(article.getUtilisateurVendant().getIdUtilisateur() == utilisateur.getIdUtilisateur()){
+						articlesFiltres.add(article);
+					}
+				}
+			}
+		} 
+		else {	
+			if(recherche.isAchat()) {
+				if(recherche.isParam1()) {
+					for( Article article : articles) {
+						
+					}
+				}
+			}
+			else {
 				
 			}
 		}
-		else {
-			
-		}
-		
 		return articlesFiltres;
 		
 		

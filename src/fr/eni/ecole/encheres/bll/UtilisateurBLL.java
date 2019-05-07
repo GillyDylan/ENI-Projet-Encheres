@@ -144,7 +144,13 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 				utilisateur.getNomUtilisateur().trim() == null ||
 				utilisateur.getPrenomUtilisateur().trim() == null ||
 				utilisateur.getRueUtilisateur().trim() == null ||
-				utilisateur.getVilleUtilisateur().trim() == null) {
+				utilisateur.getVilleUtilisateur().trim() == null ||
+				utilisateur.getPseudonymeUtilisateur().trim() == "" || 
+				utilisateur.geteMailUtilisateur().trim() == "" ||
+				utilisateur.getNomUtilisateur().trim() == "" ||
+				utilisateur.getPrenomUtilisateur().trim() == "" ||
+				utilisateur.getRueUtilisateur().trim() == "" ||
+				utilisateur.getVilleUtilisateur().trim() == "") {
 			throw new BLLException(5000,"Tous les paramètres obligatoires ne sont pas fournis");
 		}
 		utilisateur.setMotDePasseUtilisateur(encrypt(utilisateur.getMotDePasseUtilisateur()));
