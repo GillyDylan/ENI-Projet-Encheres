@@ -71,43 +71,9 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 			List<Utilisateur> utilisateurs = BLLManager.getBLL(new Utilisateur()).getList();
 			List<Utilisateur> utilisateursTrouves = new ArrayList<>();
 			for(Utilisateur utilisateur : utilisateurs) {
-				String nom = utilisateur.getNomUtilisateur();
-				String prenom = utilisateur.getPrenomUtilisateur();
-				String eMail = utilisateur.geteMailUtilisateur();
 				String pseudo = utilisateur.getPseudonymeUtilisateur();
-				String adresse = utilisateur.getRueUtilisateur();
-				String ville = utilisateur.getVilleUtilisateur();
-				//Remplace les majuscules en minuscules
-				nom = nom.toLowerCase();
-				prenom = prenom.toLowerCase();
-				eMail = eMail.toLowerCase();
-				pseudo = pseudo.toLowerCase();
-				adresse = adresse.toLowerCase();
-				ville = ville.toLowerCase();
-				chaine = chaine.toLowerCase();
-				//Retirer ponctuations et espaces/tab
-				nom = nom.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
-				prenom = prenom.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
-				eMail = eMail.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
-				pseudo = pseudo.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
-				adresse = adresse.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
-				ville = ville.replaceAll("[\\p{Punct}\\p{Blank}]", ""); 
-				chaine = chaine.replaceAll("[\\p{Punct}\\p{Blank}]", "");
-				//Retirer les accents
-				nom = BLLManager.normalize(nom);
-				prenom = BLLManager.normalize(prenom);
-				eMail = BLLManager.normalize(eMail);
-				pseudo = BLLManager.normalize(pseudo);
-				adresse = BLLManager.normalize(adresse); 
-				ville = BLLManager.normalize(ville); 
-				chaine = BLLManager.normalize(chaine);
 								
-				if(ville.contains(chaine) ||
-						adresse.contains(chaine) || 
-						nom.contains(chaine) ||
-						prenom.contains(chaine) ||
-						eMail.contains(chaine) || 
-						pseudo.contains(chaine)){
+				if(pseudo.contains(chaine)){
 					utilisateursTrouves.add(utilisateur);
 				}
 			}
@@ -266,8 +232,8 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 
 	private String encrypt(String password){
 		try{
-			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"AES");
-			Cipher cipher=Cipher.getInstance("AES");
+			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"Blowfish");
+			Cipher cipher=Cipher.getInstance("Blowfish");
 			System.out.println(clef);
 			cipher.init(Cipher.ENCRYPT_MODE,clef);
 			return new String(cipher.doFinal(password.getBytes()));
@@ -282,8 +248,8 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	
 	private String decrypt(String password){
 		try{
-			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"AES");
-			Cipher cipher=Cipher.getInstance("AES");
+			Key clef = new SecretKeySpec(this.key.getBytes("UTF-8"),"Blowfish");
+			Cipher cipher=Cipher.getInstance("Blowfish");
 			cipher.init(Cipher.DECRYPT_MODE,clef);
 			return new String(cipher.doFinal(password.getBytes()));
 		}
