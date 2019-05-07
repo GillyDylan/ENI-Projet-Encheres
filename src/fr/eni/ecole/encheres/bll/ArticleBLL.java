@@ -182,8 +182,10 @@ public class ArticleBLL implements BLL<Article>{
 				}
 				if(recherche.isParam3()) {
 					for( Article article : articles) {
-						if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur() && article.isTermine()) {
-							articlesFiltres.add(article);
+						if(article.getUtilisateurAchetant() != null) {
+							if(article.getUtilisateurAchetant().getIdUtilisateur() == utilisateur.getIdUtilisateur() && article.isTermine()) {
+								articlesFiltres.add(article);
+							}
 						}
 					}
 				}
