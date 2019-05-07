@@ -158,6 +158,7 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		System.out.println(utilisateur.getMotDePasseUtilisateur());
 		utilisateur.setMotDePasseUtilisateur(encrypt(utilisateur.getMotDePasseUtilisateur()));
 		System.out.println(utilisateur.getMotDePasseUtilisateur());
+		
 		if(!utilisateur.getTelephoneUtilisateur().trim().matches("(0|\\+33|0033)[1-9][0-9]{8}")) {
 			throw new BLLException(5001,"Téléphone invalide");
 		}
@@ -246,14 +247,20 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 	*
 	* Renvoie true si le mot de passe correspond,
 	* sinon false.
+	 * @throws DALException 
 	*/
-	public boolean checkMotDePasse(Utilisateur utilisateur, String motDePasse) {
-		if(motDePasse.equals(decrypt(utilisateur.getMotDePasseUtilisateur()))) {
-			return true;
+	public boolean checkMotDePasse(String login, String motDePasse) throws DALException {
+		boolean check = false;
+		List<Utilisateur> utilisateurs = this.getList();
+		for(Utilisateur utilisateur : utilisateurs) {
+			if(utilisateur.getPseudonymeUtilisateur().contentEquals(login)){
+				if(motDePasse.equals(decrypt(utilisateur.getMotDePasseUtilisateur()))) {
+					check = true;
+					return check;
+				}
+			}
 		}
-		else {
-			return false;
-		}
+		return check;
 	}
 
 
@@ -261,8 +268,9 @@ public class UtilisateurBLL implements BLL<Utilisateur>{
 		try{
 			Key clef = new SecretKeySpec(this.key.getBytes("ISO-8859-2"),"Blowfish");
 			Cipher cipher=Cipher.getInstance("Blowfish");
+			System.out.println(clef);
 			cipher.init(Cipher.ENCRYPT_MODE,clef);
-		return new String(cipher.doFinal(password.getBytes()));
+			return new String(cipher.doFinal(password.getBytes()));
 		}
 			catch (Exception e){
 				System.out.println(e.getMessage());
