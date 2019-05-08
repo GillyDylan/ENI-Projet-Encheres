@@ -3,6 +3,7 @@ package fr.eni.ecole.encheres.servlets;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,14 @@ public class ServletDeconnexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Cookie cookie = new Cookie("login", "");
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		cookie = new Cookie("mdp", "");
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		request.getSession().removeAttribute("utilisateur");
+		request.getRequestDispatcher("/WEB-INF/deconnexion.jsp").include(request, response);
 	}
 
 	/**

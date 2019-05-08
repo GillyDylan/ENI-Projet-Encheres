@@ -56,7 +56,6 @@ public class ServletAccueil extends HttpServlet {
 				}
 			}
 		}
-		System.out.println(login + " " + mdp);
 		try {
 			if(login != null && mdp !=null) {
 				//test si le decryptage est ok

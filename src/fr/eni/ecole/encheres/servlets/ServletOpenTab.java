@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.mail.iap.Response;
+
 /**
  * Servlet implementation class ServletOpenTab
  */
@@ -57,9 +59,7 @@ public class ServletOpenTab extends HttpServlet {
 			this.getServletContext().getNamedDispatcher("pagenouvellevente").include(request, response);
 			break;	
 		case "deconnexion":
-			eraseCookie(request, response);
-			request.getSession().removeAttribute("utilisateur");
-			request.getRequestDispatcher("/ServletAccueil").include(request, response);
+			request.getRequestDispatcher("/ServletDeconnexion").forward(request, response);
 			break;
 		case "administration":
 			request.getRequestDispatcher("/WEB-INF/administration.jsp").include(request, response);
@@ -69,16 +69,4 @@ public class ServletOpenTab extends HttpServlet {
 			break;
 		}
 	}
-
-	private void eraseCookie(HttpServletRequest req, HttpServletResponse resp) {
-		Cookie[] cookies = req.getCookies();
-		if (cookies != null)
-			for (Cookie cookie : cookies) {
-				cookie.setValue("");
-				cookie.setPath("/");
-				cookie.setMaxAge(0);
-				resp.addCookie(cookie);
-			}
-	}
-
 }

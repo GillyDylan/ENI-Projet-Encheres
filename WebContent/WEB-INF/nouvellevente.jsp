@@ -11,7 +11,7 @@
 		</h2>
 	</div>
 </div>
-<form id="formNouvelleVente">
+<form id="formNouvelleVente" method="post" action="nouvellevente" enctype="multipart/form-data">
 	<div class="form-group row">
 		<label for="article" class="col-sm-2 col-form-label">Article:</label>
 		<input type="text" class="form-control col-sm-10" id="article"
@@ -49,10 +49,10 @@
 		<fmt:formatDate var="timedeb" value="${now}" pattern="HH:mm" />
 		<label for="debutenchere" class="col-sm-2 col-form-label">Début
 			de l'enchère:</label> <input type="date" class="form-control col-sm-5"
-			id="debutencheredate" name="debutenchere" value="${datedeb}"
+			id="debutencheredate" name="debutencheredate" value="${datedeb}"
 			min="${datedeb}" required>
 			<input type="time" class="form-control col-sm-5"
-			id="debutencheretime" name="debutenchere" value="${timedeb}"
+			id="debutencheretime" name="debutencheretime" value="${timedeb}"
 			min="${timedeb}" required>
 	</div>
 	<div class="form-group row">
@@ -61,9 +61,9 @@
 		<fmt:formatDate var="timefin" value="${now}" pattern="HH:mm" />
 		<label for="finenchere" class="col-sm-2 col-form-label">Fin de
 			l'enchère:</label> <input type="date" class="form-control col-sm-5"
-			id="finencheredate" name="finenchere" value="${datedfin}" min="${datedfin}" required>
+			id="finencheredate" name="finencheredate" value="${datedfin}" min="${datedfin}" required>
 			<input type="time" class="form-control col-sm-5"
-			id="finencheretime" name="finenchere"value="${timefin}" min="${timefin}" required>
+			id="finencheretime" name="finencheretime"value="${timefin}" min="${timefin}" required>
 	</div>
 	<fieldset class="form-group">
 		<legend>Retrait</legend>
@@ -90,6 +90,7 @@
 		data-target="#modalValidationVente">Enregistrer</button>
 	<button type="button" class="btn btn-primary" onclick="openTab(this)"
 		name="accueil">Retour</button>
+		<input type="submit" value="TestUpload" />
 </form>
 
 <div class="modal fade" id="modalValidationVente" tabindex="-1"

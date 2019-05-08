@@ -61,7 +61,7 @@ function ajouterNouvelleVente(){
 		data : {
 			article : $('#article').val(),
 			description : $('#description').val(),
-			selectCategorie : $('#selectCategorieVente').val(),
+			selectCategorieVente : $('#selectCategorieVente').val(),
 			prix : $('#prix').val(),
 			debutencheredate : $('#debutencheredate').val(),
 			debutencheretime : $('#debutencheretime').val(),
@@ -263,7 +263,6 @@ function rechercheDetaillee(){
 
 $(document).ready(function() {
 	filtrerRecherche();
-	
 	$(".close").on("click", function(e){
 		$(".modal").modal("hide");
 		console.log("test");

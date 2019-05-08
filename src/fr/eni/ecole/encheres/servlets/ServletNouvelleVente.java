@@ -1,6 +1,8 @@
 package fr.eni.ecole.encheres.servlets;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -15,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,7 +70,7 @@ public class ServletNouvelleVente extends HttpServlet {
 				}
 				
 				for (Categorie categorie : categories) {
-					if(categorie.getIdCategorie() == Integer.parseInt(request.getParameter("selectCategorie").trim())) {
+					if(categorie.getIdCategorie() == Integer.parseInt(request.getParameter("selectCategorieVente").trim())) {
 						newArticle.setCategorie(categorie);
 					}
 				}
@@ -81,6 +84,17 @@ public class ServletNouvelleVente extends HttpServlet {
 				newArticle.setDateFinEncheresArticle(Date.from(ldtFin.atZone(ZoneId.systemDefault()).toInstant()));
 				Utilisateur vendeur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 				newArticle.setUtilisateurVendant(vendeur);
+				//photo
+				Part filePart = request.getPart("photo");
+				InputStream fileContent = filePart.getInputStream();
+				ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+				int nRead;
+				byte[] data = new byte[16384];
+				while((nRead = fileContent.read(data, 0, data.length)) != -1) {
+					buffer.write(data,0,nRead);
+				}
+				buffer.flush();
+				newArticle.setImageArticle(buffer.toByteArray());
 				
 				try {
 					BLLManager.getBLL(new Article()).set(newArticle);

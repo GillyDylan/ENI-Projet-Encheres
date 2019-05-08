@@ -58,6 +58,7 @@ public class ServletEncherir extends HttpServlet {
 			response.getWriter().write("Enchère acceptée.");
 		} catch (Exception e) {
 			response.getWriter().write("Erreur : " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
