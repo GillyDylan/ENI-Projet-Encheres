@@ -47,8 +47,10 @@ function ajouterNouvelleVente(){
 			description : $('#description').val(),
 			selectCategorie : $('#selectCategorieVente').val(),
 			prix : $('#prix').val(),
-			debutenchere : $('#debutenchere').val(),
-			finenchere : $('#finenchere').val()
+			debutencheredate : $('#debutencheredate').val(),
+			debutencheretime : $('#debutencheretime').val(),
+			finencheredate : $('#finencheredate').val(),
+			finencheretime : $('#finencheretime').val()
 		},
 		success : function(resultText) {
 			$('#modalMessage').html(resultText);
@@ -78,7 +80,7 @@ function retourAccueil(){
 			console.log('Error occured!!');
 		}
 	});
-	
+
 }
 
 function getDetails(id){
@@ -159,7 +161,7 @@ function modifierProfil(){
 			$('#butSauvegarder').toggle(false);
 		},
 		error : function(jqXHR, exception) {
-			
+
 		}
 	});
 }
@@ -245,6 +247,12 @@ function rechercheDetaillee(){
 
 $(document).ready(function() {
 	filtrerRecherche();
+	
+	$(".close").on("click", function(e){
+		$(".modal").modal("hide");
+		console.log("test");
+		e.stopPropagation();
+	});
 });
 
 function remplirSelectCategorieVente(){

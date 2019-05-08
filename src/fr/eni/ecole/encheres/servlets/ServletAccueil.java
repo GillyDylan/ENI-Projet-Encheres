@@ -34,7 +34,7 @@ public class ServletAccueil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Article> articles = null;
 		List<Categorie> categories = null;
-		try {
+		try {	
 			articles = ((ArticleBLL) BLLManager.getBLL(new Article())).getList();
 			categories = DAOFactory.getDAO(new Categorie()).selectAll();
 		} catch (DALException e) {
@@ -42,7 +42,9 @@ public class ServletAccueil extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("articles", articles);
+		if(articles.size() > 0) {
+			request.setAttribute("articles", articles);
+		}
 		request.setAttribute("categories", categories);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");

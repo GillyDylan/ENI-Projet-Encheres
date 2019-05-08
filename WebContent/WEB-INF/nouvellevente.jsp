@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java"
 	import="java.util.*,java.lang.*, java.time.LocalDate, fr.eni.ecole.encheres.bo.Article, fr.eni.ecole.encheres.bo.Categorie, fr.eni.ecole.encheres.bo.Utilisateur"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -43,20 +44,26 @@
 			placeholder="Prix de départ" name="prix" required>
 	</div>
 	<div class="form-group row">
-		<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 		<jsp:useBean id="now" class="java.util.Date" />
 		<fmt:formatDate var="datedeb" value="${now}" pattern="yyyy-MM-dd" />
-		<%-- <fmt:formatDate var="timedeb" value="${now}" pattern = "HH:mm"/> --%>
+		<fmt:formatDate var="timedeb" value="${now}" pattern="HH:mm" />
 		<label for="debutenchere" class="col-sm-2 col-form-label">Début
-			de l'enchère:</label> <input type="date" class="form-control col-sm-10"
-			id="debutenchere" name="debutenchere" value="${datedeb}"
+			de l'enchère:</label> <input type="date" class="form-control col-sm-5"
+			id="debutencheredate" name="debutenchere" value="${datedeb}"
 			min="${datedeb}" required>
+			<input type="time" class="form-control col-sm-5"
+			id="debutencheretime" name="debutenchere" value="${timedeb}"
+			min="${timedeb}" required>
 	</div>
 	<div class="form-group row">
+		<jsp:setProperty name="now" property="time" value="${now.time + (24*60*60*1000)}"/>
+		<fmt:formatDate var="datedfin" value="${now}" pattern="yyyy-MM-dd" />
+		<fmt:formatDate var="timefin" value="${now}" pattern="HH:mm" />
 		<label for="finenchere" class="col-sm-2 col-form-label">Fin de
-			l'enchère:</label> <input type="date" class="form-control col-sm-10"
-			id="finenchere" name="finenchere" value="${datedeb}" min="${datedeb}"
-			required>
+			l'enchère:</label> <input type="date" class="form-control col-sm-5"
+			id="finencheredate" name="finenchere" value="${datedfin}" min="${datedfin}" required>
+			<input type="time" class="form-control col-sm-5"
+			id="finencheretime" name="finenchere"value="${timefin}" min="${timefin}" required>
 	</div>
 	<fieldset class="form-group">
 		<legend>Retrait</legend>

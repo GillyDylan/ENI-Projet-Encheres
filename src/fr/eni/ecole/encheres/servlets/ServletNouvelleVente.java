@@ -2,6 +2,11 @@ package fr.eni.ecole.encheres.servlets;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Iterator;
 import java.util.List;
 
@@ -70,8 +75,10 @@ public class ServletNouvelleVente extends HttpServlet {
 				newArticle.setNomArticle(request.getParameter("article"));
 				newArticle.setDescriptionArticle(request.getParameter("description"));
 				newArticle.setPrixInitialArticle(Integer.valueOf(request.getParameter("prix")));
-				newArticle.setDateDebutEncheresArticle(Date.valueOf(request.getParameter("debutenchere")));
-				newArticle.setDateFinEncheresArticle(Date.valueOf(request.getParameter("finenchere")));
+				LocalDateTime ldtDebut = LocalDateTime.parse(request.getParameter("debutencheredate") + "T" + request.getParameter("debutencheretime"));
+				newArticle.setDateDebutEncheresArticle(Date.from(ldtDebut.atZone(ZoneId.systemDefault()).toInstant()));
+				LocalDateTime ldtFin = LocalDateTime.parse(request.getParameter("finencheredate") + "T" + request.getParameter("finencheretime"));
+				newArticle.setDateFinEncheresArticle(Date.from(ldtFin.atZone(ZoneId.systemDefault()).toInstant()));
 				Utilisateur vendeur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 				newArticle.setUtilisateurVendant(vendeur);
 				
