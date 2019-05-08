@@ -67,9 +67,10 @@ public class ServletConnexion extends HttpServlet {
 								if(utilisateur != null) {
 									mdp = utilisateur.getMotDePasseUtilisateur();
 									Cookie cookiePseudo = new Cookie("login", login);
-									response.setContentType("UTF-8");
+									cookiePseudo.setMaxAge(7*24*60*60);
 									response.addCookie(cookiePseudo);
 									Cookie cookieMdp = new Cookie("mdp", mdp);
+									cookieMdp.setMaxAge(7*24*60*60);
 									response.addCookie(cookieMdp);
 								}
 							}
