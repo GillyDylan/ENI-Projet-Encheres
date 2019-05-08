@@ -38,6 +38,22 @@ function connexion() {
 	});
 }
 
+function envoieMailMDP() {
+	$.ajax({
+		url : 'envoiemail',
+		method : 'POST',
+		data : {
+			pseudo : $('#pseudopourmdp').val()
+		},
+		success : function(resultText) {
+			$('#messageMDP').html(resultText);
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
 function ajouterNouvelleVente(){
 	$.ajax({
 		url : 'nouvellevente',

@@ -148,12 +148,20 @@
     <servlet-name>supprimerEnchere</servlet-name>
     <url-pattern>/supprimerEnchere</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>rechercheDetaillee</servlet-name>
     <servlet-class>fr.eni.ecole.encheres.servlets.ServletRechercheDetaillee</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>rechercheDetaillee</servlet-name>
     <url-pattern>/rechercheDetaillee</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>envoiemail</servlet-name>
+    <servlet-class>fr.eni.ecole.encheres.servlets.ServletMail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>envoiemail</servlet-name>
+    <url-pattern>/envoiemail</url-pattern>
   </servlet-mapping>
 </web-app>

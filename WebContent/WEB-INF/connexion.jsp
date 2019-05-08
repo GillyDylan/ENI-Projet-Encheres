@@ -12,6 +12,9 @@
 		<label for="mdp">Mot de passe:</label> <input type="password"
 			class="form-control" id="mdp">
 	</div>
+	<div class="form-group">
+		<a class="nav-link" href="#" onclick="openTab(this)" name="mdpoublie">Mot de passe oublié.</a>
+	</div>
 	<div class="form-group form-check">
 		<label class="form-check-label"> <input
 			class="form-check-input" type="checkbox" id="seSouvenirDeMoi">Se souvenir de moi
