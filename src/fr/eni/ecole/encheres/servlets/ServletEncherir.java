@@ -56,7 +56,7 @@ public class ServletEncherir extends HttpServlet {
 			BLLManager.getBLL(new Enchere()).set(nouvelleEnchere);
 			BLLManager.getBLL(new Article()).set(article);
 			response.getWriter().write("Enchère acceptée.");
-		} catch (DALException | BLLException e) {
+		} catch (Exception e) {
 			response.getWriter().write("Erreur : " + e.getMessage());
 		}
 	}

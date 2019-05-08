@@ -7,27 +7,42 @@
 	fr.eni.ecole.encheres.bo.Utilisateur"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<div class="row d-flex">
-	<c:forEach var="article" items="${rechercheDetaille}">
-		<div class="col-12 col-lg-4">
-			<div class="card">
-				<div class="card-body">
-					<h4 class="card-title">${article.getNomArticle()}</h4>
-					<p class="card-text">Prix : ${article.getPrixInitialArticle() }
-						points</p>
-					<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-					<fmt:formatDate var="date"
-						value="${article.getDateFinEncheresArticle()}"
-						pattern="dd MMM YYYY" />
-					<p class="card-text">Fin de l'enchere : ${date }</p>
-					<p class="card-text">Vendeur :</p>
-					<p class="card-text">${article.getUtilisateurVendant().getPrenomUtilisateur()}
-						${article.getUtilisateurVendant().getNomUtilisateur()}</p>
-					<input type="button"
-						onclick="getDetails(${article.getIdArticle()})"
-						class="btn btn-primary" value="Détails" />
+<c:if test="${articlesRecherchees.size() > 0}">
+	<div class="row d-flex justify-content-center m-2">
+		<button type="button" class="btn btn-primary btn-sm"
+			onclick="precedentListeArticles()"><<</button>
+		<span class="btn btn-primary"> ${rechercheDebut + 1} - ${ (rechercheDebut + 3) > articlesRecherchees.size() ? articlesRecherchees.size() : rechercheDebut + 3 }</span>
+		<button type="button" class="btn btn-primary btn-sm"
+			onclick="suivantListeArticles()">>></button>
+	</div>
+	<div class="row d-flex">
+		<c:forEach var="article" items="${articlesRecherchees}"
+			begin="${rechercheDebut}" end="${rechercheDebut + 2}">
+			<div class="col-12 col-lg-4">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">${article.getNomArticle()}</h4>
+						<p class="card-text">Prix : ${article.getPrixInitialArticle() }
+							points</p>
+						<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+						<fmt:formatDate var="date"
+							value="${article.getDateFinEncheresArticle()}"
+							pattern="dd MMM YYYY" />
+						<p class="card-text">Fin de l'enchere : ${date }</p>
+						<p class="card-text">Vendeur :</p>
+						<p class="card-text">${article.getUtilisateurVendant().getPrenomUtilisateur()}
+							${article.getUtilisateurVendant().getNomUtilisateur()}</p>
+						<input type="button"
+							onclick="getDetails(${article.getIdArticle()})"
+							class="btn btn-primary" value="Détails" />
+					</div>
 				</div>
 			</div>
-		</div>
-	</c:forEach>
-</div>
+		</c:forEach>
+	</div>
+</c:if>
+<c:if test="${articlesRecherchees.size() <= 0}">
+	<div class="alert alert-primary m-2" role="alert">La recherche n'a
+		retournée aucun résultat.</div>
+
+</c:if>

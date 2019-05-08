@@ -77,26 +77,16 @@
 </form>
 
 <div id="recherche">
-	<c:set var="articles" scope="session" value="${articles}" />
-	<c:set var="totalCount" scope="session" value="${articles.size()}" />
-	<c:set var="perPage" scope="session" value="3" />
-	<c:set var="pageStart" value="${param.start}" />
-	<c:if test="${empty pageStart or pageStart < 0}">
-		<c:set var="pageStart" value="0" />
-	</c:if>
-	<c:if test="${totalCount < pageStart}">
-		<c:set var="pageStart" value="${pageStart - 3}" />
-	</c:if>
 	<c:if test="${articles.size() > 0}">
 		<div class="row d-flex justify-content-center m-2">
-			<a href="?start=${pageStart - 3}" class="btn btn-primary btn-sm"
-				onclick="test()"><<</a> <span class="btn btn-primary">${pageStart + 1}-
-				${pageStart + 3} </span> <a href="?start=${pageStart + 3}"
-				class="btn btn-primary btn-sm" onclick="pageSuivante()">>></a>
+			<button type="button" class="btn btn-primary btn-sm"
+				onclick="precedentListeArticles()"><<</button>
+			<span class="btn btn-primary">1 - 3</span>
+			<button type="button" class="btn btn-primary btn-sm"
+				onclick="suivantListeArticles()">>></button>
 		</div>
 		<div class="row d-flex">
-			<c:forEach var="article" items="${articles}" begin="${pageStart}"
-				end="${pageStart + perPage - 1}">
+			<c:forEach var="article" items="${articles}" begin="0" end="2">
 				<div class="col-12 col-lg-4">
 					<div class="card">
 						<div class="card-body">
@@ -121,6 +111,10 @@
 				</div>
 			</c:forEach>
 		</div>
+	</c:if>
+	<c:if test="${articles.size() <= 0}">
+		<div class="alert alert-primary m-2" role="alert">La recherche
+			n'a retournée aucun résultat.</div>
 	</c:if>
 </div>
 

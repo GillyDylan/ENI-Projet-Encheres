@@ -239,7 +239,7 @@ function rechercheDetaillee(){
 		var isAchat = true;
 	}
 	$.ajax({
-		url : 'rechercheDetaillee',
+		url : 'rechercheDetaillee?action=charger',
 		method : 'GET',
 		data : {
 			strRecherche : $('#strRecherche').val(),
@@ -302,6 +302,32 @@ function remplirSelectCategorieAccueil(){
 			$.each(resultText, function(val, text) {
 				options[options.length] = new Option(text.libelleCategorie, text.idCategorie);
 			});
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+function suivantListeArticles(){
+	$.ajax({
+		url : 'rechercheDetaillee?action=suivant',
+		method : 'GET',
+		success : function(resultText) {
+			$('#recherche').html(resultText);
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+function precedentListeArticles(){
+	$.ajax({
+		url : 'rechercheDetaillee?action=precedent',
+		method : 'GET',
+		success : function(resultText) {
+			$('#recherche').html(resultText);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
