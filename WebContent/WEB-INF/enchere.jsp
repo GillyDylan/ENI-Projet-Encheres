@@ -41,7 +41,7 @@
 						</td>
 					</tr>
 					<td>Mise à prix</td>
-					<td>${articleDetails.getPrixInitialArticle()}points</td>
+					<td>${articleDetails.getPrixInitialArticle()} points</td>
 					</tr>
 					<tr>
 						<td>Fin de l'enchere</td>
@@ -49,7 +49,10 @@
 						<fmt:formatDate var="date"
 							value="${articleDetails.getDateFinEncheresArticle()}"
 							pattern="dd MMM YYYY" />
-						<td>${date}</td>
+						<fmt:formatDate var="time"
+							value="${articleDetails.getDateFinEncheresArticle()}"
+							pattern="HH:mm" />
+						<td>${date} à ${time}</td>
 					</tr>
 					<tr>
 						<td>Retrait</td>

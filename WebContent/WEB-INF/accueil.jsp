@@ -78,8 +78,7 @@
 
 <div id="recherche">
 	<c:set var="articles" scope="session" value="${articles}" />
-	<c:set var="totalCount" scope="session"
-		value="${articles.size()}" />
+	<c:set var="totalCount" scope="session" value="${articles.size()}" />
 	<c:set var="perPage" scope="session" value="3" />
 	<c:set var="pageStart" value="${param.start}" />
 	<c:if test="${empty pageStart or pageStart < 0}">
@@ -96,8 +95,8 @@
 				class="btn btn-primary btn-sm" onclick="pageSuivante()">>></a>
 		</div>
 		<div class="row d-flex">
-			<c:forEach var="article" items="${articles}"
-				begin="${pageStart}" end="${pageStart + perPage - 1}">
+			<c:forEach var="article" items="${articles}" begin="${pageStart}"
+				end="${pageStart + perPage - 1}">
 				<div class="col-12 col-lg-4">
 					<div class="card">
 						<div class="card-body">
@@ -108,7 +107,9 @@
 							<fmt:formatDate var="date"
 								value="${article.getDateFinEncheresArticle()}"
 								pattern="dd MMM YYYY" />
-							<p class="card-text">Fin de l'enchere : ${date }</p>
+							<fmt:formatDate var="time"
+								value="${article.getDateFinEncheresArticle()}" pattern="HH:mm" />
+							<p class="card-text">Fin de l'enchere : ${date} à ${time}</p>
 							<p class="card-text">Vendeur :</p>
 							<p class="card-text">${article.getUtilisateurVendant().getPrenomUtilisateur()}
 								${article.getUtilisateurVendant().getNomUtilisateur()}</p>
