@@ -14,10 +14,10 @@
 </div>
 <c:if test="${articleDetails != null }">
 	<div class="row">
-		<div class="col-3">
-			<img src="data:image/jpg;base64,${articleDetails.getImageArticle() }" width="200px" height="200px"/>
+		<div class="col-sm-3">
+			<img src="data:image/jpg;base64,${articleDetails.getImageArticle() }" class="img-fluid" alt="Responsive image"/>
 		</div>
-		<div class="col-5">
+		<div class="col-sm-5">
 			<table class="table table-borderless">
 				<thead>
 					<tr colspan="3">
@@ -143,7 +143,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-4">
+		<div class="col-sm-4">
 			<table class="table table-striped">
 				<thead>
 					<tr>

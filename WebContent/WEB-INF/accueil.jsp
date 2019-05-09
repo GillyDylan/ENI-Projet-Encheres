@@ -96,10 +96,8 @@
 				begin="${rechercheDebutAccueil}" end="${rechercheDebutAccueil + 2}">
 				<div class="col-12 col-lg-4">
 					<div class="card" style="width: 18rem;">
-						<c:if test="${article.getImageArticle()}">
-							<img src="data:image/jpg;base64,${article.getImageArticle() }"
-								class="card-img-top" />
-						</c:if>
+						<img src="data:image/jpg;base64,${article.getImageArticle() }"
+							class="card-img-top" />
 						<div class="card-body">
 							<h4 class="card-title">${article.getNomArticle()}</h4>
 							<p class="card-text">Prix : ${article.getPrixInitialArticle() }

@@ -40,7 +40,7 @@ public class ServletSupprimerEnchere extends HttpServlet {
 		Article article = (Article) request.getSession().getAttribute("article"); 
 		response.setContentType("text/plain");
 		try {
-			response.getWriter().write("Enchère supprimée.");
+			//response.getWriter().write("Enchère supprimée.");
 			BLLManager.getBLL(new Article()).delete(article);
 			response.getWriter().write("Enchère supprimée.");
 		} catch (DALException | BLLException e) {

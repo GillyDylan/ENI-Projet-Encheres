@@ -47,7 +47,6 @@ public class ServletModifierProfil extends HttpServlet {
 		((Utilisateur)request.getSession().getAttribute("utilisateur")).setVilleUtilisateur(request.getParameter("ville").trim());
 		((Utilisateur)request.getSession().getAttribute("utilisateur")).setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal").trim()));
 		response.setContentType("text/plain");
-
 			DAOFactory.getDAO(new Utilisateur()).update((Utilisateur)request.getSession().getAttribute("utilisateur"));
 			response.getWriter().write("Les modifications ont bien été enregistrées.");
 		} catch (DALException | BLLException e) {
