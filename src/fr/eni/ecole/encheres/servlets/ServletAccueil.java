@@ -84,6 +84,7 @@ public class ServletAccueil extends HttpServlet {
 		if(articles.size() > 0) {
 			request.getSession().setAttribute("articlesRecherchees", articles);
 		}
+		request.getSession().setAttribute("rechercheDebutAccueil", 0);
 		request.setAttribute("categories", categories);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");

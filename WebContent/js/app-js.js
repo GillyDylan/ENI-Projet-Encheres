@@ -264,6 +264,7 @@ function rechercheDetaillee(){
 
 $(document).ready(function() {
 	filtrerRecherche();
+	chargerListeArticles();
 });
 
 function remplirSelectCategorieVente(){
@@ -320,6 +321,19 @@ function suivantListeArticles(){
 function precedentListeArticles(){
 	$.ajax({
 		url : 'rechercheDetaillee?action=precedent',
+		method : 'GET',
+		success : function(resultText) {
+			$('#recherche').html(resultText);
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+function chargerListeArticles(){
+	$.ajax({
+		url : 'rechercheDetaillee?action=accueil',
 		method : 'GET',
 		success : function(resultText) {
 			$('#recherche').html(resultText);

@@ -81,12 +81,12 @@
 		<div class="row d-flex justify-content-center m-2">
 			<button type="button" class="btn btn-primary btn-sm"
 				onclick="precedentListeArticles()"><<</button>
-			<span class="btn btn-primary">1 - 3</span>
+			<span class="btn btn-primary"> ${rechercheDebutAccueil + 1} - ${ (rechercheDebutAccueil + 3) > articlesRecherchees.size() ? articlesRecherchees.size() : rechercheDebutAccueil + 3 }</span>
 			<button type="button" class="btn btn-primary btn-sm"
 				onclick="suivantListeArticles()">>></button>
 		</div>
 		<div class="row d-flex">
-			<c:forEach var="article" items="${articlesRecherchees}" begin="0" end="2">
+			<c:forEach var="article" items="${articlesRecherchees}" begin="${rechercheDebutAccueil}" end="${rechercheDebutAccueil + 2}">
 				<div class="col-12 col-lg-4">
 					<div class="card">
 						<div class="card-body">

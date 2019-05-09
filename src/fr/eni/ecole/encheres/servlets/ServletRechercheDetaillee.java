@@ -37,7 +37,11 @@ public class ServletRechercheDetaillee extends HttpServlet {
 		List<Article> articlesRecherchees = null;
 		response.setCharacterEncoding("UTF-8");
 		if(action.equals("charger")) {
+			
 			String filtre = request.getParameter("strRecherche");
+			if(filtre.equals("all")) {
+				filtre = null;
+			}
 
 			List<Categorie> categories = null;
 			try {
@@ -133,6 +137,25 @@ public class ServletRechercheDetaillee extends HttpServlet {
 				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/articlesRecherchees.jsp");  
 				rd.include(request, response);
 			}
+		}else {
+			List<Article> articles = null;
+			try {
+				articles = ((ArticleBLL) BLLManager.getBLL(new Article())).getList();
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(articles.size() > 0) {
+				request.getSession().setAttribute("articlesRecherchees", articles);
+			}
+			
+			if(request.getSession().getAttribute("rechercheDebut") == null) {
+				//on commence à 0
+				request.getSession().setAttribute("rechercheDebut", 0);
+			}
+			
+			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/articlesRecherchees.jsp");  
+			rd.include(request, response);
 		}
 	}
 
