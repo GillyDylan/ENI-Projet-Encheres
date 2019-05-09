@@ -26,7 +26,7 @@
 					<img src="data:image/jpg;base64,${article.getImageArticle() }" class="card-img-top"/>
 				</c:if>
 				<c:if test="${empty article.getImageArticle()}">
-					<img src="" class="card-img-top"/>
+					<img src="img/photo_non_disponible.jpg" class="card-img-top"/>
 				</c:if>
 				
 					<div class="card-body">
