@@ -36,7 +36,7 @@
 	<div class="form-group row">
 		<label for="photo" class="col-sm-2 col-form-label">Photo de
 			l'article:</label> <input type="file"
-			class="form-control-file border col-sm-10" id="photo" name="photo">
+			class="form-control-file col-sm-10" id="photo" name="photo" accept=".gif,.jpg,.jpeg,.png,.bmp">
 	</div>
 	<div class="form-group row">
 		<label for="prix" class="col-sm-2 col-form-label">Mise à prix:</label>

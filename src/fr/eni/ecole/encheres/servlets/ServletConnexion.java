@@ -84,7 +84,7 @@ public class ServletConnexion extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/connexion.jsp").include(request, response);			
 			}
 		} catch (Exception e) {
-			request.setAttribute("erreurConnexion", e.getMessage());
+			request.setAttribute("erreurConnexion", "Erreur de connexion");
 			request.getRequestDispatcher("/WEB-INF/connexion.jsp").include(request, response);			
 		}
 	}
