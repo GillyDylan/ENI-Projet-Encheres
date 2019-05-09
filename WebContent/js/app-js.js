@@ -305,6 +305,24 @@ function remplirSelectCategorieAccueil(){
 	});
 }
 
+function selectAdministrationUtilisateur(){
+	$.ajax({
+		url : 'ServletSelectUtilisateurs',
+		method : 'GET',
+		success : function(resultText) {
+			var selectAdministrationUtilisateur = $('#selectAdministrationUtilisateur');
+			options = selectAdministrationUtilisateur.prop('options');
+			$('option', selectAdministrationUtilisateur).remove();
+			$.each(resultText, function(val, text) {
+				options[options.length] = new Option(text.pseudonymeUtilisateur, text.idUtilisateur);
+			});
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
 function suivantListeArticles(){
 	$.ajax({
 		url : 'rechercheDetaillee?action=suivant',
@@ -337,6 +355,24 @@ function chargerListeArticles(){
 		method : 'GET',
 		success : function(resultText) {
 			$('#recherche').html(resultText);
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+function administration(el){
+	$.ajax({
+		url : 'administration',
+		data : {
+			type : el.name,
+			idUtilisateur : $('#selectAdministrationUtilisateur').val()
+		},
+		method : 'POST',
+		success : function(resultText) {
+			$('#messageAdministrationUtilisateur').prop('hidden', false);
+			$('#messageAdministrationUtilisateur').html(resultText);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');
