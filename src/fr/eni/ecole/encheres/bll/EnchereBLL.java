@@ -86,24 +86,22 @@ public class EnchereBLL implements BLL<Enchere>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Ajoute l'ench�re.
+	* Ajoute l'enchère.
 	*/
 	@Override
 	public void set(Enchere enchere) throws BLLException, DALException {
 		// TODO Auto-generated method stub
-
 		List<Enchere> encheres = DAOFactory.getDAO(new Enchere()).selectAll();
 		if(encheres.size() != 0) {
-	
 			for(Enchere oldEnchere : encheres) {
 				if(enchere.getArticle().getIdArticle() == oldEnchere.getArticle().getIdArticle() && enchere.getMontantEnchere() <= oldEnchere.getMontantEnchere()) {
 					throw new BLLException(3000,"Il existe déjà une enchère plus elevée pour cet article");
 				}
 			}
-		}
-		Enchere oldEnchere = this.get(enchere.getArticle().getIdArticle());
-		if(enchere.getArticle().getUtilisateurAchetant().getIdUtilisateur() == oldEnchere.getArticle().getUtilisateurAchetant().getIdUtilisateur()) {
-			throw new BLLException(3001, "Vous êtes déjà le meilleur enchérisseur");
+			Enchere oldEnchere = this.get(enchere.getArticle().getIdArticle());
+			if(enchere.getArticle().getUtilisateurAchetant().getIdUtilisateur() == oldEnchere.getArticle().getUtilisateurAchetant().getIdUtilisateur()) {
+				throw new BLLException(3001, "Vous êtes déjà le meilleur enchérisseur");
+			}
 		}
 		DAOFactory.getDAO(new Enchere()).insert(enchere);
 	}
@@ -114,7 +112,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	* @author ${Dylan Gilly}
 	*
 	* Supprime l'ench�re.
-	* Ordre des param�tres : IdArticle, IdUtilisateur, dateEnchere
+	* Ordre des paramètres : IdArticle, IdUtilisateur, dateEnchere
 	*/
 	@Override
 	public void delete(Enchere enchere) throws DALException, BLLException {
