@@ -246,12 +246,12 @@ function rechercheDetaillee(){
 			strRecherche : $('#strRecherche').val(),
 			categorie : $('#selectCategorieAccueil').val(),
 			isAchat : isAchat,
-			encheresOuvertes : $('#chkEncheresOuvertes').attr( "checked" ),
-			encheresEnCours : $('#chkEncheresEnCours').attr( "checked" ),
-			encheresRemportees :$('#chkEncheresRemportees').attr( "checked" ),
-			venteEnCours : $('#chkVentesEnCours').attr( "checked" ),
-			venteNonDebutees : $('#chkVentesNonDebutees').attr( "checked" ),
-			ventesTerminees : $('#chkVentesTerminees').attr( "checked" )
+			encheresOuvertes : $('#chkEncheresOuvertes').prop( "checked" ),
+			encheresEnCours : $('#chkEncheresEnCours').prop( "checked" ),
+			encheresRemportees :$('#chkEncheresRemportees').prop( "checked" ),
+			venteEnCours : $('#chkVentesEnCours').prop( "checked" ),
+			venteNonDebutees : $('#chkVentesNonDebutees').prop( "checked" ),
+			ventesTerminees : $('#chkVentesTerminees').prop( "checked" )
 		},
 		success : function(resultText) {
 			$('#recherche').html(resultText);
