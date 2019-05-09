@@ -26,6 +26,7 @@
 				<c:if test="${empty article.getImageArticle()}">
 					<img src="" class="card-img-top"/>
 				</c:if>
+				
 					<div class="card-body">
 						<h4 class="card-title">${article.getNomArticle()}</h4>
 						<p class="card-text">Prix : ${article.getPrixInitialArticle() }
