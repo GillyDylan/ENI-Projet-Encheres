@@ -22,13 +22,9 @@
 			begin="${rechercheDebut}" end="${rechercheDebut + 2}">
 			<div class="col-12 col-lg-4">
 				<div class="card" style="width: 18rem;">
-				<c:if test="${!empty article.getImageArticle()}">
+				<c:if test="${article.getImageArticle()}">
 					<img src="data:image/jpg;base64,${article.getImageArticle() }" class="card-img-top"/>
 				</c:if>
-				<c:if test="${empty article.getImageArticle()}">
-					<img src="img/photo_non_disponible.jpg" class="card-img-top"/>
-				</c:if>
-				
 					<div class="card-body">
 						<h4 class="card-title">${article.getNomArticle()}</h4>
 						<p class="card-text">Prix : ${article.getPrixInitialArticle() }

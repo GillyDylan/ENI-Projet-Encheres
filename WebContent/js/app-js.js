@@ -218,9 +218,9 @@ function supprimerEnchere(){
 		url : 'supprimerEnchere',
 		method : 'POST',
 		success : function(resultText) {
-			$('#modalMessage').html(resultText);
-			$('#butAnnuler').toggle(false);
-			$('#butSauvegarder').toggle(false);
+			$('#modalMessageSuppressionEnchere').html(resultText);
+			$('#butAnnulerSuppressionEnchere').toggle(false);
+			$('#butSauvegarderSuppressionEnchere').toggle(false);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');

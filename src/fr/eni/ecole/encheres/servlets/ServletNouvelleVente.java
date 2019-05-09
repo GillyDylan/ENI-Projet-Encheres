@@ -1,6 +1,7 @@
 package fr.eni.ecole.encheres.servlets;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
@@ -62,48 +63,48 @@ public class ServletNouvelleVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-				Article newArticle = new Article();
-				
-				request.setCharacterEncoding("UTF-8");
-				response.setContentType("text/html; charset=UTF-8");
-				
-				List<Categorie> categories = null;
-				try {
-					categories = BLLManager.getBLL(new Categorie()).getList();
-				} catch (DALException e) {
-					e.printStackTrace();
-				}
-				for (Categorie categorie : categories) {
-					if(categorie.getIdCategorie() == Integer.parseInt(request.getParameter("selectCategorieVente").trim())) {
-						newArticle.setCategorie(categorie);
-					}
-				}
-				newArticle.setNomArticle(request.getParameter("article"));
-				newArticle.setDescriptionArticle(request.getParameter("description"));
-				newArticle.setPrixInitialArticle(Integer.valueOf(request.getParameter("prix")));
-				LocalDateTime ldtDebut = LocalDateTime.parse(request.getParameter("debutencheredate") + "T" + request.getParameter("debutencheretime"));
-				newArticle.setDateDebutEncheresArticle(Date.from(ldtDebut.atZone(ZoneId.systemDefault()).toInstant()));
-				LocalDateTime ldtFin = LocalDateTime.parse(request.getParameter("finencheredate") + "T" + request.getParameter("finencheretime"));
-				newArticle.setDateFinEncheresArticle(Date.from(ldtFin.atZone(ZoneId.systemDefault()).toInstant()));
-				Utilisateur vendeur = (Utilisateur) request.getSession().getAttribute("utilisateur");
-				newArticle.setUtilisateurVendant(vendeur);
-				//photo
-				Part filePart = request.getPart("photo");
-				InputStream fileContent = filePart.getInputStream();
-				ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-				int nRead;
-				byte[] data = new byte[16384];
-				while((nRead = fileContent.read(data, 0, data.length)) != -1) {
-					buffer.write(data,0,nRead);
-				}
-				buffer.flush();
-				newArticle.setImageArticle(buffer.toByteArray());
-				
-				try {
-					BLLManager.getBLL(new Article()).set(newArticle);
-					response.getWriter().write("Produit ajouté à la liste des enchères.");
-				} catch (DALException | BLLException e) {
-					response.getWriter().write(e.getMessage());
-				}
+		Article newArticle = new Article();
+
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+
+		List<Categorie> categories = null;
+		try {
+			categories = BLLManager.getBLL(new Categorie()).getList();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		for (Categorie categorie : categories) {
+			if(categorie.getIdCategorie() == Integer.parseInt(request.getParameter("selectCategorieVente").trim())) {
+				newArticle.setCategorie(categorie);
+			}
+		}
+		newArticle.setNomArticle(request.getParameter("article"));
+		newArticle.setDescriptionArticle(request.getParameter("description"));
+		newArticle.setPrixInitialArticle(Integer.valueOf(request.getParameter("prix")));
+		LocalDateTime ldtDebut = LocalDateTime.parse(request.getParameter("debutencheredate") + "T" + request.getParameter("debutencheretime"));
+		newArticle.setDateDebutEncheresArticle(Date.from(ldtDebut.atZone(ZoneId.systemDefault()).toInstant()));
+		LocalDateTime ldtFin = LocalDateTime.parse(request.getParameter("finencheredate") + "T" + request.getParameter("finencheretime"));
+		newArticle.setDateFinEncheresArticle(Date.from(ldtFin.atZone(ZoneId.systemDefault()).toInstant()));
+		Utilisateur vendeur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		newArticle.setUtilisateurVendant(vendeur);
+		//photo
+		Part filePart = request.getPart("photo");
+		InputStream fileContent = filePart.getInputStream();
+		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+		int nRead;
+		byte[] data = new byte[16384];
+		while((nRead = fileContent.read(data, 0, data.length)) != -1) {
+			buffer.write(data,0,nRead);
+		}
+		buffer.flush();
+		newArticle.setImageArticle(buffer.toByteArray());
+
+		try {
+			BLLManager.getBLL(new Article()).set(newArticle);
+			response.getWriter().write("Produit ajouté à la liste des enchères.");
+		} catch (DALException | BLLException e) {
+			response.getWriter().write(e.getMessage());
+		}
 	}
 }

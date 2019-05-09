@@ -14,7 +14,10 @@
 </div>
 <c:if test="${articleDetails != null }">
 	<div class="row">
-		<div class="col-8">
+		<div class="col-3">
+			<img src="data:image/jpg;base64,${articleDetails.getImageArticle() }" width="200px" height="200px"/>
+		</div>
+		<div class="col-5">
 			<table class="table table-borderless">
 				<thead>
 					<tr colspan="3">
@@ -125,13 +128,13 @@
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									<div class="modal-body" id="modalMessage">Etes-vous sûr
+									<div class="modal-body" id="modalMessageSuppressionEnchere">Etes-vous sûr
 										de vouloir supprimer cette enchère?</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
-											id="butAnnuler" data-dismiss="modal">Annuler</button>
+											id="butAnnulerSuppressionEnchere" data-dismiss="modal">Annuler</button>
 										<button type="button" class="btn btn-primary"
-											id="butSauvegarder" onclick="supprimerEnchere()">Supprimer</button>
+											id="butSauvegarderSuppressionEnchere" onclick="supprimerEnchere()">Supprimer</button>
 									</div>
 								</div>
 							</div>
