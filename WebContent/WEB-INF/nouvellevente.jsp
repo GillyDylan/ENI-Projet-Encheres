@@ -11,7 +11,7 @@
 		</h2>
 	</div>
 </div>
-<form id="formNouvelleVente" method="post" action="nouvellevente" enctype="multipart/form-data">
+<form id="formNouvelleVente" enctype="multipart/form-data">
 	<div class="form-group row">
 		<label for="article" class="col-sm-2 col-form-label">Article:</label>
 		<input type="text" class="form-control col-sm-10" id="article"
@@ -90,7 +90,6 @@
 		data-target="#modalValidationVente">Enregistrer</button>
 	<button type="button" class="btn btn-primary" onclick="openTab(this)"
 		name="accueil">Retour</button>
-		<input type="submit" value="TestUpload" />
 </form>
 
 <div class="modal fade" id="modalValidationVente" tabindex="-1"
