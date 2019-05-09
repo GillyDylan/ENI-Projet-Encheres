@@ -44,7 +44,12 @@ public class Article {
 	private byte[] imageArticle;
 
 	public String getImageArticle() {
-		return Base64.getEncoder().encodeToString(this.imageArticle);
+		if(this.imageArticle != null) {
+			return Base64.getEncoder().encodeToString(this.imageArticle);
+		}
+		else {
+			return null;
+		}
 	}
 
 	public void setImageArticle(byte[] imageArticle) {

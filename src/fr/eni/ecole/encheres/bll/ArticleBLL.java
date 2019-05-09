@@ -221,7 +221,7 @@ public class ArticleBLL implements BLL<Article>{
 		// TODO Auto-generated method stub
 		if(article.getNomArticle().trim() == "" || article.getNomArticle() == null ||
 				article.getDescriptionArticle().trim() == "" || article.getDescriptionArticle() == null ||
-				article.getPrixInitialArticle() == 0) {
+				article.getPrixInitialArticle() == 0 ) {
 			throw new BLLException(1000,"Champs requis non remplis");
 		}
 		

@@ -41,7 +41,7 @@
 	<div class="form-group row">
 		<label for="prix" class="col-sm-2 col-form-label">Mise à prix:</label>
 		<input type="number" class="form-control col-sm-10" id="prix"
-			placeholder="Prix de départ" name="prix" required>
+			placeholder="Prix de départ" name="prix" value="0" required>
 	</div>
 	<div class="form-group row">
 		<jsp:useBean id="now" class="java.util.Date" />
@@ -99,7 +99,7 @@
 			<div class="modal-header">
 				<h5 class="modal-title" id="modalLabel">Nouvelle vente</h5>
 				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close" onclick="retourAccueil()">
+					aria-label="Close" onclick="reloadModal()">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>

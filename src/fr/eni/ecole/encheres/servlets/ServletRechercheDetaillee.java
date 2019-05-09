@@ -116,11 +116,14 @@ public class ServletRechercheDetaillee extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(action.equals("suivant")){
-			if(request.getSession().getAttribute("rechercheDebut") != null) {
+			if(request.getSession().getAttribute("rechercheDebut") != null ) {
 				//on recupere le debut de la recherche et la liste des articles
 				int debutPagination = (int) request.getSession().getAttribute("rechercheDebut");
 				//on ajoute 3 par page
-				request.setAttribute("rechercheDebut", debutPagination + 3);
+				int finPagination = ((List<Article>)request.getSession().getAttribute("articlesRecherchees")).size();
+				if(debutPagination + 3 < finPagination) {
+					request.getSession().setAttribute("rechercheDebut", debutPagination + 3);
+				}
 				//reload la page
 				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/articlesRecherchees.jsp");  
 				rd.include(request, response);
@@ -130,8 +133,8 @@ public class ServletRechercheDetaillee extends HttpServlet {
 				//on recupere le debut de la recherche et la liste des articles
 				int debutPagination = (int) request.getSession().getAttribute("rechercheDebut");
 				//on ajoute 3 par page
-				if(debutPagination>3) {
-					request.setAttribute("rechercheDebut", debutPagination - 3);
+				if(debutPagination>=3) {
+					request.getSession().setAttribute("rechercheDebut", debutPagination - 3);
 				}
 				//reload la page
 				RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/articlesRecherchees.jsp");  

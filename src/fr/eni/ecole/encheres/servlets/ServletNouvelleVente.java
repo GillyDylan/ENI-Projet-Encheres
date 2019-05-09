@@ -90,21 +90,25 @@ public class ServletNouvelleVente extends HttpServlet {
 		newArticle.setUtilisateurVendant(vendeur);
 		//photo
 		Part filePart = request.getPart("photo");
-		InputStream fileContent = filePart.getInputStream();
-		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-		int nRead;
-		byte[] data = new byte[16384];
-		while((nRead = fileContent.read(data, 0, data.length)) != -1) {
-			buffer.write(data,0,nRead);
+		if(filePart.getSubmittedFileName() != null) {
+			InputStream fileContent = filePart.getInputStream();
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[16384];
+			while((nRead = fileContent.read(data, 0, data.length)) != -1) {
+				buffer.write(data,0,nRead);
+			}
+			buffer.flush();
+			newArticle.setImageArticle(buffer.toByteArray());
 		}
-		buffer.flush();
-		newArticle.setImageArticle(buffer.toByteArray());
 
 		try {
 			BLLManager.getBLL(new Article()).set(newArticle);
 			response.getWriter().write("Produit ajouté à la liste des enchères.");
 		} catch (DALException | BLLException e) {
 			response.getWriter().write(e.getMessage());
+		} catch(Exception ex) {
+			response.getWriter().write("un probleme est survenu lors de l'ajout du produit.");
 		}
 	}
 }

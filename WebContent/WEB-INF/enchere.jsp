@@ -14,10 +14,16 @@
 </div>
 <c:if test="${articleDetails != null }">
 	<div class="row">
-		<div class="col-sm-3">
-			<img src="data:image/jpg;base64,${articleDetails.getImageArticle() }" class="img-fluid" alt="Responsive image"/>
+		<div class="col-md-3">
+			<c:if test="${articleDetails.getImageArticle() != null}">
+				<img src="data:image/jpg;base64,${articleDetails.getImageArticle() }"
+					class="card-img-top" />
+			</c:if>
+			<c:if test="${articleDetails.getImageArticle() == null}">
+				<img src="img/photo_non_disponible.jpg" class="card-img-top" />
+			</c:if>
 		</div>
-		<div class="col-sm-5">
+		<div class="col-md-5">
 			<table class="table table-borderless">
 				<thead>
 					<tr colspan="3">
@@ -77,8 +83,7 @@
 								<c:set scope="session" var="article" value="${ articleDetails }"></c:set>
 								<td><input type="number"
 									value="${enchereMax == null ? articleDetails.getPrixInitialArticle() : enchereMax.getMontantEnchere()+1}"
-									min="${enchereMax.getMontantEnchere()+1}"
-									id="nouvelleEnchere" /></td>
+									min="${enchereMax.getMontantEnchere()+1}" id="nouvelleEnchere" /></td>
 							</tr>
 							<tr>
 								<td colspan="2"><c:if
@@ -101,7 +106,8 @@
 									<div class="modal-header">
 										<h5 class="modal-title" id="modalLabel">Nouvelle enchère</h5>
 										<button type="button" class="close" data-dismiss="modal"
-											onclick="getDetails(${articleDetails.getIdArticle()})" aria-label="Close">
+											onclick="getDetails(${articleDetails.getIdArticle()})"
+											aria-label="Close">
 											<span aria-hidden="true">x</span>
 										</button>
 									</div>
@@ -128,13 +134,14 @@
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									<div class="modal-body" id="modalMessageSuppressionEnchere">Etes-vous sûr
-										de vouloir supprimer cette enchère?</div>
+									<div class="modal-body" id="modalMessageSuppressionEnchere">Etes-vous
+										sûr de vouloir supprimer cette enchère?</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
 											id="butAnnulerSuppressionEnchere" data-dismiss="modal">Annuler</button>
 										<button type="button" class="btn btn-primary"
-											id="butSauvegarderSuppressionEnchere" onclick="supprimerEnchere()">Supprimer</button>
+											id="butSauvegarderSuppressionEnchere"
+											onclick="supprimerEnchere()">Supprimer</button>
 									</div>
 								</div>
 							</div>
@@ -143,7 +150,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-md-4">
 			<table class="table table-striped">
 				<thead>
 					<tr>

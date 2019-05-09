@@ -20,9 +20,16 @@
 	<div class="row d-flex">
 		<c:forEach var="article" items="${articlesRecherchees}"
 			begin="${rechercheDebut}" end="${rechercheDebut + 2}">
-			<div class="col-12 col-lg-4">
-				<div class="card" style="width: 18rem;">
-					<img src="data:image/jpg;base64,${article.getImageArticle()}" class="card-img-top"/>
+			<div class="col-12 col-md-6 col-lg-4 mt-2">
+				<div class="card">
+					<c:if test="${article.getImageArticle() != null}">
+					<img src="data:image/jpg;base64,${article.getImageArticle() }"
+							class="card-img-top" />
+					</c:if>
+					<c:if test="${article.getImageArticle() == null}">
+						<img src="img/photo_non_disponible.jpg"
+							class="card-img-top" />
+					</c:if>
 					<div class="card-body">
 						<h4 class="card-title">${article.getNomArticle()}</h4>
 						<p class="card-text">Prix : ${article.getPrixInitialArticle() }

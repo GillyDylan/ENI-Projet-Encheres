@@ -96,7 +96,7 @@ function ajouterNouvelleVente(){
 }
 
 function retourAccueil(){
-	$('.modal').modal('hide');
+	$('.modal-backdrop').hide();
 	$.ajax({
 		url : 'ServletOpenTab',
 		contentType: "application/x-www-form-urlencoded;charset=utf-8",
@@ -116,7 +116,13 @@ function retourAccueil(){
 
 }
 
+function reloadModal(){
+	$('#butAnnuler').show();
+	$('#butSauvegarder').show();
+}
+
 function getDetails(id){
+	$('.modal-backdrop').hide();
 	$.ajax({
 		url : 'details',
 		method : 'GET',

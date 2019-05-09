@@ -80,8 +80,8 @@
 </form>
 
 <div id="recherche" class="mt-5">
-	<c:if test="${articles.size() > 0}">
-		<c:if test="${articles.size() > 3}">
+	<c:if test="${articlesRecherchees.size() > 0}">
+		<c:if test="${articlesRecherchees.size() > 3}">
 			<div class="row d-flex justify-content-center m-2">
 				<button type="button" class="btn btn-primary btn-sm"
 					onclick="precedentListeArticles()"><<</button>
@@ -92,12 +92,18 @@
 			</div>
 		</c:if>
 		<div class="row d-flex">
-			<c:forEach var="article" items="${articles}"
+			<c:forEach var="article" items="${articlesRecherchees}"
 				begin="${rechercheDebutAccueil}" end="${rechercheDebutAccueil + 2}">
-				<div class="col-12 col-lg-4">
-					<div class="card" style="width: 18rem;">
-						<img src="data:image/jpg;base64,${article.getImageArticle() }"
-							class="card-img-top" />
+				<div class="col-12 col-md-6 col-lg-4 mt-2">
+					<div class="card">
+					<c:if test="${article.getImageArticle() != null}">
+					<img src="data:image/jpg;base64,${article.getImageArticle() }"
+							class="card-img-top img-thumbnail" />
+					</c:if>
+					<c:if test="${article.getImageArticle() == null}">
+						<img src="img/photo_non_disponible.jpg"
+							class="card-img-top img-thumbnail" />
+					</c:if>
 						<div class="card-body">
 							<h4 class="card-title">${article.getNomArticle()}</h4>
 							<p class="card-text">Prix : ${article.getPrixInitialArticle() }
@@ -121,7 +127,7 @@
 			</c:forEach>
 		</div>
 	</c:if>
-	<c:if test="${articles.size() <= 0}">
+	<c:if test="${articlesRecherchees.size() <= 0}">
 		<div class="alert alert-primary m-2" role="alert">La recherche
 			n'a retournée aucun résultat.</div>
 	</c:if>
@@ -137,4 +143,12 @@
 	      source: 'autocomplete'
 	    });
 	  } );
+	
+	filtrerRecherche();
 </script>
+<style>
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+}
+</style>
