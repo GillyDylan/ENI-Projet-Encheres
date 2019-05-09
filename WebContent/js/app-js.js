@@ -233,7 +233,6 @@ function filtrerRecherche(){
 		$('#chkVentesTerminees').prop( "disabled", false );
 	}
 }
-
 function rechercheDetaillee(){
 	var isAchat = false;
 	if($("input[name='chkboxEnchere']:checked").val() == "achat"){
