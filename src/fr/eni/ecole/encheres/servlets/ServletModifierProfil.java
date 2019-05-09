@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.encheres.bll.BLLException;
 import fr.eni.ecole.encheres.bo.Utilisateur;
 import fr.eni.ecole.encheres.dal.DALException;
 import fr.eni.ecole.encheres.dal.DAOFactory;
@@ -34,7 +35,10 @@ public class ServletModifierProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		try {
+		if(!request.getParameter("mdp").contentEquals(request.getParameter("mdp2"))){
+			throw new BLLException("Les mots de passes ne sont pas identiques");
+		}
 		((Utilisateur)request.getSession().getAttribute("utilisateur")).setPrenomUtilisateur(request.getParameter("prenom").trim());
 		((Utilisateur)request.getSession().getAttribute("utilisateur")).setNomUtilisateur(request.getParameter("nom").trim());
 		((Utilisateur)request.getSession().getAttribute("utilisateur")).setTelephoneUtilisateur(request.getParameter("telephone").trim());
@@ -43,10 +47,10 @@ public class ServletModifierProfil extends HttpServlet {
 		((Utilisateur)request.getSession().getAttribute("utilisateur")).setVilleUtilisateur(request.getParameter("ville").trim());
 		((Utilisateur)request.getSession().getAttribute("utilisateur")).setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal").trim()));
 		response.setContentType("text/plain");
-		try {
+
 			DAOFactory.getDAO(new Utilisateur()).update((Utilisateur)request.getSession().getAttribute("utilisateur"));
 			response.getWriter().write("Les modifications ont bien été enregistrées.");
-		} catch (DALException e) {
+		} catch (DALException | BLLException e) {
 			response.getWriter().write("Une erreur s'est produite lors de la mise à jour des données : " + e.getMessage());
 		}
 	}

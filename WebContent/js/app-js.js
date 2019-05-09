@@ -185,6 +185,7 @@ function modifierProfil(){
 			telephone : $("input[name='telephone']").val(),
 			codepostal : $("input[name='codepostal']").val(),
 			mdp : $("input[name='mdp']").val(),
+			mdp2 : $("input[name='mdp2']").val(),
 			nom : $("input[name='nom']").val(),
 			ville : $("input[name='ville']").val(),
 			rue : $("input[name='rue']").val(),
