@@ -140,7 +140,9 @@ public class ArticleBLL implements BLL<Article>{
 			articles.clear();
 			articles.addAll(articlesFiltres);
 			articlesFiltres.clear();
-			
+			System.out.println(recherche.isParam1());
+			System.out.println(recherche.isParam2());
+			System.out.println(recherche.isParam3());
 			if(!recherche.isParam1() && !recherche.isParam2() && !recherche.isParam3()) {
 				if(recherche.isAchat()) {
 					for( Article article : articles) {
@@ -159,7 +161,9 @@ public class ArticleBLL implements BLL<Article>{
 			} 
 			else {	
 				if(recherche.isAchat()) {
+					System.out.println("test 1");
 					if(recherche.isParam1()) {
+						System.out.println("test 2");
 						for( Article article : articles) {
 							if(article.getUtilisateurVendant().getIdUtilisateur() != utilisateur.getIdUtilisateur() && !article.isTermine()) {
 								articlesFiltres.add(article);
@@ -167,6 +171,7 @@ public class ArticleBLL implements BLL<Article>{
 						}
 					}
 					if(!recherche.isParam1() && recherche.isParam2()) {
+						System.out.println("test 3");
 						List<Enchere> encheres = BLLManager.getBLL(new Enchere()).getList();
 						for( Article article : articles) {
 							boolean trouve = false;
@@ -193,15 +198,17 @@ public class ArticleBLL implements BLL<Article>{
 				}
 				else {
 					for( Article article : articles) {
-						if(recherche.isParam1() && article.getDateDebutEncheresArticle().after(new Date())) {
-							articlesFiltres.add(article);
+						if(article.getUtilisateurVendant().getIdUtilisateur() == utilisateur.getIdUtilisateur()){
+							if(recherche.isParam1() && article.getDateDebutEncheresArticle().after(new Date())) {
+								articlesFiltres.add(article);
+							}
+							if(recherche.isParam2() && article.getDateDebutEncheresArticle().before(new Date()) && !article.isTermine()) {
+								articlesFiltres.add(article);
+							}
+							if(recherche.isParam3() && article.isTermine()) {
+								articlesFiltres.add(article);
+							}	
 						}
-						if(recherche.isParam2() && article.getDateDebutEncheresArticle().before(new Date()) && !article.isTermine()) {
-							articlesFiltres.add(article);
-						}
-						if(recherche.isParam3() && article.isTermine()) {
-							articlesFiltres.add(article);
-						}		
 					}
 				}
 			}
