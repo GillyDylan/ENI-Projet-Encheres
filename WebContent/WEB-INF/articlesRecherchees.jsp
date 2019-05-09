@@ -26,9 +26,11 @@
 							points</p>
 						<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 						<fmt:formatDate var="date"
-							value="${article.getDateFinEncheresArticle()}"
-							pattern="dd MMM YYYY" />
-						<p class="card-text">Fin de l'enchere : ${date }</p>
+								value="${article.getDateFinEncheresArticle()}"
+								pattern="dd MMM YYYY" />
+							<fmt:formatDate var="time"
+								value="${article.getDateFinEncheresArticle()}" pattern="HH:mm" />
+							<p class="card-text">Fin de l'enchere : ${date} à ${time}</p>
 						<p class="card-text">Vendeur :</p>
 						<p class="card-text">${article.getUtilisateurVendant().getPrenomUtilisateur()}
 							${article.getUtilisateurVendant().getNomUtilisateur()}</p>

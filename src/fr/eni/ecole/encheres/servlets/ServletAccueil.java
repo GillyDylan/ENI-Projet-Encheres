@@ -6,6 +6,7 @@ import java.util.List;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -82,12 +83,13 @@ public class ServletAccueil extends HttpServlet {
 		}
 
 		if(articles.size() > 0) {
-			request.setAttribute("articles", articles);
+			request.getSession().setAttribute("articlesRecherchees", articles);
 		}
 		request.setAttribute("categories", categories);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		this.getServletContext().getNamedDispatcher("accueil").include(request, response);
+		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/articlesRecherchees.jsp");  
+		rd.include(request, response);
 	}
 
 	/**

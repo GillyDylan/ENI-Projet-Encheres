@@ -77,7 +77,7 @@
 </form>
 
 <div id="recherche">
-	<c:if test="${articles.size() > 0}">
+	<c:if test="${articlesRecherchees.size() > 0}">
 		<div class="row d-flex justify-content-center m-2">
 			<button type="button" class="btn btn-primary btn-sm"
 				onclick="precedentListeArticles()"><<</button>
@@ -86,7 +86,7 @@
 				onclick="suivantListeArticles()">>></button>
 		</div>
 		<div class="row d-flex">
-			<c:forEach var="article" items="${articles}" begin="0" end="2">
+			<c:forEach var="article" items="${articlesRecherchees}" begin="0" end="2">
 				<div class="col-12 col-lg-4">
 					<div class="card">
 						<div class="card-body">

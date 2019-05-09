@@ -80,6 +80,7 @@ function ajouterNouvelleVente(){
 }
 
 function retourAccueil(){
+	$('.modal').modal('hide');
 	$.ajax({
 		url : 'ServletOpenTab',
 		contentType: "application/x-www-form-urlencoded;charset=utf-8",
@@ -263,11 +264,6 @@ function rechercheDetaillee(){
 
 $(document).ready(function() {
 	filtrerRecherche();
-	$(".close").on("click", function(e){
-		$(".modal").modal("hide");
-		console.log("test");
-		e.stopPropagation();
-	});
 });
 
 function remplirSelectCategorieVente(){
