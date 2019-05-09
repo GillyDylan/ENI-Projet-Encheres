@@ -35,17 +35,17 @@
 			<c:if test="${ utilisateur != null }">
 				<div class="d-flex">
 					<div class="form-check form-check-inline d-flex flex-column">
-						<input type="radio" class="form-check-input" name="chkboxEnchere"
+						<input type="radio" class="form-check-inline" name="chkboxEnchere"
 							value="achat" checked onchange="filtrerRecherche()"> <label
 							class="form-check-label" for="chkboxEnchere">Achats</label>
 						<div class="form-check d-flex flex-column">
-							<input type="checkbox" class="form-check-input"
+							<input type="checkbox" class="form-check-inline"
 								id="chkEncheresOuvertes"> <label
 								class="form-check-label" for="chkEncheresOuvertes">Enchères
-								ouvertes</label> <input type="checkbox" class="form-check-input"
+								ouvertes</label> <input type="checkbox" class="form-check-inline"
 								id="chkEncheresEnCours"> <label class="form-check-label"
 								for="chkEncheresEnCours">Mes enchères en cours</label> <input
-								type="checkbox" class="form-check-input"
+								type="checkbox" class="form-check-inline"
 								id="chkEncheresRemportees"> <label
 								class="form-check-label" for="chkEncheresRemportees">Mes
 								enchères remportées</label>
@@ -56,14 +56,14 @@
 							value="vente" onchange="filtrerRecherche()"> <label
 							class="form-check-label" for="chkboxEnchere">Ventes</label>
 						<div class="form-check d-flex flex-column">
-							<input type="checkbox" class="form-check-input"
+							<input type="checkbox" class="form-check-inline"
 								id="chkVentesEnCours"> <label class="form-check-label"
 								for="chkVentesEnCours">Ventes en cours</label> <input
-								type="checkbox" class="form-check-input"
+								type="checkbox" class="form-check-inline"
 								id="chkVentesNonDebutees"> <label
 								class="form-check-label" for="chkVentesNonDebutees">Mes
 								ventes non débutées</label> <input type="checkbox"
-								class="form-check-input" id="chkVentesTerminees"> <label
+								class="form-check-inline" id="chkVentesTerminees"> <label
 								class="form-check-label" for="chkVentesTerminees">Mes
 								ventes terminées</label>
 						</div>
