@@ -240,6 +240,7 @@ function rechercheDetaillee(){
 		var isAchat = true;
 	}
 	$.ajax({
+		
 		url : 'rechercheDetaillee?action=charger',
 		method : 'GET',
 		data : {
