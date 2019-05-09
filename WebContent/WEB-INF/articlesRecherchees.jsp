@@ -8,6 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <c:if test="${articlesRecherchees.size() > 0}">
+<c:if test="${articlesRecherchees.size() > 3}">
 	<div class="row d-flex justify-content-center m-2">
 		<button type="button" class="btn btn-primary btn-sm"
 			onclick="precedentListeArticles()"><<</button>
@@ -15,6 +16,7 @@
 		<button type="button" class="btn btn-primary btn-sm"
 			onclick="suivantListeArticles()">>></button>
 	</div>
+	</c:if>
 	<div class="row d-flex">
 		<c:forEach var="article" items="${articlesRecherchees}"
 			begin="${rechercheDebut}" end="${rechercheDebut + 2}">
@@ -52,6 +54,6 @@
 </c:if>
 <c:if test="${articlesRecherchees.size() <= 0}">
 	<div class="alert alert-primary m-2" role="alert">La recherche n'a
-		retournée aucun résultat.</div>
+		retournée aucun résultat.<img src="img/osselait_cry.png"/></div>
 
 </c:if>

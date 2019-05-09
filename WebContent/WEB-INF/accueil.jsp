@@ -80,16 +80,18 @@
 </form>
 
 <div id="recherche">
-	<c:if test="${articlesRecherchees.size() > 0}">
-		<div class="row d-flex justify-content-center m-2">
-			<button type="button" class="btn btn-primary btn-sm"
-				onclick="precedentListeArticles()"><<</button>
-			<span class="btn btn-primary"> ${rechercheDebutAccueil + 1} - ${ (rechercheDebutAccueil + 3) > articlesRecherchees.size() ? articlesRecherchees.size() : rechercheDebutAccueil + 3 }</span>
-			<button type="button" class="btn btn-primary btn-sm"
-				onclick="suivantListeArticles()">>></button>
-		</div>
+	<c:if test="${articles.size() > 0}">
+		<c:if test="${articles.size() > 3}">
+			<div class="row d-flex justify-content-center m-2">
+				<button type="button" class="btn btn-primary btn-sm"
+					onclick="precedentListeArticles()"><<</button>
+				<span class="btn btn-primary"> ${rechercheDebutAccueil + 1} - ${ (rechercheDebutAccueil + 3) > articlesRecherchees.size() ? articlesRecherchees.size() : rechercheDebutAccueil + 3 }</span>
+				<button type="button" class="btn btn-primary btn-sm"
+					onclick="suivantListeArticles()">>></button>
+			</div>
+		</c:if>
 		<div class="row d-flex">
-			<c:forEach var="article" items="${articlesRecherchees}" begin="${rechercheDebutAccueil}" end="${rechercheDebutAccueil + 2}">
+			<c:forEach var="article" items="${articles}" begin="${rechercheDebutAccueil}" end="${rechercheDebutAccueil + 2}">
 				<div class="col-12 col-lg-4">
 					<div class="card" style="width: 18rem;">
 						<img src="data:image/jpg;base64,${article.getImageArticle() }" class="card-img-top"/>
