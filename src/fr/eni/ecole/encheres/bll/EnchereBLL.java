@@ -12,7 +12,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	* @author ${Dylan Gilly}
 	*
 	* Renvoie l'ench�re la plus r�cente.
-	* Ordre des param�tres : IdArticle, IdUtilisateur
+	* Ordre des paramètres : IdArticle, IdUtilisateur
 	*/
 	@Override
 	public Enchere get(int...idEnchere) throws DALException {
@@ -31,7 +31,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	* @author ${Dylan Gilly}
 	*
 	* Renvoie NULL.
-	* Aucune recherche par String possible sur Ench�re
+	* Aucune recherche par String possible sur Enchère
 	*/
 	@Override
 	public Enchere get(String chaine) throws DALException {
@@ -43,8 +43,8 @@ public class EnchereBLL implements BLL<Enchere>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoie une liste d'ench�re tri� en d�croissant.
-	* Ordre des param�tres : IdArticle, IdUtilisateur
+	* Renvoie une liste d'ench�re trié en décroissant.
+	* Ordre des paramètres : IdArticle, IdUtilisateur
 	*/
 	@Override
 	public List<Enchere> getList(int...idEnchere) throws DALException {
@@ -62,7 +62,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	* @author ${Dylan Gilly}
 	*
 	* Renvoie NULL.
-	* Aucune recherche par String possible sur Ench�re
+	* Aucune recherche par String possible sur Enchère
 	*/
 	@Override
 	public List<Enchere> getList(String chaine) throws DALException {
@@ -74,7 +74,7 @@ public class EnchereBLL implements BLL<Enchere>{
 	/**
 	* @author ${Dylan Gilly}
 	*
-	* Renvoi la liste de toutes les ench�res.
+	* Renvoi la liste de toutes les enchères.
 	*/
 	@Override
 	public List<Enchere> getList() throws DALException {
@@ -105,7 +105,10 @@ public class EnchereBLL implements BLL<Enchere>{
 		}
 		else {
 			if(enchere.getMontantEnchere() < enchere.getArticle().getPrixInitialArticle()) {
-				throw new BLLException(3002, "Impossible d'entrer une enchère inférieur à "+enchere.getArticle().getPrixInitialArticle());
+				throw new BLLException(3002, "Impossible d'entrer une enchère inférieure à "+enchere.getArticle().getPrixInitialArticle());
+			}
+			if(enchere.getDateEnchere().before(enchere.getArticle().getDateDebutEncheresArticle())) {
+				throw new BLLException(3003, "Le début des enchères n'est pas commencé");
 			}
 		}
 		DAOFactory.getDAO(new Enchere()).insert(enchere);

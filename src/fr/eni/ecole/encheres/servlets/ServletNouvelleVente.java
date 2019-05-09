@@ -9,16 +9,20 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,6 +39,7 @@ import fr.eni.ecole.encheres.dal.DAOFactory;
 /**
  * Servlet implementation class ServletNouvelleVente
  */
+@MultipartConfig
 public class ServletNouvelleVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -68,13 +73,11 @@ public class ServletNouvelleVente extends HttpServlet {
 				} catch (DALException e) {
 					e.printStackTrace();
 				}
-				
 				for (Categorie categorie : categories) {
 					if(categorie.getIdCategorie() == Integer.parseInt(request.getParameter("selectCategorieVente").trim())) {
 						newArticle.setCategorie(categorie);
 					}
 				}
-				
 				newArticle.setNomArticle(request.getParameter("article"));
 				newArticle.setDescriptionArticle(request.getParameter("description"));
 				newArticle.setPrixInitialArticle(Integer.valueOf(request.getParameter("prix")));
@@ -85,17 +88,16 @@ public class ServletNouvelleVente extends HttpServlet {
 				Utilisateur vendeur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 				newArticle.setUtilisateurVendant(vendeur);
 				//photo
-				
-				//Part filePart = request.getPart("photo");
-				//InputStream fileContent = filePart.getInputStream();
-				//ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-				/*int nRead;
+				Part filePart = request.getPart("photo");
+				InputStream fileContent = filePart.getInputStream();
+				ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+				int nRead;
 				byte[] data = new byte[16384];
 				while((nRead = fileContent.read(data, 0, data.length)) != -1) {
 					buffer.write(data,0,nRead);
 				}
 				buffer.flush();
-				newArticle.setImageArticle(buffer.toByteArray());*/
+				newArticle.setImageArticle(buffer.toByteArray());
 				
 				try {
 					BLLManager.getBLL(new Article()).set(newArticle);

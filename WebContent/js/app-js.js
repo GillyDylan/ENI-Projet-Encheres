@@ -55,10 +55,25 @@ function envoieMailMDP() {
 }
 
 function ajouterNouvelleVente(){
+	var form_data = new FormData();
+	form_data.append('article' , $('#article').val());
+	form_data.append('description' , $('#description').val());
+	form_data.append('selectCategorieVente' , $('#selectCategorieVente').val());
+	form_data.append('prix' , $('#prix').val());
+	form_data.append('debutencheredate' , $('#debutencheredate').val());
+	form_data.append('debutencheretime' , $('#debutencheretime').val());
+	form_data.append('finencheredate' , $('#finencheredate').val());
+	form_data.append('finencheretime' , $('#finencheretime').val());
+	form_data.append('photo', $('#photo').prop('files')[0]);
 	$.ajax({
 		url : 'nouvellevente',
 		method : 'POST',
-		data : {
+		dataType    : 'text',  
+		cache       : false,
+        contentType : false,
+        processData : false,
+        enctype: 'multipart/form-data',
+		data : form_data /*{
 			article : $('#article').val(),
 			description : $('#description').val(),
 			selectCategorieVente : $('#selectCategorieVente').val(),
@@ -66,8 +81,9 @@ function ajouterNouvelleVente(){
 			debutencheredate : $('#debutencheredate').val(),
 			debutencheretime : $('#debutencheretime').val(),
 			finencheredate : $('#finencheredate').val(),
-			finencheretime : $('#finencheretime').val()
-		},
+			finencheretime : $('#finencheretime').val(),
+			photo: $('#photo').prop('files')[0]
+		}*/,
 		success : function(resultText) {
 			$('#modalMessage').html(resultText);
 			$('#butAnnuler').toggle(false);
