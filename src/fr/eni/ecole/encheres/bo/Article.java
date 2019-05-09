@@ -1,8 +1,14 @@
 package fr.eni.ecole.encheres.bo;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.Date;
 
-
+import javax.imageio.ImageIO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +22,7 @@ import com.sun.istack.Nullable;
 
 @Entity
 public class Article {
-	
+
 	@Id @GeneratedValue private int idArticle;
 	@NotNull @Column(nullable = false) private String nomArticle;
 	@NotNull @Column(nullable = false) private String descriptionArticle;
@@ -37,8 +43,8 @@ public class Article {
 	@Lob @Nullable @Column(nullable=true)
 	private byte[] imageArticle;
 
-	public byte[] getImageArticle() {
-		return imageArticle;
+	public String getImageArticle() {
+		return Base64.getEncoder().encodeToString(this.imageArticle);
 	}
 
 	public void setImageArticle(byte[] imageArticle) {
@@ -161,10 +167,10 @@ public class Article {
 		super();
 		this.termine = false;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 }

@@ -1,7 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java"
-	import="java.util.*,java.lang.*, java.time.LocalDate, fr.eni.ecole.encheres.bo.Article, fr.eni.ecole.encheres.bo.Categorie, fr.eni.ecole.encheres.bo.Utilisateur"%>
+	import="java.util.*,java.lang.*, java.time.LocalDate, java.awt.image.BufferedImage,
+	java.io.ByteArrayOutputStream, javax.imageio.ImageIO,
+	fr.eni.ecole.encheres.bo.Article, fr.eni.ecole.encheres.bo.Categorie, fr.eni.ecole.encheres.bo.Utilisateur"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@page import="javax.imageio.ImageIO"%>
 <jsp:include page="/menu"></jsp:include>
 <div class="row">
 	<div class="col">
@@ -88,7 +91,8 @@
 		<div class="row d-flex">
 			<c:forEach var="article" items="${articlesRecherchees}" begin="${rechercheDebutAccueil}" end="${rechercheDebutAccueil + 2}">
 				<div class="col-12 col-lg-4">
-					<div class="card">
+					<div class="card" style="width: 18rem;">
+						<img src="data:image/jpg;base64,${article.getImageArticle() }" class="card-img-top"/>
 						<div class="card-body">
 							<h4 class="card-title">${article.getNomArticle()}</h4>
 							<p class="card-text">Prix : ${article.getPrixInitialArticle() }

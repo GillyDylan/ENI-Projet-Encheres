@@ -1,6 +1,9 @@
 package fr.eni.ecole.encheres.servlets;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
@@ -14,6 +17,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -90,14 +94,10 @@ public class ServletNouvelleVente extends HttpServlet {
 				//photo
 				Part filePart = request.getPart("photo");
 				InputStream fileContent = filePart.getInputStream();
-				ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-				int nRead;
-				byte[] data = new byte[16384];
-				while((nRead = fileContent.read(data, 0, data.length)) != -1) {
-					buffer.write(data,0,nRead);
-				}
-				buffer.flush();
-				newArticle.setImageArticle(buffer.toByteArray());
+				BufferedImage bImage = ImageIO.read(fileContent);
+			    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			    byte [] data = bos.toByteArray();
+				newArticle.setImageArticle(data);
 				
 				try {
 					BLLManager.getBLL(new Article()).set(newArticle);
