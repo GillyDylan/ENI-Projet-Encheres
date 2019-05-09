@@ -51,7 +51,7 @@
 			</div>
 			<div class="form-group">
 				<label for="mdp2">Confirmation:</label> <input type="password"
-					class="form-control" name="mdp2">
+					class="form-control" name="mdp2" id="mdp2Inscription">
 			</div>
 		</div>
 	</div>

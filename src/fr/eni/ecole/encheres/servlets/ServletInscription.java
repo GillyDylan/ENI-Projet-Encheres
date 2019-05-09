@@ -40,6 +40,9 @@ public class ServletInscription extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		try {
+			if(!request.getParameter("mdp").contentEquals(request.getParameter("mdp2"))){
+				throw new BLLException("Les mots de passes ne sont pas identiques");
+			}
 			Utilisateur newUtilisateur = new Utilisateur();
 			newUtilisateur.setPseudonymeUtilisateur(request.getParameter("pseudo"));
 			newUtilisateur.setPrenomUtilisateur(request.getParameter("prenom"));
@@ -49,7 +52,7 @@ public class ServletInscription extends HttpServlet {
 			newUtilisateur.setMotDePasseUtilisateur(request.getParameter("mdp"));
 			newUtilisateur.setRueUtilisateur(request.getParameter("rue"));
 			newUtilisateur.setVilleUtilisateur(request.getParameter("ville"));
-			if(request.getParameter("codepostal").trim() != null || !request.getParameter("codepostal").trim().equals("")) {
+			if(request.getParameter("codepostal").trim() != null && !request.getParameter("codepostal").trim().equals("")) {
 				newUtilisateur.setCodePostalUtilisateur(Integer.valueOf(request.getParameter("codepostal")));
 			}else {
 				newUtilisateur.setCodePostalUtilisateur(0);

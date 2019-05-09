@@ -160,6 +160,7 @@ function sinscrire(){
 			telephone : $("input[name='telephone']").val(),
 			codepostal : $("input[name='codepostal']").val(),
 			mdp : $("#mdpInscription").val(),
+			mdp2 : $("#mdp2Inscription").val(),
 			nom : $("input[name='nom']").val(),
 			ville : $("input[name='ville']").val(),
 			rue : $("input[name='rue']").val(),
