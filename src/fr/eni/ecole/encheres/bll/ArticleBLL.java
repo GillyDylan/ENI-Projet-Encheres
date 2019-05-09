@@ -134,7 +134,7 @@ public class ArticleBLL implements BLL<Article>{
 			}
 		}
 		else {
-			articlesFiltres = articles;
+			articlesFiltres.addAll(articles);
 		}
 		if(utilisateur != null) {
 			articles.clear();
@@ -173,6 +173,7 @@ public class ArticleBLL implements BLL<Article>{
 							for(Enchere enchere : encheres) {
 								if(enchere.getArticle().getIdArticle() == article.getIdArticle() && enchere.getUtilisateur().getIdUtilisateur() == utilisateur.getIdUtilisateur()) {
 									trouve = true;
+									System.out.println(article.getIdArticle());
 								}
 							}
 							if(trouve) {
@@ -219,12 +220,20 @@ public class ArticleBLL implements BLL<Article>{
 	@Override
 	public void set(Article article) throws BLLException, DALException {
 		// TODO Auto-generated method stub
+		if(article.getNomArticle().trim() == "" || article.getNomArticle() == null ||
+				article.getDescriptionArticle().trim() == "" || article.getDescriptionArticle() == null ||
+				article.getPrixInitialArticle() == 0) {
+			throw new BLLException(1000,"Champs requis non remplis");
+		}
+		
 		if(BLLManager.getBLL(new Article()).getList(article.getIdArticle()).size() == 0){
 			if(article.getDateDebutEncheresArticle().before(new Date())) {
-				throw new BLLException(1000,"Début de l'enchère déjà passée");
+				System.out.println(article.getDateDebutEncheresArticle());
+				System.out.println(new Date());
+				throw new BLLException(1001,"Début de l'enchère déjà passée");
 			}
 			if(BLLManager.getBLL(new Article()).getList(article.getDescriptionArticle().trim()).size() != 0) {
-				throw new BLLException(1001,"Cette description existe déjà");
+				throw new BLLException(1002,"Cette description existe déjà");
 			}
 			DAOFactory.getDAO(new Article()).insert(article);
 		}

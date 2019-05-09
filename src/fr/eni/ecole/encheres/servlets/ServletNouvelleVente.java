@@ -85,16 +85,17 @@ public class ServletNouvelleVente extends HttpServlet {
 				Utilisateur vendeur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 				newArticle.setUtilisateurVendant(vendeur);
 				//photo
-				Part filePart = request.getPart("photo");
-				InputStream fileContent = filePart.getInputStream();
-				ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-				int nRead;
+				
+				//Part filePart = request.getPart("photo");
+				//InputStream fileContent = filePart.getInputStream();
+				//ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+				/*int nRead;
 				byte[] data = new byte[16384];
 				while((nRead = fileContent.read(data, 0, data.length)) != -1) {
 					buffer.write(data,0,nRead);
 				}
 				buffer.flush();
-				newArticle.setImageArticle(buffer.toByteArray());
+				newArticle.setImageArticle(buffer.toByteArray());*/
 				
 				try {
 					BLLManager.getBLL(new Article()).set(newArticle);
