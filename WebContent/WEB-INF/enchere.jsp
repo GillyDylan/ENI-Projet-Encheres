@@ -55,6 +55,10 @@
 					<tr>
 						<td>Fin de l'enchere</td>
 						<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+						<c:if test="${articleDetails.isTermine() == true}">
+							<td>Vente terminée</td>
+						</c:if>
+						<c:if test="${articleDetails.isTermine() == false}">
 						<fmt:formatDate var="date"
 							value="${articleDetails.getDateFinEncheresArticle()}"
 							pattern="dd MMM YYYY" />
@@ -62,6 +66,7 @@
 							value="${articleDetails.getDateFinEncheresArticle()}"
 							pattern="HH:mm" />
 						<td>${date} à ${time}</td>
+						</c:if>
 					</tr>
 					<tr>
 						<td>Retrait</td>
