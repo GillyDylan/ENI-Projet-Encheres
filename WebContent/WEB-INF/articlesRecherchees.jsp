@@ -58,3 +58,9 @@
 		retournée aucun résultat.<img src="img/osselait_cry.png"/></div>
 
 </c:if>
+<style>
+.card-img-top {
+    width: 100%;
+    height: 35vh;
+}
+</style>
