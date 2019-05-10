@@ -33,6 +33,14 @@ public class ServletRechercheDetaillee extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String newRecherche = null;
+		if(request.getParameter("newRecherche")!= null) {
+			newRecherche = request.getParameter("newRecherche");
+			if(newRecherche.equals("newRecherche")) {
+				request.getSession().setAttribute("rechercheDebut", 0);
+			}
+		}	
+		
 		String action = request.getParameter("action");
 		List<Article> articlesRecherchees = null;
 		response.setCharacterEncoding("UTF-8");

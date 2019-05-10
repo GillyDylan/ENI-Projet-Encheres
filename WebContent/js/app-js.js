@@ -264,7 +264,7 @@ function rechercheDetaillee(){
 		var isAchat = true;
 	}
 	$.ajax({
-		url : 'rechercheDetaillee?action=charger',
+		url : 'rechercheDetaillee?action=charger&newRecherche=newRecherche',
 		method : 'GET',
 		data : {
 			strRecherche : $('#strRecherche').val(),
