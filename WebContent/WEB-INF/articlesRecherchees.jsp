@@ -32,15 +32,31 @@
 					</c:if>
 					<div class="card-body">
 						<h4 class="card-title">${article.getNomArticle()}</h4>
-						<p class="card-text">Prix : ${article.getPrixInitialArticle() }
+						<c:if test="${article.getPrixVenteArticle() != null && article.getPrixVenteArticle() != 0 }">
+							<p class="card-text">Prix : ${article.getPrixVenteArticle() }
 							points</p>
+						</c:if>
+						<c:if test="${article.getPrixVenteArticle() == null || article.getPrixVenteArticle() == 0 }">
+							<p class="card-text">Prix : ${article.getPrixInitialArticle() }
+							points</p>
+						</c:if>
 						<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-						<fmt:formatDate var="date"
+							<c:if test ="${article.isTermine() == true}">
+							<fmt:formatDate var="date"
+								value="${article.getDateFinEncheresArticle()}"
+								pattern="dd MMM YYYY" />
+							<fmt:formatDate var="time"
+								value="${article.getDateFinEncheresArticle()}" pattern="HH:mm" />
+							<p class="card-text">Vente terminée le ${date} à ${time}</p>
+							</c:if>
+							<c:if test ="${article.isTermine() == false}">
+							<fmt:formatDate var="date"
 								value="${article.getDateFinEncheresArticle()}"
 								pattern="dd MMM YYYY" />
 							<fmt:formatDate var="time"
 								value="${article.getDateFinEncheresArticle()}" pattern="HH:mm" />
 							<p class="card-text">Fin de l'enchere : ${date} à ${time}</p>
+							</c:if>
 						<p class="card-text">Vendeur :</p>
 						<p class="card-text">${article.getUtilisateurVendant().getPrenomUtilisateur()}
 							${article.getUtilisateurVendant().getNomUtilisateur()}</p>

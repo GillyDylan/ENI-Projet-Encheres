@@ -48,12 +48,12 @@ public class ServletEncherir extends HttpServlet {
 		Article article = (Article) request.getSession().getAttribute("article"); 
 		Date date = new Date();
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
-		article.setUtilisateurAchetant(utilisateur);
-		article.setPrixVenteArticle(valeurEnchere);
 		Enchere nouvelleEnchere = new Enchere(utilisateur, article, date, valeurEnchere);
 		response.setContentType("text/plain");
 		try {
 			BLLManager.getBLL(new Enchere()).set(nouvelleEnchere);
+			article.setUtilisateurAchetant(utilisateur);
+			article.setPrixVenteArticle(valeurEnchere);
 			BLLManager.getBLL(new Article()).set(article);
 			response.getWriter().write("Enchère acceptée.");
 		} catch (Exception e) {

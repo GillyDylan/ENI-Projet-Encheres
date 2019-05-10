@@ -94,7 +94,16 @@ public class EnchereBLL implements BLL<Enchere>{
 		if(enchere.getDateEnchere().after(enchere.getArticle().getDateFinEncheresArticle()) || enchere.getArticle().isTermine()) {
 			throw new BLLException(3000, "Cette vente est terminée");
 		}
-		
+		if(enchere.getArticle().getPrixVenteArticle() == 0) {
+			if(enchere.getUtilisateur().getCreditUtilisateur() < enchere.getArticle().getPrixInitialArticle()) {
+				throw new BLLException(3003, "Vous ne disposez que de " + enchere.getUtilisateur().getCreditUtilisateur() + " crédits");
+			}
+		}
+		else {
+			if(enchere.getUtilisateur().getCreditUtilisateur() < enchere.getArticle().getPrixVenteArticle()) {
+				throw new BLLException(3003, "Vous ne disposez que de " + enchere.getUtilisateur().getCreditUtilisateur() + " crédits");
+			}
+		}
 		List<Enchere> encheres = this.getList(enchere.getArticle().getIdArticle());
 		if(encheres.size() != 0) {
 			for(Enchere oldEnchere : encheres) {
@@ -106,9 +115,7 @@ public class EnchereBLL implements BLL<Enchere>{
 			if(enchere.getArticle().getUtilisateurAchetant().getIdUtilisateur() == oldEnchere.getArticle().getUtilisateurAchetant().getIdUtilisateur()) {
 				throw new BLLException(3002, "Vous êtes déjà le meilleur enchérisseur");
 			}
-			if(enchere.getUtilisateur().getCreditUtilisateur() < enchere.getArticle().getPrixVenteArticle()) {
-				throw new BLLException(3003, "Vous ne disposez que de " + enchere.getUtilisateur().getCreditUtilisateur() + " crédits");
-			}
+			
 		}
 		else {
 			if(enchere.getMontantEnchere() < enchere.getArticle().getPrixInitialArticle()) {
