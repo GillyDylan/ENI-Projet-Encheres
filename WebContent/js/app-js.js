@@ -212,6 +212,9 @@ function supprimerProfil(){
 		url : 'supprimerProfil',
 		method : 'POST',
 		success : function(resultText) {
+			$('#modalMessageSupprimerProfil').html(resultText);
+			$('#butAnnulerSupprimerProfil').toggle(false);
+			$('#butSauvegarderSupprimerProfil').toggle(false);
 		},
 		error : function(jqXHR, exception) {
 			console.log('Error occured!!');

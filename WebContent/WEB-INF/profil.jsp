@@ -41,7 +41,7 @@
 			<input type="button" class="btn btn-primary" value="Modifier"
 				onclick="debloquerProfil()" id="buttonModifier" />
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSupprimerProfil" 
-			name="supprimer">Supprimer</button>
+			name="supprimer" onclick="reloadModal()">Supprimer</button>
 			<button type="button" class="btn btn-primary" onclick="openTab(this)" name="accueil">Retour</button>
 		</div>
 		<div class="col-6">
@@ -101,23 +101,23 @@
   </div>
 </div>
 
-<div class="modal fade" data-backdrop="false" id="modalSupprimerProfil" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="modalSupprimerProfil" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalLabel">Validation</h5>
         <button type="button" class="close"
-        data-dismiss="modal" aria-label="Close">
+        data-dismiss="modal" aria-label="Close" onclick="retourAccueil()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body"  id="modalMessage">
+      <div class="modal-body"  id="modalMessageSupprimerProfil">
         Voulez-vous vraiment mourir de ce site?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="butAnnuler"
+        <button type="button" class="btn btn-secondary" id="butAnnulerSupprimerProfil"
         data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary" id="butSauvegarder"
+        <button type="button" class="btn btn-primary" id="butSauvegarderSupprimerProfil"
         onclick="supprimerProfil()">Supprimer</button>
       </div>
     </div>
